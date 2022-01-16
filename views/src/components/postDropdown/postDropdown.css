@@ -1,0 +1,26 @@
+.postDropdownMenu {
+    position:absolute;
+    max-width: 44px;
+    min-width: 44px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(240, 240, 240, .75);
+    border-radius: 8px;
+    margin-left: -35px;
+    padding: 7px;
+    margin-top: -5px;
+    align-items: flex-end;
+    padding-top: 45px;
+    z-index: 0;
+    
+}
+
+.postDropdownMenu{
+    cursor: pointer;
+}
+
+
+.postDropdownMenuItem:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}

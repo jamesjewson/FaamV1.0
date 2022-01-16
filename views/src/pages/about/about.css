@@ -1,0 +1,111 @@
+.aboutWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logoWrapper{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.aboutLogo{
+    height: 100%;
+    border-radius: 20px;
+}
+
+.aboutlowerWrap{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+.aboutSidebar{
+    width: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.aboutSideImg{
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+
+
+
+.aboutH2{
+    font-size: 48px;
+    padding-left: 15px;
+    margin: 5px 0px 10px;
+}
+
+.aboutTextWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 750px;
+}
+
+
+.aboutListItem{
+    list-style-type:disc;
+}
+
+.aboutQAndA{
+    width: 100%;
+    background-color: lightgray;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.aboutSubheader{
+    font-size: 24px;
+    margin-bottom:10px;
+}
+
+.aboutP{
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.aboutList{
+    font-size: 16px;
+
+}
+
+.goBack{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.goBack:hover{
+    color: blue;
+}
+
+.outsideWrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.headerWrap{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:baseline;
+}
+
+
+.copyright {
+    font-style: italic;
+    font-size: 14px;
+}

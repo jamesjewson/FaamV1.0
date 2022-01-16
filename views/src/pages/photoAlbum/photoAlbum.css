@@ -1,0 +1,29 @@
+.photoAlbumContainer {
+    display: flex;
+}
+.photoAlbum {
+    flex: 6;
+}
+
+.photoAlbumHeader{
+    padding: 10px;
+    margin: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: center;
+
+
+}
+
+.photoAlbumHr{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+
+.rightbarPhotoAlbum{
+    position: sticky;
+    overflow-y: scroll;
+}

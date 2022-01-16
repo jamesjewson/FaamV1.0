@@ -1,0 +1,119 @@
+.comments {
+    width:100%;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.37); 
+    box-shadow: 0px 7px 10px 6px rgba(0,0,0,0.37);
+    margin-top: 12px;
+    margin-bottom: 25px;
+}
+
+
+
+.commentsProfileImg {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.commentsHr {
+    margin-left: 35px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.commentsButton {
+    border:none;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: blue;
+    font-weight: 500;
+    margin-right: 20px;
+    margin-left: 35px;
+    cursor: pointer;
+    color: white;
+}
+
+.commentsButton:hover{
+    background-color: #273be2 ;
+}
+
+.commentsInput {
+    margin-top: 15px;
+}
+
+li {
+    list-style-type: none;
+}
+
+
+.displayComments {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+    align-items: flex-end;
+    padding-bottom: 10px;
+    /* border-radius: 10%; */
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+.commentsTextProfileImg {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-top: 5px;
+    
+}
+
+.commentsText {
+    font-style: italic;
+}
+
+.allComments{
+    padding-top: 15px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    width:80%;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.37); 
+    box-shadow: 0px 7px 10px 6px rgba(0,0,0,0.37);
+    margin-top: 12px;
+    margin-left: 20%;
+
+}
+
+
+
+.commentsArray{
+    margin-top: 10px;
+}
+
+.commenterContainer{
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.commentSectionHr{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.deleteComment{
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.deleteComment:hover{
+    color: red;
+}

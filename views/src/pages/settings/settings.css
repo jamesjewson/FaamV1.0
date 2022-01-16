@@ -1,0 +1,17 @@
+.settingsWrapper {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    
+}
+
+.leftSettingsSidebar{
+    /* width: 8vw; */
+    
+}
+
+.rightSettingsSidebar {
+    /* width: 85vw; */
+    
+}
+

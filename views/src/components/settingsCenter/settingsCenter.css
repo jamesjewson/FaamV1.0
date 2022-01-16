@@ -1,0 +1,45 @@
+.settingsCenter{
+    /* width: 33%; */
+    flex: 4;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.updateProfileSettingsForm{
+    color: black;
+    min-width: 100%;;
+}
+
+.settingsCurrentValue{
+    color: blue;
+}
+
+.settingsPageH1 {
+    margin: 10px 0px 15px;
+}
+
+.settingsHr{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.settingsUserInfoContainer{
+    width: 100%;
+    margin: 20px 0px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding: 20px 0px 20px 10px;
+}
+
+.settingsInput{
+    margin-left: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
+
+}
+
+.readonlyInput{
+    font-size: 12px;
+}
