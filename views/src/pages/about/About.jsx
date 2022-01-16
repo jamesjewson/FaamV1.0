@@ -35,7 +35,7 @@ export default function About() {
                     </section>
                     <section className="aboutQAndA">
                         <h4 className="aboutSubheader">Can I see the source code?</h4>
-                        <p className="aboutP"><a href="https://github.com/jamesjewson/faam-backend" rel="noreferrer" target="_blank">But of course!</a></p>
+                        <p className="aboutP"><a href="https://github.com/jamesjewson/Faamv1.0" rel="noreferrer" target="_blank">But of course!</a></p>
                     </section>
                     <section className="aboutQAndA">
                         <h4 className="aboutSubheader">What can I do on this site?</h4>
