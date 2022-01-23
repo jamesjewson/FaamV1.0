@@ -23,17 +23,9 @@
 - Axios API
  
 ---
-Future Updates
-- [ ] Make site mobile-friendly
-- [ ] User ID only for comments and posts
-- [ ] Securely Change Password
-- [ ] Chat Feature
-- [ ] Reorganize Database 
 
-    
----
 
-Things I learned
+# Things I learned
 
 - How to pass down props, including functions
 - React hooks
@@ -41,3 +33,14 @@ Things I learned
 - MongoDB accessing/updating/deleting information inside of an array
 - MongoDB updating information
 - Database organization
+
+---
+
+# Future Updates
+- [ ] Make site mobile-friendly
+- [ ] User ID only for comments and posts
+- [ ] Securely Change Password
+- [ ] Chat Feature
+- [ ] Reorganize Database 
+
+    
