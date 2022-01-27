@@ -43,6 +43,8 @@ app.get("*", function (request, response) {
 });
 
 
+app.get('/', (req, res) => { res.send('Hello from Express!') })
+
 const PORT = process.env.PORT || 8800
 // Set up server
 app.listen(PORT,()=>{
