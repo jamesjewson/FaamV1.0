@@ -9,6 +9,8 @@ const authRoute = require('./routes/auth')
 const postRoute = require('./routes/posts')
 const path = require("path")
 
+app.get('/test', (req, res) => { res.send('Hello from Express!') })
+
 
 //.env config
 dotenv.config()
@@ -43,7 +45,6 @@ app.get("*", function (request, response) {
 });
 
 
-app.get('/test', (req, res) => { res.send('Hello from Express!') })
 
 // Set up server
 app.listen(process.env.PORT)
