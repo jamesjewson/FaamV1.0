@@ -46,7 +46,5 @@ app.get("*", function (request, response) {
 app.get('/test', (req, res) => { res.send('Hello from Express!') })
 
 // Set up server
-app.listen(process.env.PORT || 8800,()=>{
-    console.log("Server is running, better catch it!")
-})
+app.listen(process.env.PORT)
 
