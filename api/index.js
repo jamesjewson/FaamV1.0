@@ -43,11 +43,10 @@ app.get("*", function (request, response) {
 });
 
 
-app.get('/', (req, res) => { res.send('Hello from Express!') })
+app.get('/test', (req, res) => { res.send('Hello from Express!') })
 
-const PORT = process.env.PORT || 8800
 // Set up server
-app.listen(PORT,()=>{
+app.listen(process.env.PORT || 8800,()=>{
     console.log("Server is running, better catch it!")
 })
 
