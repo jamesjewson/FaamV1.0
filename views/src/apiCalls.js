@@ -6,7 +6,7 @@ export const loginCall = async (userCredentials,dispatch)=>{
     try{
         const res = await axios.post("https://faamserver.herokuapp.com/api/auth/login", userCredentials)
         .catch(error => {
-            element.parentElement.innerHTML = `Error: ${error.message}`;
+            console.log(`Error: ${error.message}`);
             console.error('There was an error!', error);
         });
         dispatch({type:"LOGIN_SUCCESS", payload:res.data});
