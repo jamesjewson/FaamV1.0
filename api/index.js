@@ -8,8 +8,13 @@ const userRoute = require('./routes/users')
 const authRoute = require('./routes/auth')
 const postRoute = require('./routes/posts')
 const path = require("path")
+var cors = require('cors')
 
 app.get('/test', (req, res) => { res.send('Hello from Express!') })
+
+
+app.use(cors())
+
 
 
 //.env config
