@@ -27,7 +27,7 @@ export default function Rightbar({user}) {
     useEffect(() => {
        const getAllUsers = async ()=>{
            try{
-               const userList = await axios.get("/users/allUsers")
+               const userList = await axios.get("https://faamserver.herokuapp.com/api/users/allUsers")
                setAllUsers(userList.data)
             }catch(err){
                console.log(err)   
