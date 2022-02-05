@@ -27,7 +27,7 @@ export default function Rightbar({user}) {
     useEffect(() => {
        const getAllUsers = async ()=>{
            try{
-               const userList = await axios.get("https://faamserver.herokuapp.com/api/users/allUsers")
+               const userList = await axios.get("/users/allUsers")
                setAllUsers(userList.data)
             }catch(err){
                console.log(err)   
@@ -40,7 +40,7 @@ export default function Rightbar({user}) {
 //Get profile user Photos    
     useEffect(() => {
         const showPhotos = async ()=>{
-                const res = await axios.get("https://faamserver.herokuapp.com/api/posts/photos/" + user?.username)
+                const res = await axios.get("/posts/photos/" + user?.username)
                 setPhotos(res.data.sort((p1,p2)=>{
                     return new Date(p2.createdAt) - new Date(p1.createdAt);
                 })
