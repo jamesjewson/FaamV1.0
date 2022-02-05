@@ -63,10 +63,10 @@ export default function Rightbar({user}) {
         try{
             if(followed){
                 await axios.put(`/users/${user._id}/unfollow`, {userId:currentUser._id})
-                dispatch({type:"UNFOLLOW", payload:user._id})
+             //   dispatch({type:"UNFOLLOW", payload:user._id})
             }else{
                 await axios.put(`/users/${user._id}/follow`, {userId:currentUser._id})
-                dispatch({type:"FOLLOW", payload:user._id})
+              //  dispatch({type:"FOLLOW", payload:user._id})
             }
         }catch(err){
             console.log(err)
