@@ -10,7 +10,7 @@ import Online from "../online/Online"
 
 export default function Rightbar({user}) {
 
-    const {user:currentUser, dispatch} =  useContext(AuthContext)
+    const {user:currentUser} =  useContext(AuthContext)
     const [followed,setFollowed] = useState(false)
     const [photos, setPhotos] = useState([])
     const [viewImg, setViewImg] = useState(false)
