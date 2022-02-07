@@ -1,0 +1,83 @@
+
+added _redirects in public folder
+
+git subtree push --prefix api heroku master
+
+
+To Do:
+Add stock images to each fake person
+Make 20 fake people
+-Hildegard von Bingen
+-Bert and Ernie
+-Kermit the Frog
+-Me 
+-Sweet Pea 
+-Bast
+-Amanda Lynn
+-Barry D. Hatchett
+-Sandy Cheeks
+-Sarah Nader
+-Frank Drebin
+-Jack Pott
+-Bill Ding
+-Paige Turner
+-Daniel Radcliffe
+-Lil' Sebastian
+-Mariah H. Ross
+-Bruce Dwyer
+-Ralph Finley
+-Bryant Zeick
+
+Add to portfolio
+
+Dropdown Menu
+
+Make agreement statement for "demo"
+on login if username=demo say "I promise to be nice" yes/no- if no, logout. If yes, proceed as normal
+
+
+CSS- 
+REDESIGN
+font Josefin Sans 
+playfair for comment font
+OP comments are highlighted in some way 
+Add "About me" on profile page
+
+
+Add Search Feature/Search result page;
+Add Reset Password Feature
+First name and Last Name instead of username
+
+Add Chat Feature
+Add Group Chat Feature/Group Page (It's one thing)
+Add Vote Feature
+
+Only OP can see comments
+Curate News Feed
+Formatting on posts
+Group Feed
+
+
+
+logomakr.com/app/67u5eq
+
+logomakr.com/app/6AnSyS 
+
+
+
+
+
+
+
+TeacherTools
+
+Calculator
+
+
+
+
+Changed package.json proxy   "proxy": "https://faamserver.herokuapp.com/"
+commented out stuff in index.json
+
+
+removed https://faamserver.herokuapp.com/api/ from apiCalls login
