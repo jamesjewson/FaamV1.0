@@ -7,6 +7,7 @@ import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
 import Online from "../online/Online"
 
+import Topbar from "../topbar/Topbar"
 
 export default function Rightbar({user}) {
 
@@ -87,6 +88,7 @@ export default function Rightbar({user}) {
         const HomeRightBar = () => {
             return (
                 <>
+                    <Topbar />
                     <hr className="rightbarHr" />
                     <h3 className="allUsersHeader" >People You Might Know</h3>
                     {allUsers.map(user=>(

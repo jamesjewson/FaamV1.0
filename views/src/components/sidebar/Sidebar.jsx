@@ -8,6 +8,8 @@ import {Link} from "react-router-dom"
 
 export default function Sidebar() {
 
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER
+
     const {user:currentUser} = useContext(AuthContext)
     const [friends, setFriends] = useState([])
     const [showMore, setShowMore] = useState(false)
@@ -31,6 +33,13 @@ export default function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
+            <div className="topbarLeft">
+                <Link to="/" style={{textDecoration:"none"}}>
+                    <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.png"} alt="logo"/></span>
+                </Link>
+            </div>
+            <hr className="sidebarHr"/>
+
             {/* Sidebar Clickables */}
                 <ul className="sidebarList">
                     <li className="">

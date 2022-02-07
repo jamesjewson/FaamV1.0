@@ -81,3 +81,13 @@ commented out stuff in index.json
 
 
 removed https://faamserver.herokuapp.com/api/ from apiCalls login
+
+
+
+Stuff to update that isn't CSS
+
+all Components
+
+
+Notes:
+239 border in post.css is possibly for OP post

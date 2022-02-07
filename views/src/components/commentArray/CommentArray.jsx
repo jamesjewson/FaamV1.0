@@ -101,7 +101,7 @@ export default function CommentArray(post) {
                 <div className="commenterContainer">
                     <Link className="commenterContainer" to={`/profile/${user.username}`}>
                         <img className="commentsTextProfileImg" alt="profilePicture" src={postUser?.profilePicture ? postUser?.profilePicture : PF+"person/noAvatar.jpeg" } />
-                        <span>{ postUser?.username ? postUser.username : null}</span>
+                        <span className="commenterUsername" >{ postUser?.username ? postUser.username : null}</span>
                     </Link>
                 </div>
                 {/* Edit Comment */}

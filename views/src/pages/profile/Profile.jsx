@@ -28,7 +28,7 @@ export default function Profile() {
 //Return
     return (
         <>
-        <Topbar />
+        <Topbar/>
         <div className="profile">
             <Sidebar />
             <div className="profileRight">
