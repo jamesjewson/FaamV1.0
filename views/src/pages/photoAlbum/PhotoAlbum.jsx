@@ -1,4 +1,3 @@
-import Topbar from "../../components/topbar/Topbar"
 import Rightbar from "../../components/rightbar/Rightbar"
 import Sidebar from "../../components/sidebar/Sidebar"
 import PhotoAlbumFeed from "../../components/photoAlbumFeed/PhotoAlbumFeed"
@@ -25,12 +24,10 @@ export default function PhotoAlbum() {
 //Return
     return (
         <>
-            <Topbar/>
             <div className="photoAlbumContainer">
                 <Sidebar />
                 <div className="photoAlbum">
                     <h2 className="photoAlbumHeader ">{user?.username}'s Photos</h2>
-                    <hr className="photoAlbumHr" />
                     <PhotoAlbumFeed user={user} />
                 </div>
                 <Rightbar className="rightbarPhotoAlbum"/>

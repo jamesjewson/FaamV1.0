@@ -33,47 +33,47 @@ export default function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebarWrapper">
-            <div className="topbarLeft">
-                <Link to="/" style={{textDecoration:"none"}}>
-                    <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.png"} alt="logo"/></span>
-                </Link>
-            </div>
-            <hr className="sidebarHr"/>
-
-            {/* Sidebar Clickables */}
-                <ul className="sidebarList">
-                    <li className="">
-                        <Link to="/" className="sidebarListItem sidebarListItemText">
-                            <RssFeed className="sidebarIcon" />
-                            <span className="sidebarListItemText">Feed</span>
-                        </Link>
-                    </li>
-                {showMore ? ( 
-                    <>
-                        <h2 className="sidebarHeader" >More Projects</h2>
-                        <li className="sidebarListItem">
-                            <Adjust className="sidebarIcon" />
-                            <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
-                        </li>
-                        <li className="sidebarListItem">
-                            <Info className="sidebarIcon" />
-                            <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
-                        </li>
-                        <button className="sidebarButton" onClick={clickShowMore}>Show Less</button>
-                    </>
-                 ) : (
-                     
-                     <button className="sidebarButton" onClick={clickShowMore}>Show More</button>
-                     )}
-                     </ul>
+                <div className="topbarLeft">
+                    <Link to="/" style={{textDecoration:"none"}}>
+                        <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.png"} alt="logo"/></span>
+                    </Link>
+                </div>
                 <hr className="sidebarHr"/>
-        {/* Friend List */}
-                <h3 className="sidebarFriendsHeader" >Your Friends</h3>
-                <ul className="sidebarFriendList">
-                   {friends.map(u=>(
-                       <CloseFriend key={u._id} user={u}/>     
-                   ))}
-                </ul>
+
+                {/* Sidebar Clickables */}
+                    <ul className="sidebarList">
+                        <li className="">
+                            <Link to="/" className="sidebarListItem sidebarListItemText">
+                                <RssFeed className="sidebarIcon" />
+                                <span className="sidebarListItemText">Feed</span>
+                            </Link>
+                        </li>
+                    {showMore ? ( 
+                        <>
+                            <h2 className="sidebarHeader" >More Projects</h2>
+                            <li className="sidebarListItem">
+                                <Adjust className="sidebarIcon" />
+                                <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
+                            </li>
+                            <li className="sidebarListItem">
+                                <Info className="sidebarIcon" />
+                                <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
+                            </li>
+                            <button className="sidebarButton" onClick={clickShowMore}>Show Less</button>
+                        </>
+                    ) : (
+                        
+                        <button className="sidebarButton" onClick={clickShowMore}>Show More</button>
+                        )}
+                        </ul>
+                    <hr className="sidebarHr"/>
+            {/* Friend List */}
+                    <h3 className="sidebarFriendsHeader" >Your Friends</h3>
+                    <ul className="sidebarFriendList">
+                    {friends.map(u=>(
+                        <CloseFriend key={u._id} user={u}/>     
+                    ))}
+                    </ul>
             </div>
             <div className="sidebarlistItem sidebarAbout">
                 <Info className="sidebarIcon aboutIcon" />

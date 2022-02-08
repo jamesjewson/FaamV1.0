@@ -36,6 +36,16 @@ Make agreement statement for "demo"
 on login if username=demo say "I promise to be nice" yes/no- if no, logout. If yes, proceed as normal
 
 
+Non-CSS To Do:
+Dropdown Menu
+Demo Agreement Statement
+Escape/Click outside picture to exit large img viewing
+Image Slide Show
+
+
+
+
+
 CSS- 
 REDESIGN
 font Josefin Sans 

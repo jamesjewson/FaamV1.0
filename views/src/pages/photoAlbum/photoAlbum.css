@@ -2,15 +2,18 @@
     display: flex;
 }
 .photoAlbum {
-    flex: 6;
+    flex: 5.5;
+    background-color: rgb(236,236,236);;
 }
 
 .photoAlbumHeader{
-    padding: 10px;
-    margin: 10px;
-    margin-left: 15px;
-    margin-right: 15px;
+    padding: 25px 20px 20px 20px ;
+    margin-bottom: 20px;
     text-align: center;
+    font-size: 48px;
+    background-color:#fff;
+    box-sizing: border-box;
+    border: 10px solid rgb(49,49,49);
 
 
 }

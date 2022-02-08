@@ -1,21 +1,16 @@
 .topbarContainer {
+    flex: 2;
     height: 90px;
     width: 100%;
     background-color: #fff;
     display:flex;
     align-items: center;
-    position: sticky;
     top: 0;
-    z-index: 99;
 }
 
 
 /* the flex:# divides the topbar into units. Right now it's divided into 12 units */
-.topbarLeft{
-    flex: 2;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 
 .logo{
@@ -33,21 +28,16 @@
 }
 
 
-.topbarCenter{
-    flex: 5.5;
-    height: 90px;
-    width: 100%;
-    opacity: 0;
-}
 
 .topbarRight{
-    flex: 2;
     display: flex;
     align-items: center;
     justify-content: space-around;
     color: black;
+    flex-wrap: wrap;
 
 }
+
 
 .topbarLink{
     margin-right: 10px;
