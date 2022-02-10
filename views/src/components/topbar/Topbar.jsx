@@ -2,7 +2,7 @@ import React from 'react'
 //Don't need this ^
 
 import "./topbar.css"
-import { Search, Person, Chat, Notifications } from "@material-ui/icons"
+import { Person, Chat, Notifications } from "@material-ui/icons"
 import {Link} from "react-router-dom"
 import {useContext, useState, useEffect, useRef} from "react"
 import {AuthContext} from "../../context/AuthContext"
@@ -90,11 +90,11 @@ const alertComingSoon = ()=>{
         <div className="topbarContainer">
             <div className="topbarRight" ref={refNotifications}>
                 <div className="topbarLinks">
-                    <Link to={`/profile/${user.username}`} style={{textDecoration:"none"}} >
-                        <span className="topbarLink">Homepage</span>
+                    <Link to={`/profile/${user.username}`} style={{textDecoration:"none"}} className="topbarLink" >
+                        <span className="topbarLink2">Homepage</span>
                     </ Link>
-                    <Link to="/" style={{textDecoration:"none"}}>
-                        <span className="topbarLink">Timeline</span>
+                    <Link to="/" style={{textDecoration:"none"}} className="topbarLink" >
+                        <span className="topbarLink2">Timeline</span>
                     </Link>
                 </div>
                 <div className="topbarIcons" >
