@@ -27,9 +27,9 @@ export default function Login() {
     return (
         <div className="login">
             <div className="loginWrapper">
-                <div className="loginLeft">
-                    <h3 className="loginLogo"><img className="loginLogo" src={PF+"default/logo-large.jpeg"} alt="" /></h3>
-                </div>
+                {/* <div className="loginLeft">
+                    <h3 className="loginLogoH3"><img className="loginLogo" src={PF+"default/faamLarge.png"} alt="" /></h3>
+                </div> */}
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 
