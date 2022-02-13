@@ -20,8 +20,8 @@
 
     background-image: url('../../styleAssets/images/faamLarge.png');
     background-repeat: no-repeat;
-    background-position: 5% 90%;
-    background-size: 75%;
+    background-position: 5% 50%;
+    background-size: 100%;
 
 
 
@@ -38,8 +38,8 @@
     grid-template-rows: 5% 35% 20% 35% 5%; */
     /* gap: 10px */
     display: flex;
-    align-items: right;
-    justify-content: right;
+    align-items: center;
+    justify-content: center;
     
 
 }
@@ -65,25 +65,23 @@
 .loginBox {
     
     height: 450px;
+    width: 350px;
     padding: 20px;
-    background-color: white;
+    background-color: rgba(255,255,255,1);
     /* border-radius: 10px; */
+   
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border: 10px solid black;
-    
-    /* display: none; */
-}
+    align-items: center;
+    }
 
 .loginInput {
-    
     height: 50px;
-    border-radius: 10px;
     bottom: 1px solid gray;
     font-size: 18px;
-    padding-left: 20px;
-    margin-left: 40%;
+    width: 75%;
     
 }
 
@@ -91,16 +89,13 @@
     outline: none;
 }
 
-.loginButton {
+.loginButton, .loginRegisterButton {
     height: 50px;
-    /* border-radius: 10px; */
     border: none;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-
     width: 50%;
-
     padding: 7px;
     box-sizing: border-box;
     border: 3px solid black;
@@ -109,16 +104,13 @@
     cursor: pointer;
     color: Black;
     font-size: 16px;
-
-
-
-
-
-
 }
 
+.loginRegisterButton{
+    width: 90%;
+}
 
-.loginButton:hover{
+.loginButton:hover, .loginRegisterButton:hover{
     background-color: rgb(25,230,148);
 }
 .loginButton:focus{
@@ -147,19 +139,6 @@
 }
 
 
-.loginRegisterButton{
-    width: 60%;
-    align-self: center;
-    height: 50px;
-    border-radius: 10px;
-    border: none;
-    background-color: #42b72a;
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    
-}
 
 
 .registerLink {

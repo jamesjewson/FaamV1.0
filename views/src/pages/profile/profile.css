@@ -72,6 +72,12 @@
     background-color: lightgreen;
 }
 
+.profileLeft{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 

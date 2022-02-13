@@ -3,6 +3,7 @@ import {useRef} from 'react'
 import "./register.css"
 import {useHistory} from "react-router"
 import {Link} from "react-router-dom"
+import { Info } from "@material-ui/icons"
 
 
 
@@ -41,9 +42,6 @@ export default function Register() {
     return (
         <div className="register">
             <div className="loginWrapper">
-                <div className="loginLeft">
-                <h3 className="loginLogo"><img className="loginLogo" src={PF+"default/logo-large.jpeg"} alt="" /></h3>
-                </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 
@@ -77,7 +75,7 @@ export default function Register() {
                             className="loginButton" type="submit">
                             Sign Up
                         </button>
-                        <Link to="/login" className="loginLink">
+                        <Link to="/login" className="loginInput">
                             <button 
                                 className="loginRegisterButton">
                                 Log into Your Account
@@ -85,6 +83,15 @@ export default function Register() {
                         </Link >
                     </form>
                 </div>
+
+            </div>
+            <div className="loginAbout">
+                <Info className="sidebarIcon aboutIcon" />
+                <span className="sidebarListItemText">
+                    <Link to="/about" class="sidebarListItemText">
+                        <span className="sidebarListItemText">About This Site</span>
+                    </Link>
+                </span>
             </div>
         </div>
     )
