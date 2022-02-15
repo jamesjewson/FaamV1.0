@@ -4,7 +4,9 @@ import CloseFriend from "../closeFriend/CloseFriend"
 import {AuthContext} from "../../context/AuthContext"
 import { useContext, useState, useEffect } from 'react'
 import axios from "axios";
-import {Link} from "react-router-dom"
+import {Link } from "react-router-dom"
+import Topbar from "../../components/topbar/Topbar"
+
 
 export default function Sidebar() {
 
@@ -28,6 +30,10 @@ export default function Sidebar() {
     }
 
 
+    //Check Location
+    const currentLocation = window.location.pathname;
+    
+
 ////////////////
 //return
     return (
@@ -39,17 +45,35 @@ export default function Sidebar() {
                     </Link>
                 </div>
                 <hr className="sidebarHr"/>
+                {
+                (currentLocation.includes("profile") || currentLocation.includes("photoAlbum")) ? (
+                    <div className="sidebarTopbarProfile">
+                        {/* <hr className="sidebarHr"/> */}
+                        <Topbar className="profileSidebarTopbar"/>
+                        <hr className="sidebarHr"/>
+                 </div>)
+                 : null
+                }
+
+                  {/* Friend List */}
+                  <h3 className="sidebarFriendsHeader" >Your Friends</h3>
+                    <ul className="sidebarFriendList">
+                    {friends.map(u=>(
+                        <CloseFriend key={u._id} user={u}/>     
+                    ))}
+                    </ul>
 
                 {/* Sidebar Clickables */}
                     <ul className="sidebarList">
-                        <li className="">
+                        {/* <li className="">
                             <Link to="/" className="sidebarListItem sidebarListItemText">
                                 <RssFeed className="sidebarIcon" />
                                 <span className="sidebarListItemText">Feed</span>
                             </Link>
-                        </li>
+                        </li> */}
                     {showMore ? ( 
                         <>
+                            <hr className="sidebarHr"/>
                             <h2 className="sidebarHeader" >More Projects</h2>
                             <li className="sidebarListItem">
                                 <Adjust className="sidebarIcon" />
@@ -67,14 +91,9 @@ export default function Sidebar() {
                         )}
                         </ul>
                     <hr className="sidebarHr"/>
-            {/* Friend List */}
-                    <h3 className="sidebarFriendsHeader" >Your Friends</h3>
-                    <ul className="sidebarFriendList">
-                    {friends.map(u=>(
-                        <CloseFriend key={u._id} user={u}/>     
-                    ))}
-                    </ul>
-            </div>
+          
+            
+                </div>
             <div className="sidebarlistItem sidebarAbout">
                 <Info className="sidebarIcon aboutIcon" />
                 <span className="sidebarListItemText">

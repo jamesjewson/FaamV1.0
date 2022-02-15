@@ -30,7 +30,7 @@ export default function PhotoAlbum() {
                     <h2 className="photoAlbumHeader ">{user?.username}'s Photos</h2>
                     <PhotoAlbumFeed user={user} />
                 </div>
-                <Rightbar className="rightbarPhotoAlbum"/>
+                {/* <Rightbar className="rightbarPhotoAlbum"/> */}
             </div>
         </>
     )

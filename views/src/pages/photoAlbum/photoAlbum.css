@@ -1,9 +1,13 @@
 .photoAlbumContainer {
     display: flex;
+    background-color: rgb(236,236,236);
+
+    
 }
 .photoAlbum {
     flex: 5.5;
-    background-color: rgb(236,236,236);;
+    background-color: rgb(236,236,236);
+    margin:5px;
 }
 
 .photoAlbumHeader{
