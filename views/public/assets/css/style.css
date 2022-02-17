@@ -4,12 +4,16 @@
     margin: 0;
     font-family: 'Josefin Sans';
     box-sizing: border-box;
+ 
 }
 
 .commentsText{
     font-family: 'Playfair Display';
 }
 
+body{
+    background-color: rgb(236,236,236);
 
+}
 
 /* rgb(0,255,153) hover rgb(25,230,148) */
