@@ -6,8 +6,15 @@ import {AuthContext} from "../../context/AuthContext";
 import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
 import Online from "../online/Online"
-
 import Topbar from "../topbar/Topbar"
+
+
+import { Carousel } from 'react-responsive-carousel';
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
+
 
 export default function Rightbar({user}) {
 
@@ -75,13 +82,17 @@ export default function Rightbar({user}) {
         setFollowed(!followed)
     }
 
-// Hide large photo
+// Hide Carousel
     const hideLargeImage = (img)=>{
        setViewImg(false)
     }
     
-
+    //Hide Carousel on 'Escape'
     
+    
+    
+    
+
 
 
     //Home Right Bar
@@ -100,6 +111,7 @@ export default function Rightbar({user}) {
 
     //Profile Right Bar
         const ProfileRightBar = () => {
+           
             return (
                 <>
                 {user.username !== currentUser.username && (
@@ -110,6 +122,10 @@ export default function Rightbar({user}) {
                 )}
                 <h4 className="rightbarTitle ">User Information</h4>   
                 <div className="rightbarInfo">
+                <div className="rightbarInfoItem">
+                        <span className="rightbarInfoKey">Name:</span>
+                        <span className="rightbarInfoValue">{user.username}</span>
+                    </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">City:</span>
                         <span className="rightbarInfoValue">{user.currentCity}</span>
@@ -137,9 +153,27 @@ export default function Rightbar({user}) {
                 {/* View Large Image */}
                 { viewImg ? (
                     <>
+                    {document.addEventListener('keydown', function(e){
+        if(e.key == 'Escape'){
+            hideLargeImage();
+        }
+    })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
-                            <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} />
+                            {/* <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} /> */}
+                            <div className="rightbarCarouselContainer">
+                                <Carousel 
+                                    infiniteLoop="true" 
+                                    useKeyboardArrows="true" 
+                                    showStatus="false"
+                                    autoFocus="true"
+                                    >
+                                    {photos.map((p)=>(
+                                        <img key={p._id} src={p.img} className="rightbarAllUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
+                                        ))}
+                                </Carousel>
+                            </div>
+
                         </div>
                     </>
                 ) : null }

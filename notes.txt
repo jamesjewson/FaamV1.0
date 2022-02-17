@@ -7,12 +7,15 @@ git subtree push --prefix api heroku master
 To Do:
 Add stock images to each fake person
 Make 20 fake people
--Hildegard von Bingen
+-Hildegard von Bingen hildegard@demo.com vonBingen
 -Bert and Ernie
 -Kermit the Frog
+-Lil' Sebastian
 -Me 
 -Sweet Pea 
 -Bast
+-Daniel Radcliffe
+
 -Amanda Lynn
 -Barry D. Hatchett
 -Sandy Cheeks
@@ -21,8 +24,6 @@ Make 20 fake people
 -Jack Pott
 -Bill Ding
 -Paige Turner
--Daniel Radcliffe
--Lil' Sebastian
 -Mariah H. Ross
 -Bruce Dwyer
 -Ralph Finley
@@ -37,12 +38,12 @@ on login if username=demo say "I promise to be nice" yes/no- if no, logout. If y
 
 
 Non-CSS To Do:
-Dropdown Menu
-Demo Agreement Statement
-Escape/Click outside picture to exit large img viewing
-Image Slide Show
+xDropdown Menu
+xDemo Agreement Statement
+xEscape/Click outside picture to exit large img viewing
+xImage Slide Show
 
-
+Fix non-slide show click image
 
 
 

@@ -11,7 +11,7 @@
 }
 
 .share:focus-within{
-    height: 300px;
+    /* height: 300px; */
 }
 
 .shareWrapper{
@@ -44,8 +44,8 @@
 
 .shareInput:focus{
     outline:none;
-    height: 40px;
-    font-size: larger;
+    /* height: 40px;
+    font-size: larger; */
      
 }
 

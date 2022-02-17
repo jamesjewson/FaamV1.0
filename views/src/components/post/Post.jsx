@@ -217,7 +217,7 @@ export default function Post({post, deletePost}) {
                            <span className="postCommentSpan">Comments </span> 
                            <div className="postCommentLength">
 
-                           {(post.comments.length > 0) ? (
+                           {(post.comments?.length > 0) ? (
                                " (" + post.comments.length + ")"
                                ) : null }
                             </div>

@@ -1,5 +1,5 @@
 import "./sidebar.css"
-import { RssFeed, Adjust, Info } from "@material-ui/icons"
+import { RssFeed, Adjust, Info, ReportProblem } from "@material-ui/icons"
 import CloseFriend from "../closeFriend/CloseFriend"
 import {AuthContext} from "../../context/AuthContext"
 import { useContext, useState, useEffect } from 'react'
@@ -80,9 +80,14 @@ export default function Sidebar() {
                                 <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
                             </li>
                             <li className="sidebarListItem">
+                                <ReportProblem className="sidebarIcon" />
+                                <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#contact" rel="noreferrer" target="_blank" className="sidebarListItemText">Report a bug</a></span>
+                            </li>
+                            <li className="sidebarListItem">
                                 <Info className="sidebarIcon" />
                                 <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
                             </li>
+                          
                             <button className="sidebarButton" onClick={clickShowMore}>Show Less</button>
                         </>
                     ) : (

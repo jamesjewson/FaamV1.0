@@ -100,12 +100,19 @@ export default function SettingsCenter() {
 
 //ShowHide Change Settings
     const showHideClick = ()=>{
-        setShowHideSettings(!showHideSettings)
-        setFromInputState(currentUser.from)
-        setUsernameInputState(currentUser.username)
-        setCurrentCityInputState(currentUser.currentCity)
-        setEmailInputState(currentUser.email)
-        setRelationshipInputState(currentUser.relationship)
+        if(currentUser.username !== 'Demo'){
+
+            
+            setShowHideSettings(!showHideSettings)
+            setFromInputState(currentUser.from)
+            setUsernameInputState(currentUser.username)
+            setCurrentCityInputState(currentUser.currentCity)
+            setEmailInputState(currentUser.email)
+            setRelationshipInputState(currentUser.relationship)
+        }
+        else{
+            alert("Setting modifications have been disabled for the demo. Create your own profile if you wish to use this feature.")
+        }
     }
 
 
@@ -119,8 +126,8 @@ export default function SettingsCenter() {
                     {showHideSettings ? (
                         <>
                         {/* <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} onChange={(e)=> setUsernameInputState(e.target.value)} /> */}
-                        <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} readonly />
-                        <span className="readonlyInput"> For demo purposes, this input is read only.</span>
+                        <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState}/>
+                        {/* <span className="readonlyInput"> For demo purposes, this input is read only.</span> */}
                         </>
                         ) : (
                         <span className="settingsCurrentValue">{currentUser.username}</span>    
