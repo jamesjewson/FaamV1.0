@@ -1,3 +1,9 @@
+.profileTopWrapper{
+position: sticky !important;
+/* z-index: -1; */
+}
+
+
 .profilePicCancelImg {
     min-width: 32px;
     min-height: 32px;

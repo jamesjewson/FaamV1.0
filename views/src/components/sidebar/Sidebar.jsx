@@ -54,6 +54,34 @@ export default function Sidebar() {
                  </div>)
                  : null
                 }
+                {/* Sidebar Clickables */}
+                <ul className="sidebarList">
+                        
+                        {showMore ? ( 
+                            <>
+                                <h2 className="sidebarHeader" >More Projects</h2>
+                                <li className="sidebarListItem">
+                                    <Adjust className="sidebarIcon" />
+                                    <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
+                                </li>
+                                <li className="sidebarListItem">
+                                    <ReportProblem className="sidebarIcon" />
+                                    <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#contact" rel="noreferrer" target="_blank" className="sidebarListItemText">Report a bug</a></span>
+                                </li>
+                                <li className="sidebarListItem">
+                                    <Info className="sidebarIcon" />
+                                    <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
+                                </li>
+                                <hr className="sidebarHr"/>
+    
+                                <button className="sidebarButton" onClick={clickShowMore}>Show Less</button>
+                            </>
+                        ) : (
+                            
+                            <button className="sidebarButton" onClick={clickShowMore}>Show More</button>
+                            )}
+                            </ul>
+                            <hr className="sidebarHr"/>
 
                   {/* Friend List */}
                   <h3 className="sidebarFriendsHeader" >Your Friends</h3>
@@ -62,40 +90,9 @@ export default function Sidebar() {
                         <CloseFriend key={u._id} user={u}/>     
                     ))}
                     </ul>
-
-                {/* Sidebar Clickables */}
-                    <ul className="sidebarList">
-                        {/* <li className="">
-                            <Link to="/" className="sidebarListItem sidebarListItemText">
-                                <RssFeed className="sidebarIcon" />
-                                <span className="sidebarListItemText">Feed</span>
-                            </Link>
-                        </li> */}
-                    {showMore ? ( 
-                        <>
-                            <hr className="sidebarHr"/>
-                            <h2 className="sidebarHeader" >More Projects</h2>
-                            <li className="sidebarListItem">
-                                <Adjust className="sidebarIcon" />
-                                <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
-                            </li>
-                            <li className="sidebarListItem">
-                                <ReportProblem className="sidebarIcon" />
-                                <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#contact" rel="noreferrer" target="_blank" className="sidebarListItemText">Report a bug</a></span>
-                            </li>
-                            <li className="sidebarListItem">
-                                <Info className="sidebarIcon" />
-                                <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
-                            </li>
-                          
-                            <button className="sidebarButton" onClick={clickShowMore}>Show Less</button>
-                        </>
-                    ) : (
-                        
-                        <button className="sidebarButton" onClick={clickShowMore}>Show More</button>
-                        )}
-                        </ul>
                     <hr className="sidebarHr"/>
+
+               
           
             
                 </div>

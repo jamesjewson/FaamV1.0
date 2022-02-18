@@ -97,6 +97,7 @@ const alertComingSoon = ()=>{
                         <span className="topbarLink2">Timeline</span>
                     </Link>
                 </div>
+                
                 <div className="topbarIcons" >
                     <div className="topbarIconItem" onClick={alertComingSoon}>
                         <Person />

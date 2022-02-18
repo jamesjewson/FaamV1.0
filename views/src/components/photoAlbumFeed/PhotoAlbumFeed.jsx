@@ -32,11 +32,7 @@ export default function PhotoAlbumFeed({user}) {
         setViewImg(false)
     }
      
-    // View large carousel image
-    const viewLargeCarousel = (img)=>{
-        console.log(userPhotos[img]);
-        setViewImg(userPhotos[img])
-    }
+
 
 
 
@@ -49,7 +45,11 @@ export default function PhotoAlbumFeed({user}) {
                 {/* <div className="swiper">
 
                 </div> */}
-                <Carousel infiniteLoop="true" useKeyboardArrows="true">
+                <Carousel infiniteLoop="true" 
+                useKeyboardArrows="true" 
+                autoFocus="true" 
+                showStatus="false"
+                >
                 {userPhotos.map((p)=>(
                         <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
                         ))}

@@ -7,6 +7,12 @@ import "./profileTop.css"
 import {AuthContext} from "../../context/AuthContext";
 
 
+import { Carousel } from 'react-responsive-carousel';
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
+
 export default function ProfileTop() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const username = useParams().username  
@@ -14,9 +20,17 @@ export default function ProfileTop() {
     const [coverImgFile,setCoverImgFile] = useState(null)
     const [user, setUser] = useState({})
     const [isUser, setIsUser] = useState(false)
-
     const {user:currentUser} =  useContext(AuthContext)
+    const [userPhotos, setUserPhotos] = useState([])
 
+    //Get profile user Photos    
+    useEffect(() => {
+        const showPhotos = async ()=>{
+                const res = await axios.get("/posts/photos/" + user?.username)
+                setUserPhotos(res.data)
+        }
+        showPhotos();
+    }, [user?.username])
 
  
     useEffect(() =>{
@@ -119,10 +133,10 @@ useEffect(() => {
 //Return
     return (
         <>
-          <div className="profileRightTop">
+          <div className="profileTopWrapper">
                     <div className="profileCover">
                         {/* Cover Image */}
-                        {!coverImgFile && (
+                        {/* {!coverImgFile && (
                             <img 
                                 className="profileCoverImg" 
                                 src={user.coverPicture ? user.coverPicture : PF + "default/background-gradient.jpg"} 
@@ -165,7 +179,22 @@ useEffect(() => {
                                     <button className="saveCoverImgButton" type="submit"><CheckCircleOutline/></button>
                                 ) }
                             </form>  
-                        ) : null }
+                        ) : null } */}
+
+
+
+                {/* Background Images */}
+                <Carousel infiniteLoop="true" 
+                                useKeyboardArrows="true" 
+                                autoFocus="true" 
+                                showStatus="false"
+                                >
+                                {userPhotos.map((p)=>(
+                                        <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc}  />
+                                        ))}
+                            
+
+                </Carousel>
 
                         {/* Profile Image */}
                         {!profileImgFile && (

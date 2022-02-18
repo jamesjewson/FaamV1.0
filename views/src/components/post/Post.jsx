@@ -201,6 +201,9 @@ export default function Post({post, deletePost}) {
             {/* Style is under rightbar.css */}
                 { viewImg ? (
                     <>
+                        {document.addEventListener('keydown', function(e){
+                            if(e.key == 'Escape'){hideLargeImage();}
+                        })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
                             <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} />

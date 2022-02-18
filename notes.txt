@@ -8,19 +8,20 @@ To Do:
 Add stock images to each fake person
 Make 20 fake people
 -Hildegard von Bingen hildegard@demo.com vonBingen
--Bert and Ernie
--Kermit the Frog
--Lil' Sebastian
+-Bert and Ernie bertandernie@demo.com opensesame
+-Kermit the Frog kermit@demo.com thefrog
+-Lil' Sebastian lilsebastian@demo.com sebastian
 -Me 
 -Sweet Pea 
 -Bast
--Daniel Radcliffe
+-Daniel Radcliffe dradcliffe@demo.com iamthechosenone
+-Frank Drebin policesquad! frankdrebin@demo.com
+-Amanda Lynn amandalynn@demo.com amandademo
+-Barry D. Hatchett burythehatchett barrydhatchett@demo.com
 
--Amanda Lynn
--Barry D. Hatchett
+
 -Sandy Cheeks
 -Sarah Nader
--Frank Drebin
 -Jack Pott
 -Bill Ding
 -Paige Turner
@@ -29,21 +30,14 @@ Make 20 fake people
 -Ralph Finley
 -Bryant Zeick
 
+
+
+
+Final To Do:
+Add "About me" on profile page
+Redesign Profile Page
+Clean up code
 Add to portfolio
-
-Dropdown Menu
-
-Make agreement statement for "demo"
-on login if username=demo say "I promise to be nice" yes/no- if no, logout. If yes, proceed as normal
-
-
-Non-CSS To Do:
-xDropdown Menu
-xDemo Agreement Statement
-xEscape/Click outside picture to exit large img viewing
-xImage Slide Show
-
-Fix non-slide show click image
 
 
 
@@ -52,7 +46,6 @@ REDESIGN
 font Josefin Sans 
 playfair for comment font
 OP comments are highlighted in some way 
-Add "About me" on profile page
 
 
 Add Search Feature/Search result page;

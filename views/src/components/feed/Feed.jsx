@@ -43,11 +43,17 @@ const renderNewPost = (newPost)=>{
 }
 
 
+
+    //Check Location
+    const currentLocation = window.location.pathname;
+
+
 /////////
     return (
         <div className="feed">
             <div className="feedWrapper">
-            {(!username || username === user.username) && <Share renderNewPost={renderNewPost} />}
+                
+            {(!username || username === user.username && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
                 {posts.map((p)=>(
                     <Post key={p._id} post={p} deletePost={deletePost} />
                 ))}

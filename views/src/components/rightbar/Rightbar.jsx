@@ -7,6 +7,7 @@ import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
 import Online from "../online/Online"
 import Topbar from "../topbar/Topbar"
+import Share from "../share/Share"
 
 
 import { Carousel } from 'react-responsive-carousel';
@@ -87,7 +88,6 @@ export default function Rightbar({user}) {
        setViewImg(false)
     }
     
-    //Hide Carousel on 'Escape'
     
     
     
@@ -99,12 +99,16 @@ export default function Rightbar({user}) {
         const HomeRightBar = () => {
             return (
                 <>
-                    <Topbar />
-                    <hr className="rightbarHr" />
-                    <h3 className="allUsersHeader" >People You Might Know</h3>
-                    {allUsers.map(user=>(
-                        <Online key={user._id} user={user} />
-                    ))}
+                    <div className="rightbarContainer">
+                        <Topbar />
+                        <hr className="rightbarHr" />
+                        <h3 className="allUsersHeader" >People You Might Know</h3>
+                        <div className="righbarAllUsersContainer">
+                            {allUsers.map(user=>(
+                                <Online key={user._id} user={user} />
+                            ))}
+                        </div>
+                    </div>
                 </>
             )
         }
@@ -120,6 +124,7 @@ export default function Rightbar({user}) {
                         {followed ? <Remove /> : <Add />}   
                     </button>
                 )}
+
                 <h4 className="rightbarTitle ">User Information</h4>   
                 <div className="rightbarInfo">
                 <div className="rightbarInfoItem">
@@ -139,6 +144,11 @@ export default function Rightbar({user}) {
                         <span className="rightbarInfoValue">{user.relationship }</span>
                     </div>
                 </div>
+                    {/* Share */}
+                <Share />
+
+
+                {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
                 <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
                     <h4 className="rightbarTitle">{user.username}'s Photos</h4>
@@ -153,11 +163,9 @@ export default function Rightbar({user}) {
                 {/* View Large Image */}
                 { viewImg ? (
                     <>
-                    {document.addEventListener('keydown', function(e){
-        if(e.key == 'Escape'){
-            hideLargeImage();
-        }
-    })}
+                        {document.addEventListener('keydown', function(e){
+                            if(e.key == 'Escape'){hideLargeImage();}
+                        })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
                             {/* <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} /> */}

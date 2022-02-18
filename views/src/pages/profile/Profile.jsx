@@ -29,9 +29,7 @@ export default function Profile() {
     return (
         <>
         <div className="profile">
-            {/* <div className="profileLeft">
-            </div> */}
-                <Sidebar className="profileSidebar" />
+            <Sidebar className="profileSidebar" />
             <div className="profileRight">
                 <div className="profileRightTop">
                     <ProfileTop />                
