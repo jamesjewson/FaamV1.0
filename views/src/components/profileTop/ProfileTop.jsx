@@ -134,74 +134,31 @@ useEffect(() => {
     return (
         <>
           <div className="profileTopWrapper">
-                    <div className="profileCover">
-                        {/* Cover Image */}
-                        {/* {!coverImgFile && (
-                            <img 
-                                className="profileCoverImg" 
-                                src={user.coverPicture ? user.coverPicture : PF + "default/background-gradient.jpg"} 
-                                alt="" 
-                            />
-                        )}
-                        {coverImgFile && (
-                                <div className="">
-                                    <img src={URL.createObjectURL(coverImgFile)} alt="" className="profileCoverImg" />
-                                    <HighlightOff className="coverPicCancelImg" onClick={()=> setCoverImgFile(null)} />
-                                </div>
-                        )}
-                        {isUser ? (
-                            <form onSubmit={changeCoverImage} className="newProfileImageForm">
-                                <div className="changeProfileImageConainer">
-                                    <label htmlFor="profileCoverFile" className="profileCoverCameraIcon" >
-                                            {coverImgFile ? null : 
-                                                <div>
-                                                    <CameraAlt /> 
-                                                    <input 
-                                                        style={{display:"none"}} 
-                                                        name="profileCoverFile"
-                                                        type="file" 
-                                                        id="profileCoverFile" 
-                                                        accept=".png,.jpeg,.jpg" 
-                                                        onChange={(e)=>{
-                                                            try {
-                                                                setCoverImgFile(e.target.files[0])
-                                                                
-                                                            } catch (error) {
-                                                                console.log(error);
-                                                            }
-                                                        }} 
-                                                        />
-                                                </div>
-                                            }
-                                    </label>
-                                </div>
-                                {coverImgFile && (
-                                    <button className="saveCoverImgButton" type="submit"><CheckCircleOutline/></button>
-                                ) }
-                            </form>  
-                        ) : null } */}
-
-
-
+                <div className="profileCover">
+                
                 {/* Background Images */}
-                <Carousel infiniteLoop="true" 
-                                useKeyboardArrows="true" 
-                                autoFocus="true" 
-                                showStatus="false"
-                                >
-                                {userPhotos.map((p)=>(
-                                        <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc}  />
-                                        ))}
-                            
-
-                </Carousel>
-
+                {userPhotos.length > 0 ? (
+                                      <Carousel className="profileBackgroundCarousel"
+                                      infiniteLoop="true" 
+                                      useKeyboardArrows="true" 
+                                      autoFocus="true" 
+                                      showStatus="false"
+                                      autoPlay="true"
+                                      showThumbs="false"
+                                      >
+                                      {userPhotos.map((p)=>(
+                                          <img key={p._id} src={p.img} className="profileBackgroundImages" alt={p?.desc}  />
+                                      ))}
+                                  </Carousel>
+                ) : null}
+  
+                    </div>
                         {/* Profile Image */}
                         {!profileImgFile && (
                             <img 
                                 className="profileUserImg" 
                                 src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"} 
-                                alt="" 
+                                alt=""
                             />
                         )}
 
@@ -248,7 +205,7 @@ useEffect(() => {
                         <h4 className="profileInfoName" >{user.username}</h4>
                         <span className="profileInfoDesc" >{user.desc}</span>
                     </div>
-                </div>  
+                  
         </>
     )
 }
