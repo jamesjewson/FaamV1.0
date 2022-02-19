@@ -19,6 +19,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Rightbar({user}) {
 
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
     const {user:currentUser, dispatch} =  useContext(AuthContext)
     const [followed,setFollowed] = useState(false)
     const [photos, setPhotos] = useState([])
@@ -117,7 +119,10 @@ export default function Rightbar({user}) {
         const ProfileRightBar = () => {
            
             return (
-                <>
+            <>
+            <div className="profileRightbarInfoContainer">
+                <hr className="allUserPhotosHrTop rightbarProfileHr" />
+                
                 {user.username !== currentUser.username && (
                     <button className="rightbarFollowButton" onClick={handleClick} >
                         {followed ? "Unfollow" : "Follow"}
@@ -196,17 +201,29 @@ export default function Rightbar({user}) {
                 </div>
                 ) : null
                 }
-                </>
+            </div>
+            </>
             )
         }
 
 
 //Return
         return (
-        <div className="rightbar">
-            <div className="rightbarWrapper">
-                {user ? <ProfileRightBar /> : <HomeRightBar />}
-            </div>
+            <>          
+            {user ? (
+                
+        <div className="rightbar profileRightbarMargin"  >
+        <div className="rightbarWrapper">
+            <ProfileRightBar />
         </div>
+    </div>
+            ): (
+                <div className="rightbar"  >
+                    <div className="rightbarWrapper">
+                        <HomeRightBar />
+                    </div>
+                </div>)}</>
+
+  
         )
 }

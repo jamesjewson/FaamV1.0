@@ -1,9 +1,17 @@
 .rightbar{
     flex: 2;
-    background-color: #fff;
+    background-color: transparent;
     height: calc(100vh);
     top: 0;
     position: sticky !important;
+    background-color: #FFF;
+
+}
+.profileRightbarMargin{
+    margin-top: 405px;
+    position:fixed !important;
+    right: 0;
+    left:auto;
 }
 
 .rightbarWrapper{
@@ -119,7 +127,7 @@ display: flex;
     background-color: rgba(236, 236, 236, 1);
     background-color: white;
     border-radius: 8px;
-    max-height: 650px;
+    max-height: 195px;
     overflow: scroll;
 
     -webkit-box-shadow: 0px 1px 7px -1px rgba(0,0,0,0.37); 
@@ -128,6 +136,7 @@ display: flex;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
+    row-gap: 10px;
     padding:10px 5px 10px 5px;
     overflow-x: hidden;
     
@@ -164,6 +173,7 @@ display: flex;
     right: 20px;
     top: 20px;
     color: white;
+    z-index: 6;
 }
 
 .hideLargeImg:hover {
@@ -180,9 +190,7 @@ display: flex;
     margin-left: auto;
     width: 99vw;
     height: 99vh;
-    background-color: rgba(169, 169, 169, 0.95);
     background-color: rgba(0, 0, 0, 0.8);
-    z-index: 2;
 }
 
 .viewLargeImage {
@@ -191,7 +199,8 @@ display: flex;
     padding: 20px;
     max-width: 92%;
     max-height: 90%;
-    z-index: 2;
+    z-index: 1;
+    position: relative;
 
 }
 
@@ -211,11 +220,13 @@ display: flex;
     padding: 5px 5px;
     max-height: 75vh;
     object-fit:scale-down;
+
 }
 
 .rightbarCarouselContainer{
     height: 100%;
     padding-top: 40px;
+    z-index: 3;
 }
 
 
@@ -262,3 +273,9 @@ display: flex;
     /* padding: 14px; */
     /* transform: rotate(135deg); */
 }
+
+
+
+
+
+

@@ -153,21 +153,28 @@ useEffect(() => {
                 ) : null}
   
                     </div>
-                        {/* Profile Image */}
-                        {!profileImgFile && (
+                         {!profileImgFile && (
+                            <div className="imgInfoContainer">
+
                             <img 
                                 className="profileUserImg" 
-                                src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"} 
+                                src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"} onClick={()=>{alert("Works") } } 
                                 alt=""
-                            />
-                        )}
+                                />
 
+                                <div className="profileInfo">
+                                    <h4 className="profileInfoName" >{user.username}</h4>
+                                    <span className="profileInfoDesc" >{user.desc}</span>
+                                </div>
+                            </div>
+                        )} 
                         {profileImgFile && (
                             <div className="">
                                 <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
                                 <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} />
                             </div>
                         )}
+                    
                         {isUser ? (
                             <form onSubmit={changeProfileImage} className="newProfileImageForm">
                                 <div className="changeProfileImageConainer">
@@ -199,11 +206,6 @@ useEffect(() => {
                                 )}
                             </form>  
                         ) : null}
-                    </div>
-                    {/* Profile Info */}
-                    <div className="profileInfo">
-                        <h4 className="profileInfoName" >{user.username}</h4>
-                        <span className="profileInfoDesc" >{user.desc}</span>
                     </div>
                   
         </>

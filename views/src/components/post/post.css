@@ -3,7 +3,15 @@
     margin: 50px 0;
     box-sizing: border-box;
     border: 10px solid rgb(49,49,49);
-    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255, 0.8);
+    transition: 1s;
+
+}
+
+.post:hover{
+    background-color: rgba(255,255,255,1);
+
+    transition: 1s;
 }
 
 .postWrapper{

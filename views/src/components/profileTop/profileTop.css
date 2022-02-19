@@ -105,6 +105,7 @@
 
 .profileCover{
     z-index: -1;
+    position:fixed;
 }
 
 .profileBackgroundImages{
@@ -121,4 +122,59 @@
 /* Display camera picture clickable? */
 .newProfileImageForm{
     display: none;
+}
+
+
+/* Profile Right Top Image */
+
+.profileInfo{
+    right: 0;
+    display: flex;
+    justify-content: end;
+
+}
+
+
+.profileInfoName{
+    box-sizing: border-box;
+    background-color: white;
+    border: 8px solid black;
+    padding: 5px;
+    padding-top: 10px;
+    z-index: 1;
+    position:relative;
+    top: -100px;
+    /* right: 0; */
+    font-size: 48px;
+    width: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.imgInfoContainer{
+    z-index: 1;
+    height: 100%;
+    width: min-content;
+    position:fixed;
+    right: 0;
+    margin-right: 50px;
+    margin-top: -125px;
+    margin-bottom: -75px;
+    margin-left: auto;
+    align-self: flex-end;
+    height: min-content;
+
+}
+
+.profileUserImg {
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: auto;
+    border: 3px solid white;
+
+    z-index: 1;
+
 }
