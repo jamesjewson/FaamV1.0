@@ -12,6 +12,7 @@
     position:fixed !important;
     right: 0;
     left:auto;
+    width: 425px;
 }
 
 .rightbarWrapper{
@@ -191,6 +192,7 @@ display: flex;
     width: 99vw;
     height: 99vh;
     background-color: rgba(0, 0, 0, 0.8);
+    z-index: 4;
 }
 
 .viewLargeImage {

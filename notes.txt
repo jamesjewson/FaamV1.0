@@ -35,8 +35,7 @@ Make 20 fake people
 
 Final To Do:
 Add "About me" on profile page
-Redesign Profile Page
-YOU NEED TO MOVE THE PROFILE PICTURE INTO THE RIGHTBAR DIV, THEN SHOW OVERFLOW
+profile share
 
 
 Clean up code
