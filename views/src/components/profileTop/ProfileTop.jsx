@@ -1,5 +1,5 @@
 import React from 'react'
-import { CameraAlt, CheckCircleOutline, HighlightOff } from "@material-ui/icons"
+// import { CameraAlt, CheckCircleOutline, HighlightOff } from "@material-ui/icons"
 import { useEffect, useState, useContext } from 'react'
 import axios from "axios"
 import { useParams } from "react-router"
@@ -52,41 +52,41 @@ useEffect(() => {
 
 
 
-    //Change Profile Pic
-    const changeProfileImage = async (e)=>{
-        e.preventDefault()
-          //if user update profilepicimg
-          if (!profileImgFile){
-              alert("No file attached!")
-          }else{
-              const reader = new FileReader();
-              reader.readAsDataURL(profileImgFile);
-              reader.onloadend = () => {
-                  uploadImage(reader.result);
-              };
-              reader.onerror = (error) => {
-                  console.error(error);
-              };
-          }
-      }
-      const uploadImage = async (base64EncodedImage) => {
-        const id = user._id
-          const newProfilePic = {
-              data: base64EncodedImage,
-              id: user._id
-          }
-          try {
-              const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
-              if(res.status === 200){
-                  console.log("Profile Pic Updated")
-                  const res = await axios.get(`/users?username=${username}`)
-                  setUser(res.data);
-                  setProfileImgFile('')
-              }
-          } catch (error) {
-              console.log(error);
-          }
-      };
+    // //Change Profile Pic
+    // const changeProfileImage = async (e)=>{
+    //     e.preventDefault()
+    //       //if user update profilepicimg
+    //       if (!profileImgFile){
+    //           alert("No file attached!")
+    //       }else{
+    //           const reader = new FileReader();
+    //           reader.readAsDataURL(profileImgFile);
+    //           reader.onloadend = () => {
+    //               uploadImage(reader.result);
+    //           };
+    //           reader.onerror = (error) => {
+    //               console.error(error);
+    //           };
+    //       }
+    //   }
+    //   const uploadImage = async (base64EncodedImage) => {
+    //     const id = user._id
+    //       const newProfilePic = {
+    //           data: base64EncodedImage,
+    //           id: user._id
+    //       }
+    //       try {
+    //           const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
+    //           if(res.status === 200){
+    //               console.log("Profile Pic Updated")
+    //               const res = await axios.get(`/users?username=${username}`)
+    //               setUser(res.data);
+    //               setProfileImgFile('')
+    //           }
+    //       } catch (error) {
+    //           console.log(error);
+    //       }
+    //   };
 
 
 //Change Cover Pic
@@ -153,60 +153,8 @@ useEffect(() => {
                 ) : null}
   
                     </div>
-                         {!profileImgFile && (
-                            <div className="imgInfoContainer">
-
-                            <img 
-                                className="profileUserImg" 
-                                src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"} onClick={()=>{alert("Works") } } 
-                                alt=""
-                                />
-
-                                <div className="profileInfo">
-                                    <h4 className="profileInfoName" >{user.username}</h4>
-                                    <span className="profileInfoDesc" >{user.desc}</span>
-                                </div>
-                            </div>
-                        )} 
-                        {profileImgFile && (
-                            <div className="">
-                                <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
-                                <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} />
-                            </div>
-                        )}
                     
-                        {isUser ? (
-                            <form onSubmit={changeProfileImage} className="newProfileImageForm">
-                                <div className="changeProfileImageConainer">
-                                    <label htmlFor="profileImgFile" className="profilePicCameraIcon" >
-                                            {profileImgFile ? null : 
-                                                <div>
-                                                    <CameraAlt /> 
-                                                    <input 
-                                                        style={{display:"none"}} 
-                                                        name="profileImgFile"
-                                                        type="file" 
-                                                        id="profileImgFile" 
-                                                        accept=".png,.jpeg,.jpg" 
-                                                        onChange={(e)=>{
-                                                            try {
-                                                                setProfileImgFile(e.target.files[0])
-                                                                
-                                                            } catch (error) {
-                                                                console.log(error);
-                                                            }
-                                                        }} 
-                                                        />
-                                                </div>
-                                            }
-                                    </label>
-                                </div>
-                                {profileImgFile && (
-                                    <button className="saveProfileImgButton" type="submit"><CheckCircleOutline/></button>
-                                )}
-                            </form>  
-                        ) : null}
-                    </div>
+          </div>
                   
         </>
     )
