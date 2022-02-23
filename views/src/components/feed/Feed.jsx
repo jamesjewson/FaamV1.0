@@ -4,6 +4,7 @@ import Share from "../share/Share"
 import Post from "../post/Post"
 import axios from "axios"
 import {AuthContext} from "../../context/AuthContext"
+import { ArrowUpward } from "@material-ui/icons"
 
 export default function Feed({ username }) {
     const [posts,setPosts] = useState([])
@@ -43,9 +44,13 @@ const renderNewPost = (newPost)=>{
 }
 
 
-
     //Check Location
     const currentLocation = window.location.pathname;
+
+const scrollTop= ()=>{
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
 
 
 /////////
@@ -56,10 +61,14 @@ const renderNewPost = (newPost)=>{
             {(!username || username === user.username && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
                 
                 {posts.length < 1 ? <span>Nothing to see here</span> :
-                posts.slice(0,10).map((p)=>(
+                posts.slice(1,10).map((p)=>(
                     <Post key={p._id} post={p} deletePost={deletePost} />
                 )) }
+                <div className="endWrapper">
 
+                    <span >Demo limit 10 post feed</span>
+                    <span className="toTop" onClick={scrollTop}>Top <ArrowUpward className="upArrow"/></span>
+                </div>
             </div>
         </div>
     )

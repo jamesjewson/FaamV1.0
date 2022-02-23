@@ -90,41 +90,41 @@ useEffect(() => {
 
 
 //Change Cover Pic
-    const changeCoverImage = async (e)=>{
-        e.preventDefault()
-          if (!coverImgFile){
-              console.log("no file")
-          }else{
-              const reader = new FileReader();
-              reader.readAsDataURL(coverImgFile);
-              reader.onloadend = () => {
-                  uploadCoverImage(reader.result);
-              };
-              reader.onerror = (error) => {
-                  console.error(error);
-              };
-          }
-      }
+    // const changeCoverImage = async (e)=>{
+    //     e.preventDefault()
+    //       if (!coverImgFile){
+    //           console.log("no file")
+    //       }else{
+    //           const reader = new FileReader();
+    //           reader.readAsDataURL(coverImgFile);
+    //           reader.onloadend = () => {
+    //               uploadCoverImage(reader.result);
+    //           };
+    //           reader.onerror = (error) => {
+    //               console.error(error);
+    //           };
+    //       }
+    //   }
 
 
-      const uploadCoverImage = async (base64EncodedImage) => {
-        const id = user._id
-          const newCoverPic = {
-              data: base64EncodedImage,
-              id: user._id
-          }
-          try {
-              const res = await axios.put("/users/"+ id + "/coverPicture", newCoverPic) 
-              if(res.status === 200){
-                  console.log("Cover Pic Updated")
-                  const res = await axios.get(`/users?username=${username}`)
-                  setUser(res.data);
-                  setCoverImgFile('')
-              }
-          } catch (error) {
-              console.log(error);
-          }
-      };
+    //   const uploadCoverImage = async (base64EncodedImage) => {
+    //     const id = user._id
+    //       const newCoverPic = {
+    //           data: base64EncodedImage,
+    //           id: user._id
+    //       }
+    //       try {
+    //           const res = await axios.put("/users/"+ id + "/coverPicture", newCoverPic) 
+    //           if(res.status === 200){
+    //               console.log("Cover Pic Updated")
+    //               const res = await axios.get(`/users?username=${username}`)
+    //               setUser(res.data);
+    //               setCoverImgFile('')
+    //           }
+    //       } catch (error) {
+    //           console.log(error);
+    //       }
+    //   };
 
 
 

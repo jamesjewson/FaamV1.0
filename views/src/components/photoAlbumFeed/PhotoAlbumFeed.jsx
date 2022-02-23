@@ -43,8 +43,10 @@ export default function PhotoAlbumFeed({user}) {
         <>
             <div className="photoArrayContainer">
                 {/* <div className="swiper">
-
+            
                 </div> */}
+
+{userPhotos.length > 0 ? (
                 <Carousel infiniteLoop="true" 
                 useKeyboardArrows="true" 
                 autoFocus="true" 
@@ -56,12 +58,10 @@ export default function PhotoAlbumFeed({user}) {
                         ))}
              
 
-                </Carousel>
-                    
+                </Carousel> )
+                : null }    
            
                  {/* <TestSwiper photos={userPhotos} /> */}
-
-
 
             </div>
             

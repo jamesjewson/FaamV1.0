@@ -291,7 +291,7 @@ if(user?._id === currentUser?._id){
                     </div>
                 </div>
                     {/* Share */}
-                <Share />
+                {/* <Share /> */}
 
 
                 {/* User Photos */}
