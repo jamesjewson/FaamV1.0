@@ -11,11 +11,11 @@ export default function Settings() {
 
     return (
         <>
-        <Topbar />
+        {/* <Topbar /> */}
             <div className="settingsWrapper">
                 <Sidebar className="leftSettingsSidebar" />
                 <SettingsCenter className="rightSettingsSidebar" />
-                <Rightbar />
+                {/* <Rightbar /> */}
             </div>    
         </>
     )

@@ -46,7 +46,7 @@ export default function Sidebar() {
                 </div>
                 <hr className="sidebarHr"/>
                 {
-                (currentLocation.includes("profile") || currentLocation.includes("photoAlbum")) ? (
+                (currentLocation.includes("profile") || currentLocation.includes("photoAlbum") || currentLocation.includes("settings")) ? (
                     <div className="sidebarTopbarProfile">
                         {/* <hr className="sidebarHr"/> */}
                         <Topbar className="profileSidebarTopbar"/>

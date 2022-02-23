@@ -34,11 +34,7 @@ Make 20 fake people
 
 
 Final To Do:
-Clean up change profile pic
-
-Add "About me" on profile page
-profile share
-
+Settings Page
 
 Clean up code
 Add to portfolio
