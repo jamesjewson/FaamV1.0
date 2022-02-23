@@ -54,9 +54,12 @@ const renderNewPost = (newPost)=>{
             <div className="feedWrapper">
                 
             {(!username || username === user.username && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
-                {posts.map((p)=>(
+                
+                {posts.length < 1 ? <span>Nothing to see here</span> :
+                posts.slice(0,10).map((p)=>(
                     <Post key={p._id} post={p} deletePost={deletePost} />
-                ))}
+                )) }
+
             </div>
         </div>
     )

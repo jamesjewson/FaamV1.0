@@ -166,7 +166,6 @@ if(user?._id === currentUser?._id){
 
 
 
-
 //////////////////////////////////////////////////////////////////////////
 
 
@@ -206,7 +205,11 @@ if(user?._id === currentUser?._id){
                                         
                                         <div className="profileUserImgDiv">
                                             <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
-                                            <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} />
+                                            <div className="saveNewImgContainer">
+
+                                                <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
+                                            </div>
+                                            {/* <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} /> */}
                                         </div>
                                         
                                         : 
@@ -234,10 +237,10 @@ if(user?._id === currentUser?._id){
                                             </div>
                                         }
                                 </label>
-                            
+{/*                             
                             {profileImgFile && (
                                 <button className="saveProfileImgButton" type="submit"><CheckCircleOutline/></button>
-                            )}
+                            )} */}
                         </form>  
                     ) : 
                     
@@ -257,13 +260,6 @@ if(user?._id === currentUser?._id){
 
                 </div>
             {/* )}  */}
-        
-            {/* {profileImgFile && (
-                <div className="profileUserImg">
-                    <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
-                    <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} />
-                </div>
-            )} */}
 
                 {/*  */}
                 <hr className="allUserPhotosHrTop rightbarProfileHr" />
