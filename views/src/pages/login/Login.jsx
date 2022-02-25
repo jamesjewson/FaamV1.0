@@ -11,26 +11,19 @@ export default function Login() {
     const email = useRef()
     const password = useRef()
     const {isFetching, dispatch} = useContext(AuthContext)
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    //const {user} = useContext(AuthContext)
     
     const handleClick = (e) =>{
         //PreventDefault stops the page from reloading
-        e.preventDefault();
-      
+        e.preventDefault();      
        
-        if(email.current.value == "demo@demo.com"){
-            if (window.confirm("By entering this website you agree to the terms and conditions.\nYou are posting on a public site that is a part of my portfolio.\n\nRules: Be nice. Be professional.") == true) {
-                
+        if(email.current.value === "demo@demo.com"){
+            if (window.confirm("By entering this website you agree to the terms and conditions.\nYou are posting on a public site that is a part of my portfolio.\n\nRules: Be nice. Be professional.") === true) {            
                 loginCall({email:email.current.value,password:password.current.value}, dispatch)
             }
         }
         else{
             loginCall({email:email.current.value,password:password.current.value}, dispatch)
-
-        }
-
-       
+        }  
     }
 
     const handleForgotPassword = ()=>{
@@ -40,9 +33,6 @@ export default function Login() {
     return (
         <div className="login">
             <div className="loginWrapper">
-                {/* <div className="loginLeft">
-                    <h3 className="loginLogoH3"><img className="loginLogo" src={PF+"default/faamLarge.png"} alt="" /></h3>
-                </div> */}
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 

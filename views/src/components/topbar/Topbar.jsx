@@ -1,6 +1,3 @@
-import React from 'react'
-//Don't need this ^
-
 import "./topbar.css"
 import { Person, Chat, Notifications } from "@material-ui/icons"
 import {Link} from "react-router-dom"
@@ -27,10 +24,8 @@ useEffect(() =>{
     const fetchCurrentUser = async () => {
         const res = await axios.get(`/users/currentUser/` + user?._id)
         setCurrentUser(res.data);
-        // console.log(res.data);
     };  
     fetchCurrentUser();
-    // console.log(currentUser);
 },[user?._id]); 
 
 //Fetch user notifications
@@ -38,7 +33,6 @@ useEffect(() =>{
         const fetchUserNotifications = async()=>{
             const res = await axios.get(`/users/notifications/` + user?._id)
             setNotifications(res.data)
-           // console.log(notifications);
         }
         fetchUserNotifications()
     }, [user?._id])
@@ -51,7 +45,7 @@ useEffect(() =>{
         }
     }, [])
 
-    //Handle notification  outside click
+    //Handle notification outside click
     const handleNotificationOutsideClick = (e)=>{
         if(!refNotifications.current?.contains(e.target)){
             setShowNotifications(false)
@@ -75,15 +69,15 @@ useEffect(() =>{
     }
 
 
-//Logout    
+    //Logout    
     function handleLogout(e){
         e.preventDefault();
         logoutCall({user:null}, dispatch)      
     }
 
-const alertComingSoon = ()=>{
-    alert("This feature has not yet been implemented.")
-}
+    const alertComingSoon = ()=>{
+        alert("This feature has not yet been implemented.")
+    }
 
 ////////Return
     return (

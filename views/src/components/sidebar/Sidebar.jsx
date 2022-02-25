@@ -1,5 +1,5 @@
 import "./sidebar.css"
-import { RssFeed, Adjust, Info, ReportProblem } from "@material-ui/icons"
+import { Adjust, Info, ReportProblem } from "@material-ui/icons"
 import CloseFriend from "../closeFriend/CloseFriend"
 import {AuthContext} from "../../context/AuthContext"
 import { useContext, useState, useEffect } from 'react'
@@ -11,7 +11,6 @@ import Topbar from "../../components/topbar/Topbar"
 export default function Sidebar() {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
-
     const {user:currentUser} = useContext(AuthContext)
     const [friends, setFriends] = useState([])
     const [showMore, setShowMore] = useState(false)
@@ -33,8 +32,6 @@ export default function Sidebar() {
     //Check Location
     const currentLocation = window.location.pathname;
     
-
-////////////////
 //return
     return (
         <div className="sidebar">
@@ -48,7 +45,6 @@ export default function Sidebar() {
                 {
                 (currentLocation.includes("profile") || currentLocation.includes("photoAlbum") || currentLocation.includes("settings")) ? (
                     <div className="sidebarTopbarProfile">
-                        {/* <hr className="sidebarHr"/> */}
                         <Topbar className="profileSidebarTopbar"/>
                         <hr className="sidebarHr"/>
                  </div>)
@@ -80,22 +76,18 @@ export default function Sidebar() {
                             
                             <button className="sidebarButton" onClick={clickShowMore}>Show More</button>
                             )}
-                            </ul>
-                            <hr className="sidebarHr"/>
+                </ul>
+                <hr className="sidebarHr"/>
 
                   {/* Friend List */}
                   <h3 className="sidebarFriendsHeader" >Your Friends</h3>
                     <ul className="sidebarFriendList">
-                    {friends.map(u=>(
-                        <CloseFriend key={u._id} user={u}/>     
-                    ))}
+                        {friends.map(u=>(
+                            <CloseFriend key={u._id} user={u}/>     
+                        ))}
                     </ul>
-                    <hr className="sidebarHr"/>
-
-               
-          
-            
-                </div>
+                    <hr className="sidebarHr"/>       
+            </div>
             <div className="sidebarlistItem sidebarAbout">
                 <Info className="sidebarIcon aboutIcon" />
                 <span className="sidebarListItemText">

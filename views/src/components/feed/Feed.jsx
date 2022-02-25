@@ -58,7 +58,7 @@ const scrollTop= ()=>{
         <div className="feed">
             <div className="feedWrapper">
                 
-            {(!username || username === user.username && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
+            {((!username || username === user.username) && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
                 
                 {posts.length < 1 ? <span>Nothing to see here</span> :
                 posts.map((p)=>(

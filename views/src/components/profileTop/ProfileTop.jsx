@@ -1,5 +1,4 @@
 import React from 'react'
-// import { CameraAlt, CheckCircleOutline, HighlightOff } from "@material-ui/icons"
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import { useParams } from "react-router"
@@ -13,7 +12,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 export default function ProfileTop() {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const username = useParams().username  
     const [user, setUser] = useState({})
     const [userPhotos, setUserPhotos] = useState([])

@@ -1,4 +1,3 @@
-import Rightbar from "../../components/rightbar/Rightbar"
 import Sidebar from "../../components/sidebar/Sidebar"
 import PhotoAlbumFeed from "../../components/photoAlbumFeed/PhotoAlbumFeed"
 import axios from "axios"
@@ -30,7 +29,6 @@ export default function PhotoAlbum() {
                     <h2 className="photoAlbumHeader ">{user?.username}'s Photos</h2>
                     <PhotoAlbumFeed user={user} />
                 </div>
-                {/* <Rightbar className="rightbarPhotoAlbum"/> */}
             </div>
         </>
     )

@@ -137,7 +137,6 @@ useEffect(() => {
     
 
 
-
   //Change Profile Pic
   const changeProfileImage = async (e)=>{
     e.preventDefault()
@@ -164,9 +163,6 @@ useEffect(() => {
       try {
           const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
           if(res.status === 200){
-              console.log("Profile Pic Updated")
-              const res = await axios.get(`/users?username=${username}`)
-            //   setUserImg(res.data);
               setProfileImgFile('')
           }
       } catch (error) {
@@ -195,13 +191,11 @@ useEffect(() => {
                     <span className="settingsLabel">Username: </span>
                     {showHideSettings ? (
                         <>
-                        {/* <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} onChange={(e)=> setUsernameInputState(e.target.value)} /> */}
-                        <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState}/>
-                        {/* <span className="readonlyInput"> For demo purposes, this input is read only.</span> */}
+                            <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState}/>
                         </>
                         ) : (
                             <span className="settingsCurrentValue">{currentUser.username}</span>    
-                            ) }
+                    ) }
 
                </div>
                <div className="settingsUserInfoContainer">
@@ -227,14 +221,13 @@ useEffect(() => {
                <div className="settingsUserInfoContainer">
                    <span className="settingsLabel">Email: </span>
                    {showHideSettings ? (
-                       //    <input type="text" placeholder="Update your email here" className="settingsInput" value={emailInputState} readonly  onChange={(e)=> setEmailInputState(e.target.value)} />
                        <>
-                       <input type="text" placeholder="Update your email here" className="settingsInput" value={emailInputState} readonly/>
-                       <span className="readonlyInput"> For demo purposes, this input is read only.</span>
+                            <input type="text" placeholder="Update your email here" className="settingsInput" value={emailInputState} readonly/>
+                            <span className="readonlyInput"> For demo purposes, this input is read only.</span>
                        </>
                        ) : (
                            <span className="settingsCurrentValue">{currentUser.email} </span>
-                           ) }
+                    ) }
                </div>
 
                <div className="settingsUserInfoContainer">
@@ -269,7 +262,6 @@ useEffect(() => {
 
                                                 <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
                                             </div>
-                                            {/* <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} /> */}
                                         </div>
                                         
                                         : 
@@ -297,10 +289,6 @@ useEffect(() => {
                                             </div>
                                         }
                                 </label>
-{/*                             
-                            {profileImgFile && (
-                                <button className="saveProfileImgButton" type="submit"><CheckCircleOutline/></button>
-                            )} */}
                         </form>  
                     ) : 
                     
@@ -320,8 +308,7 @@ useEffect(() => {
 
                 </div>
             </div>
-        </div>
-        
+        </div>   
         </>
     )
 }

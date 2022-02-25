@@ -14,7 +14,6 @@ export default function Register() {
     const password = useRef()
     const passwordAgain = useRef()
     const history = useHistory()
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
     const handleClick = async (e) =>{
         //PreventDefault stops the page from reloading

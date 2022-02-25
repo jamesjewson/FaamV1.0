@@ -7,7 +7,6 @@ import "./home.css"
 
 export default function Home() {
     return (
-        //Need the brackets for multiple components
         <>
            <div className="homeContainer">
                 <Sidebar />

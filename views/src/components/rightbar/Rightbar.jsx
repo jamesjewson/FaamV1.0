@@ -3,18 +3,13 @@ import { useContext, useEffect, useState } from "react"
 import axios from "axios";
 import {Link} from "react-router-dom"
 import {AuthContext} from "../../context/AuthContext";
-import {Add, Remove, HighlightOff, CameraAlt, CheckCircleOutline} from "@material-ui/icons"
+import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
 import Online from "../online/Online"
 import Topbar from "../topbar/Topbar"
-import Share from "../share/Share"
-
-
 import { Carousel } from 'react-responsive-carousel';
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import { useParams } from "react-router"
 
 
 
@@ -28,11 +23,8 @@ export default function Rightbar({user}) {
     const [viewImg, setViewImg] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [allUsers, setAllUsers] = useState([])
-
     const [profileImgFile,setProfileImgFile] = useState(null)
     const [isUser, setIsUser] = useState(false)
-    const username = useParams().username 
-     const [userImg, setUserImg] = useState({})
 
 // Get current user followings
     useEffect(()=>{
@@ -101,14 +93,6 @@ export default function Rightbar({user}) {
 
 ///////////////////////////
 
-useEffect(() =>{
-    const fetchUser = async () => {      
-    const res = await axios.get(`/users?username=${username}`)
-    setUserImg(res.data);
-}; 
-   fetchUser();
-},[username]);
-
 
 //Show/hide Change pictures
 useEffect(() => {
@@ -145,9 +129,6 @@ if(user?._id === currentUser?._id){
           try {
               const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
               if(res.status === 200){
-                  console.log("Profile Pic Updated")
-                  const res = await axios.get(`/users?username=${username}`)
-                  setUserImg(res.data);
                   setProfileImgFile('')
               }
           } catch (error) {
@@ -310,7 +291,7 @@ if(user?._id === currentUser?._id){
                 { viewImg ? (
                     <>
                         {document.addEventListener('keydown', function(e){
-                            if(e.key == 'Escape'){hideLargeImage();}
+                            if(e.key === 'Escape'){hideLargeImage();}
                         })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />

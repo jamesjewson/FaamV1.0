@@ -1,7 +1,7 @@
 import React from 'react'
 import { HighlightOff} from "@material-ui/icons"
 import axios from "axios"
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import "./photoAlbumFeed.css"
 
 
@@ -34,48 +34,30 @@ export default function PhotoAlbumFeed({user}) {
      
 
 
-
-
-        
-
-    //Return
     return (
         <>
             <div className="photoArrayContainer">
-                {/* <div className="swiper">
-            
-                </div> */}
 
-{userPhotos.length > 0 ? (
-                <Carousel infiniteLoop="true" 
-                useKeyboardArrows="true" 
-                autoFocus="true" 
-                showStatus="false"
-                autoPlay="false"
-                >
-                {userPhotos.map((p)=>(
-                        <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
+                {userPhotos.length > 0 ? (
+                    <Carousel infiniteLoop="true" 
+                    useKeyboardArrows="true" 
+                    autoFocus="true" 
+                    showStatus="false"
+                    autoPlay="false"
+                    >
+                        {userPhotos.map((p)=>(
+                            <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
                         ))}
-             
-
-                </Carousel> )
+                    </Carousel> )
                 : null }    
-           
-                 {/* <TestSwiper photos={userPhotos} /> */}
-
             </div>
-            
-            
-
         {/* View Large Image */}
             { viewImg ? (
                 <>
                     <div className="largeImgContainer">
                         <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
                         <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} />
-                    </div>
-
-                    
+                    </div>     
                 </>
             ) : null }
         </>

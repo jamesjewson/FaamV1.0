@@ -6,7 +6,6 @@ import React from 'react'
 export default function About() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
-//Return
     return (
         <>
         <div className="aboutWrapper">

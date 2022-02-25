@@ -202,7 +202,7 @@ export default function Post({post, deletePost}) {
                 { viewImg ? (
                     <>
                         {document.addEventListener('keydown', function(e){
-                            if(e.key == 'Escape'){hideLargeImage();}
+                            if(e.key === 'Escape'){hideLargeImage();}
                         })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
