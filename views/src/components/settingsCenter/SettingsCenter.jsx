@@ -108,7 +108,7 @@ export default function SettingsCenter() {
 
 //ShowHide Change Settings
     const showHideClick = ()=>{
-        if(currentUser.username == 'Demo'){
+        if(currentUser.username !== 'Demo'){
 
             
             setShowHideSettings(!showHideSettings)

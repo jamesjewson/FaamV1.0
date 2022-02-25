@@ -61,12 +61,12 @@ const scrollTop= ()=>{
             {(!username || username === user.username && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
                 
                 {posts.length < 1 ? <span>Nothing to see here</span> :
-                posts.slice(1,10).map((p)=>(
+                posts.map((p)=>(
                     <Post key={p._id} post={p} deletePost={deletePost} />
                 )) }
                 <div className="endWrapper">
 
-                    <span >Demo limit 10 post feed</span>
+                    <span >End of feed</span>
                     <span className="toTop" onClick={scrollTop}>Top <ArrowUpward className="upArrow"/></span>
                 </div>
             </div>

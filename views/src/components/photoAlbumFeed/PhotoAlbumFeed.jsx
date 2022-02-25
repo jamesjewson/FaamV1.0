@@ -51,7 +51,7 @@ export default function PhotoAlbumFeed({user}) {
                 useKeyboardArrows="true" 
                 autoFocus="true" 
                 showStatus="false"
-                autoPlay="true"
+                autoPlay="false"
                 >
                 {userPhotos.map((p)=>(
                         <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
