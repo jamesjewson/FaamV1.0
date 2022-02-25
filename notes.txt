@@ -34,7 +34,6 @@ Make 20 fake people
 
 
 Final To Do:
-Settings Page
 
 Clean up code
 Add to portfolio

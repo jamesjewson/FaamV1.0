@@ -50,11 +50,11 @@
 
 .loginRight{
 
-    width: 20%;
+    /* width: 20%; */
     height: 550px;
     padding-top: 40px;
 
-    margin-right: 60px;
+    /* margin-right: 60px; */
 }
 
 
@@ -154,7 +154,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-bottom: 10px;
     font-size: 12px;
     height: 5vh;
