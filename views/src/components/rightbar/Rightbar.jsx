@@ -199,7 +199,7 @@ if(user?._id === currentUser?._id){
                 <div className=" ">
                     {isUser ? (
                         <form onSubmit={changeProfileImage} className="newProfileImageForm">
-                        
+        
                                 <label htmlFor="profileImgFile" className="" >
                                         {profileImgFile ? 
                                         

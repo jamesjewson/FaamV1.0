@@ -4,8 +4,13 @@
     margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
+    display: flex;
+    
 }
 
+.middleSettings{
+    width: 60%;
+}
 
 .updateProfileSettingsForm{
     color: black;
@@ -42,4 +47,24 @@
 
 .readonlyInput{
     font-size: 12px;
+}
+
+.settingsRightbar{
+    width: 40%;
+    /* border-left: 20px solid black; */
+}
+
+.settingsProfileUserImg{
+    width: 600px;
+    height: 600px;
+}
+
+.editSettingsIcon:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.settingsGoBack{
+    text-decoration: none;
+    padding-bottom: 5px;
 }

@@ -39,6 +39,8 @@ Settings Page
 Clean up code
 Add to portfolio
 
+THEN FIX OTHER MINOR BUGS
+
 
 
 CSS- 
