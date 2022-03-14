@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react"
 import {AuthContext} from "../../context/AuthContext"
 import axios from "axios"
 import {Edit} from "@material-ui/icons"
+import {Link} from "react-router-dom"
 
 
 export default function SettingsCenter() {
@@ -16,6 +17,13 @@ export default function SettingsCenter() {
     const [emailInputState, setEmailInputState] = useState(false)
     const [relationshipInputState, setRelationshipInputState] = useState(false)
     const [showHideSettings, setShowHideSettings] = useState(false)
+
+
+    const [profileImgFile,setProfileImgFile] = useState(null)
+    const [isUser, setIsUser] = useState(false)
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
 
     useEffect(() =>{
         const fetchUser = async () => {      
@@ -100,30 +108,93 @@ export default function SettingsCenter() {
 
 //ShowHide Change Settings
     const showHideClick = ()=>{
-        setShowHideSettings(!showHideSettings)
-        setFromInputState(currentUser.from)
-        setUsernameInputState(currentUser.username)
-        setCurrentCityInputState(currentUser.currentCity)
-        setEmailInputState(currentUser.email)
-        setRelationshipInputState(currentUser.relationship)
+        if(currentUser.username !== 'Demo'){
+
+            
+            setShowHideSettings(!showHideSettings)
+            setFromInputState(currentUser.from)
+            setUsernameInputState(currentUser.username)
+            setCurrentCityInputState(currentUser.currentCity)
+            setEmailInputState(currentUser.email)
+            setRelationshipInputState(currentUser.relationship)
+        }
+        else{
+            alert("Setting modifications have been disabled for the demo. Create your own profile if you wish to use this feature.")
+        }
     }
 
+    
+/////////////////
+
+
+
+//Show/hide Change pictures
+useEffect(() => {
+    if(user?._id === currentUser?._id){
+        setIsUser(true)
+    }                   
+    }, [user, currentUser])
+    
+
+
+  //Change Profile Pic
+  const changeProfileImage = async (e)=>{
+    e.preventDefault()
+      //if user update profilepicimg
+      if (!profileImgFile){
+          alert("No file attached!")
+      }else{
+          const reader = new FileReader();
+          reader.readAsDataURL(profileImgFile);
+          reader.onloadend = () => {
+              uploadImage(reader.result);
+          };
+          reader.onerror = (error) => {
+              console.error(error);
+          };
+      }
+  }
+  const uploadImage = async (base64EncodedImage) => {
+    const id = user._id
+      const newProfilePic = {
+          data: base64EncodedImage,
+          id: user._id
+      }
+      try {
+          const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
+          if(res.status === 200){
+              setProfileImgFile('')
+          }
+      } catch (error) {
+          console.log(error);
+      }
+  };
+
+
+
+
+////////////////    
 
     return (
+        <>
+            
         <div className="settingsCenter">
+            <div className="middleSettings">
+
             <h1 className="settingsPageH1">Settings for {user.username} <Edit onClick={showHideClick} className="editSettingsIcon"/></h1>
-           <hr className="settingsHr"/>
-           <form onSubmit={submitChanges} className="updateProfileSettingsForm">
+            <Link  to={`/profile/${user.username}`} className="settingsGoBack" >
+                <span className="settingsGoBack" >Go Back</span>
+            </Link>
+            <hr className="settingsHr"/>
+            <form onSubmit={submitChanges} className="updateProfileSettingsForm">
                <div className="settingsUserInfoContainer">
                     <span className="settingsLabel">Username: </span>
                     {showHideSettings ? (
                         <>
-                        {/* <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} onChange={(e)=> setUsernameInputState(e.target.value)} /> */}
-                        <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} readonly />
-                        <span className="readonlyInput"> For demo purposes, this input is read only.</span>
+                            <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState}/>
                         </>
                         ) : (
-                        <span className="settingsCurrentValue">{currentUser.username}</span>    
+                            <span className="settingsCurrentValue">{currentUser.username}</span>    
                     ) }
 
                </div>
@@ -133,8 +204,8 @@ export default function SettingsCenter() {
                     (
                         <input type="text" placeholder="Update where you're from here" className="settingsInput" value={fromInputState}  onChange={(e)=> setFromInputState(e.target.value)} />
                         ) : (
-                        <span className="settingsCurrentValue">{currentUser.from} </span>
-                    )}
+                            <span className="settingsCurrentValue">{currentUser.from} </span>
+                            )}
                </div>
 
                <div className="settingsUserInfoContainer">
@@ -143,21 +214,20 @@ export default function SettingsCenter() {
                        <input type="text" placeholder="Update your current city here" className="settingsInput" value={currentCityInputState}  onChange={(e)=> setCurrentCityInputState(e.target.value)} />
                        
                        ) : (
-                            <span className="settingsCurrentValue">{currentUser.currentCity} </span>
-                   ) }
+                           <span className="settingsCurrentValue">{currentUser.currentCity} </span>
+                           ) }
                </div>
 
                <div className="settingsUserInfoContainer">
                    <span className="settingsLabel">Email: </span>
                    {showHideSettings ? (
-                    //    <input type="text" placeholder="Update your email here" className="settingsInput" value={emailInputState} readonly  onChange={(e)=> setEmailInputState(e.target.value)} />
                        <>
-                       <input type="text" placeholder="Update your email here" className="settingsInput" value={emailInputState} readonly/>
-                       <span className="readonlyInput"> For demo purposes, this input is read only.</span>
+                            <input type="text" placeholder="Update your email here" className="settingsInput" value={emailInputState} readonly/>
+                            <span className="readonlyInput"> For demo purposes, this input is read only.</span>
                        </>
                        ) : (
-                       <span className="settingsCurrentValue">{currentUser.email} </span>
-                   ) }
+                           <span className="settingsCurrentValue">{currentUser.email} </span>
+                    ) }
                </div>
 
                <div className="settingsUserInfoContainer">
@@ -165,13 +235,80 @@ export default function SettingsCenter() {
                    {showHideSettings ? (
                        <input type="text" placeholder="Update your relationship here" className="settingsInput" value={relationshipInputState}  onChange={(e)=> setRelationshipInputState(e.target.value)} />
                        ) : (
-                       <span className="settingsCurrentValue">{currentUser.relationship} </span>
-                   ) }
+                           <span className="settingsCurrentValue">{currentUser.relationship} </span>
+                           ) }
                </div>
                 {showHideSettings ? (
+                    <>
                     <button type="submit" >Save</button>
+                    <button type="button" onClick={showHideClick}>Cancel</button>
+                    </>
                 ) : null}
            </form>
-        </div>
+            </div>
+            <div className="settingsRightbar">
+                {/* Profile Pic Stuff */}
+                    {/* All CSS is in the file rightbar.css unless has prefix of settings */}
+                    <div className=" ">
+                    {isUser ? (
+                        <form onSubmit={changeProfileImage} className="newProfileImageForm">
+        
+                                <label htmlFor="profileImgFile" className="" >
+                                        {profileImgFile ? 
+                                        
+                                        <div className="profileUserImgDiv">
+                                            <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg settingsProfileUserImg" />
+                                            <div className="saveNewImgContainer">
+
+                                                <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
+                                            </div>
+                                        </div>
+                                        
+                                        : 
+                                            <div className="profileUserImgDiv " > 
+                                                <img 
+                                                    className="profileUserImg settingsProfileUserImg" 
+                                                    src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                                                    alt=""
+                                                    />                    
+                                                <input 
+                                                    style={{display:"none"}}
+                                                    name="profileImgFile"
+                                                    type="file" 
+                                                    id="profileImgFile" 
+                                                    accept=".png,.jpeg,.jpg" 
+                                                    onChange={(e)=>{
+                                                        try {
+                                                            setProfileImgFile(e.target.files[0])
+                                                            
+                                                        } catch (error) {
+                                                            console.log(error);
+                                                        }
+                                                    }} 
+                                                    />
+                                            </div>
+                                        }
+                                </label>
+                        </form>  
+                    ) : 
+                    
+                    (<img 
+                        className="profileUserImg" 
+                        src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                        alt=""
+                        /> )
+                    
+                    }
+
+                {/* Profile Name */}
+                <div className="profileInfo">
+                    <h4 className="profileInfoName" >{user.username}</h4>
+                    <span className="profileInfoDesc" >{user.desc}</span>
+                </div>
+
+                </div>
+            </div>
+        </div>   
+        </>
     )
 }

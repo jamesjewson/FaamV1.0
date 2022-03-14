@@ -1,0 +1,98 @@
+
+added _redirects in public folder
+
+git subtree push --prefix api heroku master
+
+
+To Do:
+Add stock images to each fake person
+Make 20 fake people
+-Hildegard von Bingen hildegard@demo.com vonBingen
+-Bert and Ernie bertandernie@demo.com opensesame
+-Kermit the Frog kermit@demo.com thefrog
+-Lil' Sebastian lilsebastian@demo.com sebastian
+-Me 
+-Sweet Pea 
+-Bast
+-Daniel Radcliffe dradcliffe@demo.com iamthechosenone
+-Frank Drebin policesquad! frankdrebin@demo.com
+-Amanda Lynn amandalynn@demo.com amandademo
+-Barry D. Hatchett burythehatchett barrydhatchett@demo.com
+
+
+-Sandy Cheeks
+-Sarah Nader
+-Jack Pott
+-Bill Ding
+-Paige Turner
+-Mariah H. Ross
+-Bruce Dwyer
+-Ralph Finley
+-Bryant Zeick
+
+
+
+
+Final To Do:
+
+Clean up code
+Add to portfolio
+
+THEN FIX OTHER MINOR BUGS
+
+
+
+CSS- 
+REDESIGN
+font Josefin Sans 
+playfair for comment font
+OP comments are highlighted in some way 
+
+
+Add Search Feature/Search result page;
+Add Reset Password Feature
+First name and Last Name instead of username
+
+Add Chat Feature
+Add Group Chat Feature/Group Page (It's one thing)
+Add Vote Feature
+
+Only OP can see comments
+Curate News Feed
+Formatting on posts
+Group Feed
+
+
+
+logomakr.com/app/67u5eq
+
+logomakr.com/app/6AnSyS 
+
+
+
+
+
+
+
+TeacherTools
+
+Calculator
+
+
+
+
+Changed package.json proxy   "proxy": "https://faamserver.herokuapp.com/"
+commented out stuff in index.json
+
+
+removed https://faamserver.herokuapp.com/api/ from apiCalls login
+
+
+
+Stuff to update that isn't CSS
+
+all Components
+
+
+Notes:
+239 border in post.css is possibly for OP post

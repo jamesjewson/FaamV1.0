@@ -6,9 +6,16 @@ import {AuthContext} from "../../context/AuthContext";
 import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
 import Online from "../online/Online"
+import Topbar from "../topbar/Topbar"
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
 
 
 export default function Rightbar({user}) {
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
     const {user:currentUser, dispatch} =  useContext(AuthContext)
     const [followed,setFollowed] = useState(false)
@@ -16,7 +23,8 @@ export default function Rightbar({user}) {
     const [viewImg, setViewImg] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [allUsers, setAllUsers] = useState([])
-
+    const [profileImgFile,setProfileImgFile] = useState(null)
+    const [isUser, setIsUser] = useState(false)
 
 // Get current user followings
     useEffect(()=>{
@@ -75,40 +83,182 @@ export default function Rightbar({user}) {
         setFollowed(!followed)
     }
 
-// Hide large photo
+// Hide Carousel
     const hideLargeImage = (img)=>{
        setViewImg(false)
     }
     
+    
+ 
+    
+
+///////////////////////////
+
+
+//Show/hide Change pictures
+useEffect(() => {
+if(user?._id === currentUser?._id){
+    setIsUser(true)
+}                   
+}, [user, currentUser])
+
+
+
+    //Change Profile Pic
+    const changeProfileImage = async (e)=>{
+        e.preventDefault()
+          //if user update profilepicimg
+          if (!profileImgFile){
+              alert("No file attached!")
+          }else{
+              const reader = new FileReader();
+              reader.readAsDataURL(profileImgFile);
+              reader.onloadend = () => {
+                  uploadImage(reader.result);
+              };
+              reader.onerror = (error) => {
+                  console.error(error);
+              };
+          }
+      }
+      const uploadImage = async (base64EncodedImage) => {
+        const id = user._id
+          const newProfilePic = {
+              data: base64EncodedImage,
+              id: user._id
+          }
+          try {
+              const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
+              if(res.status === 200){
+                  setProfileImgFile('')
+              }
+          } catch (error) {
+              console.log(error);
+          }
+      };
+
 
     
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
 
 
     //Home Right Bar
         const HomeRightBar = () => {
             return (
                 <>
-                    <hr className="rightbarHr" />
-                    <h3 className="allUsersHeader" >People You Might Know</h3>
-                    {allUsers.map(user=>(
-                        <Online key={user._id} user={user} />
-                    ))}
+                    <div className="rightbarContainer">
+                        <Topbar />
+                        <hr className="rightbarHr" />
+                        <h3 className="allUsersHeader" >People You Might Know</h3>
+                        <div className="righbarAllUsersContainer">
+                            {allUsers.map(user=>(
+                                <Online key={user._id} user={user} />
+                            ))}
+                        </div>
+                    </div>
                 </>
             )
         }
 
     //Profile Right Bar
         const ProfileRightBar = () => {
+           
             return (
-                <>
+            <>
+            <div className="profileRightbarInfoContainer">
+{/*  */}
+                {/* Profile Pic Stuff */}
+                {/* {!profileImgFile && ( */}
+                <div className=" ">
+                    {isUser ? (
+                        <form onSubmit={changeProfileImage} className="newProfileImageForm">
+        
+                                <label htmlFor="profileImgFile" className="" >
+                                        {profileImgFile ? 
+                                        
+                                        <div className="profileUserImgDiv">
+                                            <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
+                                            <div className="saveNewImgContainer">
+
+                                                <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
+                                            </div>
+                                            {/* <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} /> */}
+                                        </div>
+                                        
+                                        : 
+                                            <div className="profileUserImgDiv" > 
+                                                <img 
+                                                    className="profileUserImg" 
+                                                    src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                                                    alt=""
+                                                    />                    
+                                                <input 
+                                                    style={{display:"none"}}
+                                                    name="profileImgFile"
+                                                    type="file" 
+                                                    id="profileImgFile" 
+                                                    accept=".png,.jpeg,.jpg" 
+                                                    onChange={(e)=>{
+                                                        try {
+                                                            setProfileImgFile(e.target.files[0])
+                                                            
+                                                        } catch (error) {
+                                                            console.log(error);
+                                                        }
+                                                    }} 
+                                                    />
+                                            </div>
+                                        }
+                                </label>
+{/*                             
+                            {profileImgFile && (
+                                <button className="saveProfileImgButton" type="submit"><CheckCircleOutline/></button>
+                            )} */}
+                        </form>  
+                    ) : 
+                    
+                    (<img 
+                        className="profileUserImg" 
+                        src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                        alt=""
+                        /> )
+                    
+                    }
+
+                {/* Profile Name */}
+                <div className="profileInfo">
+                    <h4 className="profileInfoName" >{user.username}</h4>
+                    <span className="profileInfoDesc" >{user.desc}</span>
+                </div>
+
+                </div>
+            {/* )}  */}
+
+                {/*  */}
+                <hr className="allUserPhotosHrTop rightbarProfileHr" />
+                
                 {user.username !== currentUser.username && (
                     <button className="rightbarFollowButton" onClick={handleClick} >
                         {followed ? "Unfollow" : "Follow"}
                         {followed ? <Remove /> : <Add />}   
                     </button>
                 )}
+
                 <h4 className="rightbarTitle ">User Information</h4>   
                 <div className="rightbarInfo">
+                <div className="rightbarInfoItem">
+                        <span className="rightbarInfoKey">Name:</span>
+                        <span className="rightbarInfoValue">{user.username}</span>
+                    </div>
                     <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">City:</span>
                         <span className="rightbarInfoValue">{user.currentCity}</span>
@@ -122,6 +272,11 @@ export default function Rightbar({user}) {
                         <span className="rightbarInfoValue">{user.relationship }</span>
                     </div>
                 </div>
+                    {/* Share */}
+                {/* <Share /> */}
+
+
+                {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
                 <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
                     <h4 className="rightbarTitle">{user.username}'s Photos</h4>
@@ -136,9 +291,25 @@ export default function Rightbar({user}) {
                 {/* View Large Image */}
                 { viewImg ? (
                     <>
+                        {document.addEventListener('keydown', function(e){
+                            if(e.key === 'Escape'){hideLargeImage();}
+                        })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
-                            <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} />
+                            {/* <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} /> */}
+                            <div className="rightbarCarouselContainer">
+                                <Carousel 
+                                    infiniteLoop="true" 
+                                    useKeyboardArrows="true" 
+                                    showStatus="false"
+                                    autoFocus="true"
+                                    >
+                                    {photos.map((p)=>(
+                                        <img key={p._id} src={p.img} className="rightbarAllUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
+                                        ))}
+                                </Carousel>
+                            </div>
+
                         </div>
                     </>
                 ) : null }
@@ -153,17 +324,29 @@ export default function Rightbar({user}) {
                 </div>
                 ) : null
                 }
-                </>
+            </div>
+            </>
             )
         }
 
 
 //Return
         return (
-        <div className="rightbar">
-            <div className="rightbarWrapper">
-                {user ? <ProfileRightBar /> : <HomeRightBar />}
-            </div>
+            <>          
+            {user ? (
+                
+        <div className="rightbar profileRightbarMargin"  >
+        <div className="rightbarWrapper">
+            <ProfileRightBar />
         </div>
+    </div>
+            ): (
+                <div className="rightbar"  >
+                    <div className="rightbarWrapper">
+                        <HomeRightBar />
+                    </div>
+                </div>)}</>
+
+  
         )
 }

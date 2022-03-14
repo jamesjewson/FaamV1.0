@@ -1,8 +1,5 @@
-import React from 'react'
-//Don't need this ^
-
 import "./topbar.css"
-import { Search, Person, Chat, Notifications } from "@material-ui/icons"
+import { Person, Chat, Notifications } from "@material-ui/icons"
 import {Link} from "react-router-dom"
 import {useContext, useState, useEffect, useRef} from "react"
 import {AuthContext} from "../../context/AuthContext"
@@ -27,10 +24,8 @@ useEffect(() =>{
     const fetchCurrentUser = async () => {
         const res = await axios.get(`/users/currentUser/` + user?._id)
         setCurrentUser(res.data);
-        // console.log(res.data);
     };  
     fetchCurrentUser();
-    // console.log(currentUser);
 },[user?._id]); 
 
 //Fetch user notifications
@@ -38,7 +33,6 @@ useEffect(() =>{
         const fetchUserNotifications = async()=>{
             const res = await axios.get(`/users/notifications/` + user?._id)
             setNotifications(res.data)
-           // console.log(notifications);
         }
         fetchUserNotifications()
     }, [user?._id])
@@ -51,7 +45,7 @@ useEffect(() =>{
         }
     }, [])
 
-    //Handle notification  outside click
+    //Handle notification outside click
     const handleNotificationOutsideClick = (e)=>{
         if(!refNotifications.current?.contains(e.target)){
             setShowNotifications(false)
@@ -75,47 +69,35 @@ useEffect(() =>{
     }
 
 
-//Logout    
+    //Logout    
     function handleLogout(e){
         e.preventDefault();
         logoutCall({user:null}, dispatch)      
     }
 
-const alertComingSoon = ()=>{
-    alert("This feature has not yet been implemented.")
-}
+    const alertComingSoon = ()=>{
+        alert("This feature has not yet been implemented.")
+    }
 
 ////////Return
     return (
         <div className="topbarContainer">
-            <div className="topbarLeft">
-                <Link to="/" style={{textDecoration:"none"}}>
-                    <span className="logo"><img className="logoImg" src={PF+"default/topbarlogo.jpeg"} alt="logo"/></span>
-                </Link>
-            </div>
-            <div className="topbarCenter">
-                <div className="searchbar">
-                    <Search className="searchIcon"/>
-                    <input placeholder="Search for friends, posts, or video coming soon" className="searchInput" />
-                </div>
-            </div>
             <div className="topbarRight" ref={refNotifications}>
                 <div className="topbarLinks">
-                    <Link to={`/profile/${user.username}`} style={{textDecoration:"none"}} >
-                        <span className="topbarLink">Homepage</span>
+                    <Link to={`/profile/${user.username}`} style={{textDecoration:"none"}} className="topbarLink" >
+                        <span className="topbarLink2">Homepage</span>
                     </ Link>
-                    <Link to="/" style={{textDecoration:"none"}}>
-                        <span className="topbarLink">Timeline</span>
+                    <Link to="/" style={{textDecoration:"none"}} className="topbarLink" >
+                        <span className="topbarLink2">Timeline</span>
                     </Link>
                 </div>
+                
                 <div className="topbarIcons" >
                     <div className="topbarIconItem" onClick={alertComingSoon}>
                         <Person />
-                        {/* <span className="topbarIconBadge">1</span> */}
                     </div>
                     <div className="topbarIconItem" onClick={alertComingSoon}>
                         <Chat />
-                        {/* <span className="topbarIconBadge">2</span> */}
                     </div>
                     <div className="topbarIconItem" >
                         <Notifications onClick={clickShowNotifications} />

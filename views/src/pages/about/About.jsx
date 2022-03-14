@@ -6,13 +6,12 @@ import React from 'react'
 export default function About() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
-//Return
     return (
         <>
         <div className="aboutWrapper">
             <h1 className="logoWrapper">
                 <Link to="/">
-                    <img className="aboutLogo" src={PF+"default/topbarlogo.jpeg"} alt="logo"/>
+                    <img className="aboutLogo" src={PF+"default/faamLarge.png"} alt="logo"/>
                 </Link>
             </h1>
             <div className="aboutlowerWrap">

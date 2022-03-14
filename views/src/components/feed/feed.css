@@ -1,9 +1,23 @@
 .feed {
     flex: 5.5;
-    
+    max-width: 65%;
 }
 
 .feedWrapper{
-    padding:20px;
+    padding:20px 40px;
+}
 
+.endWrapper{
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+}
+
+.toTop:hover{
+    cursor: pointer;
+}
+
+.upArrow{
+border-bottom: 1px solid black;
+width: 24px;
 }

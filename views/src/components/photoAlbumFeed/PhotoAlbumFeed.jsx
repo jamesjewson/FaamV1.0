@@ -4,6 +4,14 @@ import axios from "axios"
 import { useEffect, useState } from 'react'
 import "./photoAlbumFeed.css"
 
+
+import { Carousel } from 'react-responsive-carousel';
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+
+
+
 export default function PhotoAlbumFeed({user}) {
 
     const [userPhotos, setUserPhotos] = useState([])
@@ -25,13 +33,23 @@ export default function PhotoAlbumFeed({user}) {
     }
      
 
-    //Return
+
     return (
         <>
             <div className="photoArrayContainer">
-                {userPhotos.map((p)=>(
-                    <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
-                ))}
+
+                {userPhotos.length > 0 ? (
+                    <Carousel infiniteLoop="true" 
+                    useKeyboardArrows="true" 
+                    autoFocus="true" 
+                    showStatus="false"
+                    autoPlay="false"
+                    >
+                        {userPhotos.map((p)=>(
+                            <img key={p._id} src={p.img} className="allUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
+                        ))}
+                    </Carousel> )
+                : null }    
             </div>
         {/* View Large Image */}
             { viewImg ? (
@@ -39,7 +57,7 @@ export default function PhotoAlbumFeed({user}) {
                     <div className="largeImgContainer">
                         <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
                         <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} />
-                    </div>
+                    </div>     
                 </>
             ) : null }
         </>

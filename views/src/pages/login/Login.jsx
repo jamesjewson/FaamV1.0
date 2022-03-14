@@ -11,13 +11,19 @@ export default function Login() {
     const email = useRef()
     const password = useRef()
     const {isFetching, dispatch} = useContext(AuthContext)
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    //const {user} = useContext(AuthContext)
     
     const handleClick = (e) =>{
         //PreventDefault stops the page from reloading
-        e.preventDefault();
-        loginCall({email:email.current.value,password:password.current.value}, dispatch)
+        e.preventDefault();      
+       
+        if(email.current.value === "demo@demo.com"){
+            if (window.confirm("By entering this website you agree to the terms and conditions.\nYou are posting on a public site that is a part of my portfolio.\n\nRules: Be nice. Be professional.") === true) {            
+                loginCall({email:email.current.value,password:password.current.value}, dispatch)
+            }
+        }
+        else{
+            loginCall({email:email.current.value,password:password.current.value}, dispatch)
+        }  
     }
 
     const handleForgotPassword = ()=>{
@@ -27,9 +33,6 @@ export default function Login() {
     return (
         <div className="login">
             <div className="loginWrapper">
-                <div className="loginLeft">
-                    <h3 className="loginLogo"><img className="loginLogo" src={PF+"default/logo-large.jpeg"} alt="" /></h3>
-                </div>
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 
@@ -56,7 +59,7 @@ export default function Login() {
                         <span className="loginForgot" onClick={handleForgotPassword}>
                             <a href="https://jamesjewson.netlify.app/#contact" target="_blank" rel="noreferrer">Forgot Password?</a>
                         </span>
-                        <Link to="/register" className="registerLink">
+                        <Link to="/register" className="loginInput">
                             <button className="loginRegisterButton">
                                 {isFetching ? (<CircularProgress className="circular" size="25px"/>) : (
                                     "Create a New Account"
