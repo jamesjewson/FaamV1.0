@@ -8,6 +8,13 @@ const userRoute = require('./routes/users')
 const authRoute = require('./routes/auth')
 const postRoute = require('./routes/posts')
 const path = require("path")
+var cors = require('cors')
+
+app.get('/test', (req, res) => { res.send('Hello from Express!') })
+
+
+app.use(cors())
+
 
 
 //.env config
@@ -43,9 +50,7 @@ app.get("*", function (request, response) {
 });
 
 
-const PORT = process.env.PORT || 8800
+
 // Set up server
-app.listen(PORT,()=>{
-    console.log("Server is running, better catch it!")
-})
+app.listen(process.env.PORT)
 
