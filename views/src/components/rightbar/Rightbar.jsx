@@ -29,7 +29,7 @@ export default function Rightbar({user}) {
 // Get current user followings
     useEffect(()=>{
         setFollowed(currentUser.following.includes(user?._id))
-        console.log(followed);
+      
     },[currentUser, user])
 
 // Get all users

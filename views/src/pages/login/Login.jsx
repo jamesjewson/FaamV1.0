@@ -36,14 +36,14 @@ export default function Login() {
                 <div className="loginRight">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 
-                            placeholder="Email- Use demo@demo.com for demo" 
+                            placeholder="Use demo@demo.com for demo" 
                             type="email" 
                             required 
                             className="loginInput" 
                             ref={email} 
                         />
                         <input 
-                            placeholder="Password- Use password 'demo'" 
+                            placeholder="Use password 'demo'" 
                             type="password" 
                             required 
                             minLength="4" 
