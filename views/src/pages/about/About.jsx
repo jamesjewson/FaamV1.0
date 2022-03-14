@@ -11,7 +11,7 @@ export default function About() {
         <div className="aboutWrapper">
             <h1 className="logoWrapper">
                 <Link to="/">
-                    <img className="aboutLogo" src={PF+"default/faamLarge.png"} alt="logo"/>
+                    <img className="aboutLogo" src={PF+"default/faamLarge.jpg"} alt="logo"/>
                 </Link>
             </h1>
             <div className="aboutlowerWrap">
