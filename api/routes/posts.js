@@ -13,6 +13,7 @@ router.post("/postImg", async (req,res)=>{
       const result = await cloudinary.uploader.upload(req.body.data, {
         upload_preset: 'i7qr7gwc'
       })
+      console.log(result)
       await Post.create({
         userId: req.body.userId,
         desc: req.body.desc,
