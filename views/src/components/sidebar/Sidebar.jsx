@@ -38,7 +38,7 @@ export default function Sidebar() {
             <div className="sidebarWrapper">
                 <div className="topbarLeft">
                     <Link to="/" style={{textDecoration:"none"}}>
-                        <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.jpg"} alt="logo"/></span>
+                        <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.jpg"} alt="logoFaam"/></span>
                     </Link>
                 </div>
                 <hr className="sidebarHr"/>

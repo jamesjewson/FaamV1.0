@@ -60,7 +60,7 @@ useEffect(() =>{
          try {
             const notification = deletedNotification.notification  
             const notificationId = deletedNotification.notification.id 
-            const res = await axios.put("/users/"+ notificationId + "/deleteNotification", notification)
+            await axios.put("/users/"+ notificationId + "/deleteNotification", notification)
              setNotifications(notifications.filter((notification) => notification.id !== notificationId))
          } catch (err) {
              console.log(err);
