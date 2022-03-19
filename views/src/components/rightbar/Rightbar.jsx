@@ -272,9 +272,6 @@ if(user?._id === currentUser?._id){
                         <span className="rightbarInfoValue">{user.relationship }</span>
                     </div>
                 </div>
-                    {/* Share */}
-                {/* <Share /> */}
-
 
                 {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
@@ -331,22 +328,19 @@ if(user?._id === currentUser?._id){
 
 
 //Return
-        return (
-            <>          
-            {user ? (
-                
+return (            
+<>          
+    {user ? (            
         <div className="rightbar profileRightbarMargin"  >
-        <div className="rightbarWrapper">
-            <ProfileRightBar />
+            <div className="rightbarWrapper">
+                <ProfileRightBar />
+            </div>
         </div>
-    </div>
             ): (
-                <div className="rightbar"  >
-                    <div className="rightbarWrapper">
-                        <HomeRightBar />
-                    </div>
-                </div>)}</>
-
-  
-        )
-}
+        <div className="rightbar"  >
+            <div className="rightbarWrapper">
+                <HomeRightBar />
+            </div>
+        </div>)}
+</> 
+)}
