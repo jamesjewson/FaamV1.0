@@ -26,7 +26,7 @@ router.post("/postImg", async (req,res)=>{
       cloudinaryId: result.public_id,
       likes: []
      }
-      res.status(200).json(newImgPost);
+      res.status(200);
     } catch (err) {
       res.status(500).json(err);
       console.log("Error: ", err);
