@@ -28,7 +28,7 @@ router.post("/postImg", async (req,res)=>{
     //  }
     //   res.status(200).json(newImgPost);
 
-    console.log(process.env.API_KEY)
+    console.log(process.env.api_key)
 
     } catch (err) {
       res.status(500).json(err);
