@@ -10,26 +10,23 @@ router.post("/postImg", async (req,res)=>{
     try {
 
       // Upload image to cloudinary 
-    //   const result = await cloudinary.uploader.upload(req.body.data, {
-    //     upload_preset: 'i7qr7gwc'
-    //   })
-    //   await Post.create({
-    //     userId: req.body.userId,
-    //     desc: req.body.desc,
-    //     img: result.secure_url,
-    //     cloudinaryId: result.public_id
-    //  });
-    //  const newImgPost = {
-    //   userId: req.body.userId,
-    //   desc: req.body.desc,
-    //   img: result.secure_url,
-    //   cloudinaryId: result.public_id,
-    //   likes: []
-    //  }
-    //   res.status(200).json(newImgPost);
-
-    console.log(process.env.api_key)
-
+      const result = await cloudinary.uploader.upload(req.body.data, {
+        upload_preset: 'i7qr7gwc'
+      })
+      await Post.create({
+        userId: req.body.userId,
+        desc: req.body.desc,
+        img: result.secure_url,
+        cloudinaryId: result.public_id
+     });
+     const newImgPost = {
+      userId: req.body.userId,
+      desc: req.body.desc,
+      img: result.secure_url,
+      cloudinaryId: result.public_id,
+      likes: []
+     }
+      res.status(200).json(newImgPost);
     } catch (err) {
       res.status(500).json(err);
       console.log("Error: ", err);
