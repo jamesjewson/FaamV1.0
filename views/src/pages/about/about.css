@@ -5,8 +5,6 @@
     min-height: 100vh;
     max-width: 100%;
     justify-content: center;
-    /* margin-left: auto;
-    margin-right: auto; */
 }
 
 .logoWrapper{
@@ -38,14 +36,13 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-
-    /* display: none; */
 }
 
 .aboutSideImg{
     width: 100%;
     margin-top: 10px;
     border-radius: 20px;
+    min-width: 300px;
 }
 
 
@@ -122,4 +119,37 @@
     font-style: italic;
     font-size: 14px;
     padding-bottom: 10px;
+}
+
+
+/* Media */
+
+@media screen and (max-width: 1425px) {
+    
+
+
+    .aboutSideImg, .aboutSidebar{
+        display: none;
+    }
+
+
+    .aboutTextWrapper{
+        width: 90%;
+    }
+
+}
+
+
+@media screen and (max-width: 750px) {
+
+    .aboutLogo{
+        width: 100%;
+    }
+
+    
+}
+
+
+@media screen and (max-width: 425px) {
+    
 }

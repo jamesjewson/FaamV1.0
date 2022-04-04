@@ -84,7 +84,7 @@ export default function Register() {
                 </div>
 
             </div>
-            <div className="loginAbout">
+            <div className="loginFooter">
                 <Info className="sidebarIcon aboutIcon" />
                 <span className="sidebarListItemText">
                     <Link to="/about" class="sidebarListItemText">

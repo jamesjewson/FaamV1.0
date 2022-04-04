@@ -33,10 +33,10 @@ export default function Login() {
     return (
         <div className="login">
             <div className="loginWrapper">
-                <div className="loginRight">
+                <div className="loginFormContainer">
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 
-                            placeholder="Use demo@demo.com for demo" 
+                            placeholder="Use demo@demo.com" 
                             type="email" 
                             required 
                             className="loginInput" 
@@ -69,7 +69,7 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-            <div className="loginAbout">
+            <div className="loginFooter">
                 <Info className="sidebarIcon aboutIcon" />
                 <span className="sidebarListItemText">
                     <Link to="/about" class="sidebarListItemText">
