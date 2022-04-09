@@ -128,16 +128,33 @@
     
 
 
-    .aboutSideImg, .aboutSidebar{
+     .aboutSidebarLeft{
         display: none;
     }
 
 
     .aboutTextWrapper{
-        width: 90%;
+        width: 70%;
     }
 
 }
+
+
+@media screen and (max-width: 1000px) {
+    
+
+
+    .aboutSidebar{
+       display: none;
+   }
+
+
+   .aboutTextWrapper{
+       width: 90%;
+   }
+
+}
+
 
 
 @media screen and (max-width: 750px) {

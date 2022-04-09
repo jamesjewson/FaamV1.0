@@ -191,7 +191,6 @@ if(user?._id === currentUser?._id){
 
                                                 <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
                                             </div>
-                                            {/* <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} /> */}
                                         </div>
                                         
                                         : 

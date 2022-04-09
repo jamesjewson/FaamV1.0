@@ -18,7 +18,7 @@ export default function About() {
                 </Link>
             </h1>
             <div className="aboutlowerWrap">
-                <div className="aboutSidebar">
+                <div className="aboutSidebar aboutSidebarLeft">
                     <img src={PF + "default/friends.jpg"} alt="" className="aboutSideImg imgLeft" />
                     <img src={PF + "default/dinner.jpg"} alt="" className="aboutSideImg imgLeft" />
                 </div>

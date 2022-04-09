@@ -15,7 +15,6 @@
 }
 
 .profileRightbarMargin{
-    /* margin-top: 405px; */
     position:fixed !important;
     right: 0;
     left:auto;
@@ -131,7 +130,6 @@ display: flex;
 }
 
 .allUserPhotosContainer{
-    /* width: 100%; */
     background-color: rgba(236, 236, 236, 1);
     background-color: white;
     border-radius: 8px;
@@ -328,7 +326,6 @@ display: flex;
 }
 
 .profileUserImg {
-    /* width: 375px; */
     width: 100%;
     height: 375px;
     border-radius: 50%;
@@ -340,14 +337,11 @@ display: flex;
     position: relative;
     z-index: 1;
     transition: 0.25s;
-
-
 }
 
 .profileUserImg:hover{
     padding: 5px;
     background-color: lightgreen;
-
 }
 
 .profilePicCancelImg {
