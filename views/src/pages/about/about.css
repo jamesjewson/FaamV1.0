@@ -7,7 +7,7 @@
     justify-content: center;
 }
 
-.logoWrapper{
+.aboutlogoWrapper{
     margin-left: auto;
     margin-right: auto;
     background-color: white;
@@ -44,9 +44,6 @@
     border-radius: 20px;
     min-width: 300px;
 }
-
-
-
 
 .aboutH2{
     font-size: 48px;
@@ -125,18 +122,25 @@
 /* Media */
 
 @media screen and (max-width: 1425px) {
-    
 
-
-    .aboutSideImg, .aboutSidebar{
+     .aboutSidebarLeft{
         display: none;
     }
 
-
     .aboutTextWrapper{
-        width: 90%;
+        width: 70%;
     }
+}
 
+
+@media screen and (max-width: 1000px) {
+    
+    .aboutSidebar{
+       display: none;
+   }
+   .aboutTextWrapper{
+       width: 90%;
+   }
 }
 
 
@@ -144,12 +148,5 @@
 
     .aboutLogo{
         width: 100%;
-    }
-
-    
-}
-
-
-@media screen and (max-width: 425px) {
-    
+    }    
 }

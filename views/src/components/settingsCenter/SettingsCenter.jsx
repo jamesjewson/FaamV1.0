@@ -176,8 +176,7 @@ useEffect(() => {
 ////////////////    
 
     return (
-        <>
-            
+        <>    
         <div className="settingsCenter">
             <div className="middleSettings">
 
@@ -252,60 +251,51 @@ useEffect(() => {
                     <div className=" ">
                     {isUser ? (
                         <form onSubmit={changeProfileImage} className="newProfileImageForm">
-        
-                                <label htmlFor="profileImgFile" className="" >
-                                        {profileImgFile ? 
-                                        
-                                        <div className="profileUserImgDiv">
-                                            <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg settingsProfileUserImg" />
-                                            <div className="saveNewImgContainer">
-
-                                                <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
-                                            </div>
+                            <label htmlFor="profileImgFile" className="" >
+                                {profileImgFile ? 
+                                    <div className="profileUserImgDiv">
+                                        <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg settingsProfileUserImg" />
+                                        <div className="saveNewImgContainer">
+                                            <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
                                         </div>
-                                        
-                                        : 
-                                            <div className="profileUserImgDiv " > 
-                                                <img 
-                                                    className="profileUserImg settingsProfileUserImg" 
-                                                    src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
-                                                    alt=""
-                                                    />                    
-                                                <input 
-                                                    style={{display:"none"}}
-                                                    name="profileImgFile"
-                                                    type="file" 
-                                                    id="profileImgFile" 
-                                                    accept=".png,.jpeg,.jpg" 
-                                                    onChange={(e)=>{
-                                                        try {
-                                                            setProfileImgFile(e.target.files[0])
-                                                            
-                                                        } catch (error) {
-                                                            console.log(error);
-                                                        }
-                                                    }} 
-                                                    />
-                                            </div>
-                                        }
-                                </label>
+                                    </div>
+                                : 
+                                    <div className="profileUserImgDiv " > 
+                                        <img 
+                                            className="profileUserImg settingsProfileUserImg" 
+                                            src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                                            alt=""
+                                            />                    
+                                        <input 
+                                            style={{display:"none"}}
+                                            name="profileImgFile"
+                                            type="file" 
+                                            id="profileImgFile" 
+                                            accept=".png,.jpeg,.jpg" 
+                                            onChange={(e)=>{
+                                                try {
+                                                    setProfileImgFile(e.target.files[0])
+                                                    
+                                                } catch (error) {
+                                                    console.log(error);
+                                                }
+                                            }} 
+                                        />
+                                    </div>
+                                }
+                            </label>
                         </form>  
-                    ) : 
-                    
-                    (<img 
-                        className="profileUserImg" 
-                        src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
-                        alt=""
+                    ) :  (
+                        <img 
+                            className="profileUserImg" 
+                            src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                            alt=""
                         /> )
-                    
                     }
-
-                {/* Profile Name */}
-                <div className="profileInfo">
-                    <h4 className="profileInfoName" >{user.username}</h4>
-                    <span className="profileInfoDesc" >{user.desc}</span>
-                </div>
-
+                    {/* Profile Name */}
+                    <div className="profileInfo">
+                        <h4 className="settingsProfileInfoName" >{user.username}</h4>
+                    </div>
                 </div>
             </div>
         </div>   

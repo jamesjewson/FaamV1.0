@@ -59,13 +59,13 @@ const scrollTop= ()=>{
             <div className="feedWrapper">
                 
                 {((!username || username === user.username) && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
-                    {posts.length < 1 ? <span className="nothingToSee">Nothing to see here</span> :
+                    {posts.length < 1 ? <span className="feednothingToSee">Nothing to see here</span> :
                     posts.map((p)=>(
                         <Post key={p._id} post={p} deletePost={deletePost} />
                     )) }
-                <div className="endWrapper">
+                <div className="feedendWrapper">
                     <span >End of feed</span>
-                    <span className="toTop" onClick={scrollTop}>Top <ArrowUpward className="upArrow"/></span>
+                    <span className="feedtoTop" onClick={scrollTop}>Top <ArrowUpward className="feedupArrow"/></span>
                 </div>
             </div>
         </div>

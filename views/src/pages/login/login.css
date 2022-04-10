@@ -136,14 +136,11 @@
 /* Queries */
 
 @media only screen and (max-width: 1200px) {
-    body {
-      /* background-color: white; */
+    
+    .login {
+    background-position: center top;
+    background-repeat: space;
     }
-
-.login {
-background-position: center top;
-background-repeat: space;
-}
 
 
   }

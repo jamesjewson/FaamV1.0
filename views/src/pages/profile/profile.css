@@ -6,36 +6,11 @@
     flex:7;
 }
 
-
-.profileCover {
-    height: 320px;
-    position: relative;
-}
-
-.profileCoverImg {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-
-
-
-.profileInfoName{
-    font-size: 24px;
-}
-
-.profileInfoDesc{
-    font-weight: 300;
-}
-
-
 .profileRightBottom{
     display: flex;
 }
 
-
-.profileSidebar{
+.profilePageSidebar{
     flex: 1.75;
 }
 
@@ -49,12 +24,18 @@
     }
     .rightbar{
         width: 25%;
+        min-width: 400px;
     }
-
   }
 
 
-  
+  @media only screen and (max-width: 1350px) {
+    .sidebar{
+        display: none;
+    }
+    
+  }
+
 @media only screen and (max-width: 1020px) {
     .sidebar{
        display: none;
@@ -72,6 +53,29 @@
     .profileUserImg{
         width: 100%;
     }
+  }
 
+  /* 975 make vertical */
+
+  @media only screen and (max-width: 950px) {
+    .profileRightBottom{
+        flex-direction: column-reverse;
+    }
+    
+    .rightbar{
+        position: relative !important;
+        min-width: 400px;
+        max-width: 450px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feed{
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+        max-width: none;
+    }
 
   }

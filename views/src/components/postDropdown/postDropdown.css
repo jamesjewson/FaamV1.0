@@ -12,15 +12,10 @@
     align-items: flex-end;
     padding-top: 45px;
     z-index: 0;
+    cursor: pointer;
     
 }
-
-.postDropdownMenu{
-    cursor: pointer;
-}
-
-
-.postDropdownMenuItem:hover{
-    font-weight: bold;
-    text-decoration: underline;
-}
+    .postDropdownMenuItem:hover{
+        font-weight: bold;
+        text-decoration: underline;
+    }
