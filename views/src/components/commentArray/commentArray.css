@@ -54,7 +54,7 @@ li {
     margin-right: auto;
 }
 
-/* Dropdown Menu Stuff */
+/* Comment Dropdown Menu Stuff */
 .commentDropdownMenu {
     position:absolute;
     max-width: 60px;
@@ -66,7 +66,7 @@ li {
     margin-left: -60px;
     padding: 7px 7px 3px 7px;
     padding-top: 30px;
-    margin-top: -30px;
+    margin-top: -75px;
     align-items: flex-end;
     z-index: 0;
     cursor: pointer;    
@@ -74,7 +74,9 @@ li {
 
 .commentDropDown{
     z-index: 1;
-    margin-top: 0px;
+    margin-top: 5px;
+    align-self: flex-start;
+    
 }
     .commentDropDown:hover{
         cursor: pointer;

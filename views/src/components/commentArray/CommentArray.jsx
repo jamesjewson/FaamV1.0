@@ -120,7 +120,7 @@ export default function CommentArray(post) {
                 {/* Dropdown Menu */}
                 {user._id === postUser?._id ? (
                     <>
-                        <MoreVert className="deleteComment commentDropDown" onClick={clickShowCommentDropdown} ref={refClick} />
+                        <MoreVert className="commentDropDown" onClick={clickShowCommentDropdown} ref={refClick} />
                         {showHideDropdown ? (
                             <div className="">
                                 <ul className="commentDropdownMenu">
