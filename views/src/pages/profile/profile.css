@@ -6,36 +6,11 @@
     flex:7;
 }
 
-
-.profileCover {
-    height: 320px;
-    position: relative;
-}
-
-.profileCoverImg {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-
-
-
-.profileInfoName{
-    font-size: 24px;
-}
-
-.profileInfoDesc{
-    font-weight: 300;
-}
-
-
 .profileRightBottom{
     display: flex;
 }
 
-
-.profileSidebar{
+.profilePageSidebar{
     flex: 1.75;
 }
 
@@ -61,8 +36,6 @@
     
   }
 
-
-  
 @media only screen and (max-width: 1020px) {
     .sidebar{
        display: none;

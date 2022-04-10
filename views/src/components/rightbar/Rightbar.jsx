@@ -231,10 +231,8 @@ if(user?._id === currentUser?._id){
 
                 {/* Profile Name */}
                 <div className="profileInfo">
-                    <h4 className="profileInfoName" >{user.username}</h4>
-                    <span className="profileInfoDesc" >{user.desc}</span>
+                    <h4 className="rightbarprofileInfoName" >{user.username}</h4>
                 </div>
-
                 </div>
 
                 <hr className="allUserPhotosHrTop rightbarProfileHr" />
@@ -268,9 +266,13 @@ if(user?._id === currentUser?._id){
 
                 {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
-                <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
+                    <div className="photoAlbumHeaderContainer">
+
                     <h4 className="rightbarTitle">{user.username}'s Photos</h4>
+                <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
+                    <h4 className="rightbarTitle rightbarTitleSeeAll">See All</h4>
                 </Link>
+                    </div>
                 <div className="allUserPhotosContainer">
                     {photos.map((p)=>(
                         <img key={p._id} src={p.img} className="sidebarAllUserPhotos" alt={p?.desc} onClick={()=>{setViewImg(p)}} />

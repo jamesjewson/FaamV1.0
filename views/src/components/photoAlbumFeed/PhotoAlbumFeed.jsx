@@ -3,13 +3,8 @@ import { HighlightOff} from "@material-ui/icons"
 import axios from "axios"
 import { useEffect, useState } from 'react'
 import "./photoAlbumFeed.css"
-
-
 import { Carousel } from 'react-responsive-carousel';
-
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
-
 
 
 export default function PhotoAlbumFeed({user}) {
@@ -51,7 +46,7 @@ export default function PhotoAlbumFeed({user}) {
                     </Carousel> )
                 : null }    
             </div>
-        {/* View Large Image */}
+        {/* View Large Image- CSS in public/css/popupImg.css */}
             { viewImg ? (
                 <>
                     <div className="largeImgContainer">

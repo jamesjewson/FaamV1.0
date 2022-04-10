@@ -12,7 +12,7 @@ export default function About() {
     return (
         <>
         <div className="aboutWrapper">
-            <h1 className="logoWrapper">
+            <h1 className="aboutlogoWrapper">
                 <Link to="/">
                     <img className="aboutLogo" src={PF+"default/faamLarge.jpg"} alt="logo"/>
                 </Link>
