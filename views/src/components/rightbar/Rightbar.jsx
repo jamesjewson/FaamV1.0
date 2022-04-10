@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 import {AuthContext} from "../../context/AuthContext";
 import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
-import Online from "../online/Online"
+import MightKnow from "../mightKnow/MightKnow"
 import Topbar from "../topbar/Topbar"
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -161,7 +161,7 @@ if(user?._id === currentUser?._id){
                         <h3 className="allUsersHeader" >People You Might Know</h3>
                         <div className="righbarAllUsersContainer">
                             {allUsers.map(user=>(
-                                <Online key={user._id} user={user} />
+                                <MightKnow key={user._id} user={user} />
                             ))}
                         </div>
                     </div>
@@ -218,10 +218,6 @@ if(user?._id === currentUser?._id){
                                             </div>
                                         }
                                 </label>
-{/*                             
-                            {profileImgFile && (
-                                <button className="saveProfileImgButton" type="submit"><CheckCircleOutline/></button>
-                            )} */}
                         </form>  
                     ) : 
                     
@@ -240,9 +236,7 @@ if(user?._id === currentUser?._id){
                 </div>
 
                 </div>
-            {/* )}  */}
 
-                {/*  */}
                 <hr className="allUserPhotosHrTop rightbarProfileHr" />
                 
                 {user.username !== currentUser.username && (
