@@ -1,6 +1,6 @@
 import "./sidebar.css"
 import { Adjust, Info, ReportProblem } from "@material-ui/icons"
-import CloseFriend from "../closeFriend/CloseFriend"
+import SidebarFriend from "../sidebarFriend/SidebarFriend"
 import {AuthContext} from "../../context/AuthContext"
 import { useContext, useState, useEffect } from 'react'
 import axios from "axios";
@@ -83,7 +83,7 @@ export default function Sidebar() {
                   <h3 className="sidebarFriendsHeader" >Your Friends</h3>
                     <ul className="sidebarFriendList">
                         {friends.map(u=>(
-                            <CloseFriend key={u._id} user={u}/>     
+                            <SidebarFriend key={u._id} user={u}/>     
                         ))}
                     </ul>
                     <hr className="sidebarHr"/>       

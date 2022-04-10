@@ -83,7 +83,7 @@ export default function Comments(post) {
                 <div className="shareWrapper">
                     <div className="shareTop">
                         <img src={user.profilePicture ? user.profilePicture : PF+"person/noAvatar.jpeg"} alt="" className="commentsProfileImg" />
-                        <input placeholder={"Write your comment here"} className="shareInput commentsInput" ref={commentText}  />
+                        <input placeholder={"Write your comment here"} className="commentsInput" ref={commentText}  />
                     </div>
                     <hr className="commentsHr" />
                      {/* Form */}

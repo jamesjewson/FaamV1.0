@@ -1,9 +1,9 @@
-import "./closeFriend.css"
+import "./sidebarFriend.css"
 import {Link} from "react-router-dom"
 
 
 
-export default function CloseFriend({user}) {
+export default function SidebarFriend({user}) {
     return (
         <li className="sidebarFriend">
             <Link to={`/profile/${user.username}`}  style={{textDecoration:"none"}} className="sidebarFriend" >

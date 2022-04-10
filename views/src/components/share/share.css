@@ -37,7 +37,7 @@
 .shareInput{
     border:none;
     width: 80%;
-    background-color: rgb(245,245,245);;
+    background-color: rgb(245,245,245);
 }
 
 .shareInput:focus{
