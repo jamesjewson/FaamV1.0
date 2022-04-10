@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 import {AuthContext} from "../../context/AuthContext";
 import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
-import Online from "../online/Online"
+import MightKnow from "../mightKnow/MightKnow"
 import Topbar from "../topbar/Topbar"
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -161,7 +161,7 @@ if(user?._id === currentUser?._id){
                         <h3 className="allUsersHeader" >People You Might Know</h3>
                         <div className="righbarAllUsersContainer">
                             {allUsers.map(user=>(
-                                <Online key={user._id} user={user} />
+                                <MightKnow key={user._id} user={user} />
                             ))}
                         </div>
                     </div>
@@ -191,7 +191,6 @@ if(user?._id === currentUser?._id){
 
                                                 <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
                                             </div>
-                                            {/* <HighlightOff className="profilePicCancelImg" onClick={()=> setProfileImgFile(null)} /> */}
                                         </div>
                                         
                                         : 
@@ -219,10 +218,6 @@ if(user?._id === currentUser?._id){
                                             </div>
                                         }
                                 </label>
-{/*                             
-                            {profileImgFile && (
-                                <button className="saveProfileImgButton" type="submit"><CheckCircleOutline/></button>
-                            )} */}
                         </form>  
                     ) : 
                     
@@ -236,14 +231,10 @@ if(user?._id === currentUser?._id){
 
                 {/* Profile Name */}
                 <div className="profileInfo">
-                    <h4 className="profileInfoName" >{user.username}</h4>
-                    <span className="profileInfoDesc" >{user.desc}</span>
+                    <h4 className="rightbarprofileInfoName" >{user.username}</h4>
+                </div>
                 </div>
 
-                </div>
-            {/* )}  */}
-
-                {/*  */}
                 <hr className="allUserPhotosHrTop rightbarProfileHr" />
                 
                 {user.username !== currentUser.username && (
@@ -275,9 +266,13 @@ if(user?._id === currentUser?._id){
 
                 {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
-                <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
+                    <div className="photoAlbumHeaderContainer">
+
                     <h4 className="rightbarTitle">{user.username}'s Photos</h4>
+                <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
+                    <h4 className="rightbarTitle rightbarTitleSeeAll">See All</h4>
                 </Link>
+                    </div>
                 <div className="allUserPhotosContainer">
                     {photos.map((p)=>(
                         <img key={p._id} src={p.img} className="sidebarAllUserPhotos" alt={p?.desc} onClick={()=>{setViewImg(p)}} />

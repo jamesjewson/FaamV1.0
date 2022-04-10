@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* position: absolute; */
     width: 210px;
     margin-left: -175px;
     margin-top: 3px;

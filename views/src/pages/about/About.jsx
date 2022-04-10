@@ -12,13 +12,13 @@ export default function About() {
     return (
         <>
         <div className="aboutWrapper">
-            <h1 className="logoWrapper">
+            <h1 className="aboutlogoWrapper">
                 <Link to="/">
                     <img className="aboutLogo" src={PF+"default/faamLarge.jpg"} alt="logo"/>
                 </Link>
             </h1>
             <div className="aboutlowerWrap">
-                <div className="aboutSidebar">
+                <div className="aboutSidebar aboutSidebarLeft">
                     <img src={PF + "default/friends.jpg"} alt="" className="aboutSideImg imgLeft" />
                     <img src={PF + "default/dinner.jpg"} alt="" className="aboutSideImg imgLeft" />
                 </div>
