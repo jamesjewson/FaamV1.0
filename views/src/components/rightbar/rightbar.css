@@ -271,7 +271,7 @@ display: flex;
 .rightbarprofileInfoName{
     box-sizing: border-box;
     background-color: white;
-    border: 8px solid black;
+    border: 6px solid black;
     padding: 5px;
     padding-top: 10px;
     z-index: 1;
