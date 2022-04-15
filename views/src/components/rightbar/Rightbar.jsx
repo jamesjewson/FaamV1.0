@@ -175,49 +175,43 @@ if(user?._id === currentUser?._id){
             return (
             <>
             <div className="profileRightbarInfoContainer">
-{/*  */}
                 {/* Profile Pic Stuff */}
-                {/* {!profileImgFile && ( */}
                 <div className=" ">
                     {isUser ? (
                         <form onSubmit={changeProfileImage} className="newProfileImageForm">
-        
-                                <label htmlFor="profileImgFile" className="" >
-                                        {profileImgFile ? 
-                                        
-                                        <div className="profileUserImgDiv">
-                                            <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
-                                            <div className="saveNewImgContainer">
-
-                                                <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
-                                            </div>
-                                        </div>
-                                        
-                                        : 
-                                            <div className="profileUserImgDiv" > 
-                                                <img 
-                                                    className="profileUserImg" 
-                                                    src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
-                                                    alt=""
-                                                    />                    
-                                                <input 
-                                                    style={{display:"none"}}
-                                                    name="profileImgFile"
-                                                    type="file" 
-                                                    id="profileImgFile" 
-                                                    accept=".png,.jpeg,.jpg" 
-                                                    onChange={(e)=>{
-                                                        try {
-                                                            setProfileImgFile(e.target.files[0])
-                                                            
-                                                        } catch (error) {
-                                                            console.log(error);
-                                                        }
-                                                    }} 
-                                                    />
-                                            </div>
-                                        }
-                                </label>
+                            <label htmlFor="profileImgFile" className="" >
+                                {profileImgFile ? 
+                                <div className="profileUserImgDiv">
+                                    <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
+                                    <div className="saveNewImgContainer">
+                                        <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
+                                    </div>
+                                </div>  
+                                : 
+                                <div className="profileUserImgDiv" > 
+                                    <img 
+                                        className="profileUserImg" 
+                                        src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                                        alt=""
+                                        />                    
+                                    <input 
+                                        style={{display:"none"}}
+                                        name="profileImgFile"
+                                        type="file" 
+                                        id="profileImgFile" 
+                                        accept=".png,.jpeg,.jpg" 
+                                        onChange={(e)=>{
+                                            try {
+                                                setProfileImgFile(e.target.files[0])
+                                                
+                                            } catch (error) {
+                                                console.log(error);
+                                            }
+                                        }} 
+                                    />
+                                </div>
+                                }
+                            </label>
                         </form>  
                     ) : 
                     
@@ -234,9 +228,7 @@ if(user?._id === currentUser?._id){
                     <h4 className="rightbarprofileInfoName" >{user.username}</h4>
                 </div>
                 </div>
-
                 <hr className="allUserPhotosHrTop rightbarProfileHr" />
-                
                 {user.username !== currentUser.username && (
                     <button className="rightbarFollowButton" onClick={handleClick} >
                         {followed ? "Unfollow" : "Follow"}
@@ -267,7 +259,6 @@ if(user?._id === currentUser?._id){
                 {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
                     <div className="photoAlbumHeaderContainer">
-
                     <h4 className="rightbarTitle">{user.username}'s Photos</h4>
                 <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
                     <h4 className="rightbarTitle rightbarTitleSeeAll">See All</h4>

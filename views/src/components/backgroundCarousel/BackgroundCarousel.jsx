@@ -48,6 +48,7 @@ export default function BackgroundCarousel() {
                         showStatus="false"
                         autoPlay="true"
                         showThumbs="false"
+                        interval="10000"
                         >
                         {userPhotos.map((p)=>(
                             <img key={p._id} src={p.img} className="profileBackgroundImages" alt={p?.desc}  />

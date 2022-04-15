@@ -14,6 +14,10 @@
     flex: 1.75;
 }
 
+.profileFeed{
+    min-width: 100%;
+}
+
 
 
 /*All Profile Media Queries */
@@ -23,16 +27,24 @@
         width:33%;
     }
     .rightbar{
-        width: 25%;
+        /* width: 25%; */
         min-width: 400px;
+    }
+
+      .feedWrapper{
+        padding: 20px 20px;
     }
   }
 
 
   @media only screen and (max-width: 1350px) {
-    .sidebar{
-        display: none;
+    .feedWrapper{
+        padding: 20px 20px;
     }
+
+    /* .sidebar{
+        display: none;
+    } */
     
   }
 
@@ -55,13 +67,53 @@
     }
   }
 
+/* 800 adjust rightbar scale */
+@media only screen and (max-width: 800px) {
+
+    .rightbar{
+        min-width: 0;
+    }
+
+
+    .profileRightbarMargin{
+        width: auto;
+    }
+
+
+    .profileUserImg{
+        height: 200px;
+        width: 200px;
+    }
+
+
+}
+
+
+
   /* 975 make vertical */
 
-  @media only screen and (max-width: 950px) {
+  @media only screen and (max-width: 600px) {
+
+    .profile{
+        background-color: rgb(236,236,236);
+    }
+
+    .profileRightTop{
+        display: none;
+    }
+
     .profileRightBottom{
         flex-direction: column-reverse;
     }
     
+    
+    .allUserPhotosContainer{
+        min-height: 200px;
+    }
+    .rightbarWrapper{
+        height: 840px;
+    }
+
     .rightbar{
         position: relative !important;
         min-width: 400px;
@@ -69,6 +121,7 @@
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+        height: fit-content;
     }
 
     .feed{
@@ -77,5 +130,6 @@
         width: 100%;
         max-width: none;
     }
+
 
   }
