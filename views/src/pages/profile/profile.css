@@ -106,16 +106,23 @@
         flex-direction: column-reverse;
     }
     
-    
+
+    .profileUserImg{
+        height: 300px;
+        width: 300px;
+    }
+
+
+    .profileMobleLogo{
+        display: block;
+    }
     .allUserPhotosContainer{
         min-height: 200px;
     }
-    .rightbarWrapper{
-        height: 840px;
-    }
+
 
     .rightbar{
-        position: relative !important;
+        position: relative;
         min-width: 400px;
         max-width: 450px;
         width: 80%;
@@ -124,6 +131,11 @@
         height: fit-content;
     }
 
+    .rightbarWrapper{
+        height: fit-content;
+    }
+
+
     .feed{
         margin-right: auto;
         margin-left: auto;
@@ -131,5 +143,10 @@
         max-width: none;
     }
 
+
+    .profileRightbarMobileTopbar{
+        display: block;
+
+    }
 
   }

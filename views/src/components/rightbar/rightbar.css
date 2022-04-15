@@ -349,4 +349,15 @@ display: flex;
 }
 
 
+/* Hidden Mobile stuff */
+.profileRightbarMobileTopbar{
+    display: none;
+}
 
+.profileMobleLogo{
+    display:none;
+}
+
+.homeMobleLogo{
+    display: none;
+}

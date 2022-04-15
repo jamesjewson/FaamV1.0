@@ -3,3 +3,79 @@
     width: 100%;
     background-color: rgb(236,236,236);
 }
+
+
+
+@media only screen and (max-width: 1575px) {
+   
+  }
+
+
+  @media only screen and (max-width: 1350px) {
+    .feedWrapper{
+        padding: 20px 20px;
+    }
+
+    /* .sidebar{
+        display: none;
+    } */
+    
+  }
+
+@media only screen and (max-width: 1020px) {
+    /* .sidebar{
+       display: none;
+    }
+    .feed{
+        width:50%;
+    }
+    .rightbar{
+        width: 33%;
+    } */
+
+    .homeMobleLogo{
+        display: block;
+    }
+
+
+  }
+
+/* 800 adjust rightbar scale */
+@media only screen and (max-width: 800px) {
+
+    .rightbar{
+        min-width: 0;
+    }
+
+
+    .topbarIcons{
+        display: none;
+    }
+
+}
+
+
+
+  /* 975 make vertical */
+
+  @media only screen and (max-width: 600px) {
+
+    .allUsersHeader{
+        display: none;
+    }
+    .righbarAllUsersContainer{
+        display: none;
+    }
+
+    .homeContainer{
+        flex-direction: column-reverse;
+    }
+
+    .topbarIcons{
+        display: flex;
+    }
+
+    .rightbarHr{
+        display: none;
+    }
+  }

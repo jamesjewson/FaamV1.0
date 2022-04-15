@@ -1,9 +1,9 @@
 .topbarContainer {
     flex: 2;
     height: 90px;
-    max-height: 90px;
+    max-height: fit-content;
     width: 100%;
-    min-width: 310px;
+    /* min-width: 310px; */
     background-color: #fff;
     display:flex;
     align-items: center;
@@ -44,11 +44,14 @@
 
 .topbarIcons{
     display:flex;
+    flex-direction: row;
+    width: 100px;
     position: relative;
+    justify-content: space-evenly;
 }
 
 .topbarIconItem{
-    margin-right: 15px;
+    margin-right: 0;
     cursor: pointer;
     position: relative;
 }

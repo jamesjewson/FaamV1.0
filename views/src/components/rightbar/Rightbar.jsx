@@ -156,7 +156,14 @@ if(user?._id === currentUser?._id){
             return (
                 <>
                     <div className="rightbarContainer">
-                        <Topbar />
+                        <div className="homeRightbarMobileTopbar">
+                            <div className="homeMobleLogo">
+                                <Link to="/" style={{textDecoration:"none"}}>
+                                    <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.jpg"} alt="logoFaam"/></span>
+                                </Link>
+                            </div>
+                            <Topbar  />
+                        </div>
                         <hr className="rightbarHr" />
                         <h3 className="allUsersHeader" >People You Might Know</h3>
                         <div className="righbarAllUsersContainer">
@@ -174,6 +181,14 @@ if(user?._id === currentUser?._id){
            
             return (
             <>
+            <div className="profileRightbarMobileTopbar">
+                <div className="profileMobleLogo">
+                    <Link to="/" style={{textDecoration:"none"}}>
+                        <span className="sidebarlogo"><img className="sidebarlogoImg" src={PF+"default/faamLarge.jpg"} alt="logoFaam"/></span>
+                    </Link>
+                </div>
+                <Topbar  />
+            </div>
             <div className="profileRightbarInfoContainer">
                 {/* Profile Pic Stuff */}
                 <div className=" ">
