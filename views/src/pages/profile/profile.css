@@ -3,7 +3,7 @@
 }
 
 .profileRight {
-    flex:7;
+    /* flex:7; */
 }
 
 .profileRightBottom{
@@ -11,7 +11,7 @@
 }
 
 .profilePageSidebar{
-    flex: 1.75;
+    /* flex: 1.75; */
 }
 
 .profileFeed{
@@ -24,11 +24,11 @@
 
 @media only screen and (max-width: 1500px) {
     .feed, .sidebar{
-        width:33%;
+        /* width:33%; */
     }
     .rightbar{
         /* width: 25%; */
-        min-width: 400px;
+        /* min-width: 400px; */
     }
 
       .feedWrapper{

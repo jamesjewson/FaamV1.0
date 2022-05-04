@@ -1,5 +1,5 @@
 import "./topbar.css"
-import { Person, Chat, Notifications } from "@material-ui/icons"
+import { Person, Settings, Notifications } from "@material-ui/icons"
 import {Link} from "react-router-dom"
 import {useContext, useState, useEffect, useRef} from "react"
 import {AuthContext} from "../../context/AuthContext"
@@ -92,12 +92,9 @@ useEffect(() =>{
                 </div>
                 
                 <div className="topbarIcons" >
-                    <div className="topbarIconItem" onClick={alertComingSoon}>
-                        <Person />
-                    </div>
-                    <div className="topbarIconItem" onClick={alertComingSoon}>
+                    {/* <div className="topbarIconItem" onClick={alertComingSoon}>
                         <Chat />
-                    </div>
+                    </div> */}
                     <div className="topbarIconItem" >
                         <Notifications onClick={clickShowNotifications} />
                         {(notifications?.length > 0) ? (
@@ -111,6 +108,11 @@ useEffect(() =>{
                                 ))
                                 ) : null }
                     </div>
+                    {/* <div className="topbarIconItem">
+                    <Link to={`/settings/${user._id}`}>
+                        <Settings className="settingsIcon"/> 
+                    </Link>
+                    </div> */}
                 </div>
                 <Link to={`/profile/${user.username}`} >
                     <img src={ currentUser.profilePicture ? currentUser.profilePicture : PF+"person/noAvatar.jpeg"} alt="Jimmy" className="topbarImg" />

@@ -1,5 +1,5 @@
 import "./sidebar.css"
-import { Adjust, Info, ReportProblem } from "@material-ui/icons"
+import { Adjust, Info, ReportProblem, Settings } from "@material-ui/icons"
 import SidebarFriend from "../sidebarFriend/SidebarFriend"
 import {AuthContext} from "../../context/AuthContext"
 import { useContext, useState, useEffect } from 'react'
@@ -34,7 +34,7 @@ export default function Sidebar() {
     
 //return
     return (
-        <div className="sidebar">
+        <div className="sidebar sidebarWidth">
             <div className="sidebarWrapper">
                 <div className="topbarLeft">
                     <Link to="/" style={{textDecoration:"none"}}>
@@ -89,12 +89,17 @@ export default function Sidebar() {
                     <hr className="sidebarHr"/>       
             </div>
             <div className="sidebarlistItem sidebarAbout">
-                <Info className="sidebarIcon aboutIcon" />
                 <span className="sidebarListItemText">
+                <Info className="sidebarIcon aboutIcon" />
                     <Link to="/about" class="sidebarListItemText">
                         <span className="sidebarListItemText">About This Site</span>
                     </Link>
                 </span>
+                <div className="sidebarListItemText sidebarSettingIcon">
+                    <Link to={`/settings/${currentUser._id}`}>
+                        <Settings className="settingsIcon"/> 
+                    </Link>
+                </div>
             </div>
         </div>
     )

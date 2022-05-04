@@ -1,4 +1,5 @@
 .rightbar{
+    /* flex: 2; */
     flex: 2;
     background-color: transparent;
     height: calc(100vh);
@@ -115,7 +116,7 @@
 
 .settingsIcon{
     color: black;
-    font-size: 12px;
+    /* font-size: 1.2rem; */
 }
 .settingsIcon:hover{
     color: blue;
