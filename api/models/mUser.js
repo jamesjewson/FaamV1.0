@@ -20,22 +20,6 @@ const UserSchema = new mongoose.Schema({
         required:true,
         min:4,
     },
-    profilePicture:{
-        type:String,
-        default:""
-    },
-    cloudinaryProfilePicId:{
-        type:String,
-        default:""
-    },
-    // coverPicture:{
-    //     type:String,
-    //     default:""     
-    // },
-    // cloudinaryCoverPicId:{
-    //     type:String,
-    //     default:""
-    // },
     followers:{
         type:Array,
         default:[],
@@ -44,14 +28,6 @@ const UserSchema = new mongoose.Schema({
         type:Array,
         default:[],
     },
-    // isAdmin:{
-    //     type:Boolean,
-    //     default:false
-    // },
-    // desc:{
-    //     type:String,
-    //     max:50
-    // },
     currentCity:{
         type:String,
         max:50
@@ -63,15 +39,8 @@ const UserSchema = new mongoose.Schema({
     relationship:{
         type:String,
         max: 50
-    },
-    // faams:{
-    //     type:Array,
-    //     default:[]
-    // },
-    notifications:{
-        type:Array,
-        default:[]
     }
+    
 },
 {timestamps:true}
 )

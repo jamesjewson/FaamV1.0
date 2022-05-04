@@ -26,7 +26,7 @@ router.post("/postImg", async (req,res)=>{
       cloudinaryId: result.public_id,
       likes: []
      }
-      res.status(200);
+      res.status(200).json();
     } catch (err) {
       res.status(500).json(err);
       console.log("Error: ", err);
@@ -37,6 +37,7 @@ router.post("/postImg", async (req,res)=>{
 router.post("/textPost", async (req,res)=>{
   const newPost = new Post(req.body)
   try{
+    console.log("works")
     const savedPost = await newPost.save()
     res.status(200).json(savedPost)
   }catch(err){
