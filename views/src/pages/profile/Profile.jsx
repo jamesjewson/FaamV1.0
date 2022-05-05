@@ -29,15 +29,15 @@ export default function Profile() {
         <>
         <div className="profile">
             <Sidebar className="profilePageSidebar" />
-            <div className="profileRight">
+            <Feed username={username} />
+            <Rightbar user={user} />
+            {/* <div className="profileRight">
                 <div className="profileRightTop">
                     <BackgroundCarousel />                
                 </div>
                 <div className="profileRightBottom">
-                    <Feed username={username} />
-                    <Rightbar user={user} />
                 </div>
-            </div>      
+            </div>       */}
         </div>
         </>
     )

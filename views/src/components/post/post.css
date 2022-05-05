@@ -28,8 +28,8 @@
 }
 
 .postProfileImg{
-    width: 32px;
-    height: 32px;
+    width: 3.2em;
+    height: 3.2em;
     border-radius: 20%;
     object-fit: cover;
 }

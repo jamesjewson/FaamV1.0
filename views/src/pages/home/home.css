@@ -6,23 +6,9 @@
 
 
 
-@media only screen and (max-width: 1575px) {
-   
-  }
 
-
-  @media only screen and (max-width: 1350px) {
-    .feedWrapper{
-        padding: 20px 20px;
-    }
-
-    /* .sidebar{
-        display: none;
-    } */
-    
-  }
-
-@media only screen and (max-width: 1020px) {
+  /* Small Screens */
+@media only screen and (max-width: 1024px) {
     /* .sidebar{
        display: none;
     }
@@ -36,35 +22,24 @@
     .homeMobleLogo{
         display: block;
     }
-
-
   }
 
-/* 800 adjust rightbar scale */
-@media only screen and (max-width: 800px) {
+/* Tablet */
+  @media only screen and (max-width: 768px) {
 
-    .rightbar{
-        min-width: 0;
-        width: 400px;
-    }
-
-
-    .topbarIcons{
-        display: none;
-    }
 
 }
 
-@media only screen and (max-width: 640px) {
+/* @media only screen and (max-width: 640px) {
         .topbarLinks{
             margin-right: 0;
         }      
-}
+} */
 
 
   /* 975 make vertical */
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 480px) {
 
     .allUsersHeader{
         display: none;
@@ -83,5 +58,5 @@
 
     .rightbarHr{
         display: none;
-    }
+    } 
   }

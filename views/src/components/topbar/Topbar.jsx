@@ -82,19 +82,19 @@ useEffect(() =>{
     return (
         <div className="topbarContainer">
             <div className="topbarRight" ref={refNotifications}>
+                <Link to={`/profile/${user.username}`} >
+                    <img src={ currentUser.profilePicture ? currentUser.profilePicture : PF+"person/noAvatar.jpeg"} alt="Jimmy" className="topbarImg" />
+                </Link>
                 <div className="topbarLinks">
                     <Link to={`/profile/${user.username}`} style={{textDecoration:"none"}} className="topbarLink" >
                         <span className="topbarLink2">Homepage</span>
                     </ Link>
-                    <Link to="/" style={{textDecoration:"none"}} className="topbarLink" >
+                    <Link to="/" style={{textDecoration:"none"}} className="topbarLink topbarLinkBottom" >
                         <span className="topbarLink2">Timeline</span>
                     </Link>
                 </div>
                 
                 <div className="topbarIcons" >
-                    {/* <div className="topbarIconItem" onClick={alertComingSoon}>
-                        <Chat />
-                    </div> */}
                     <div className="topbarIconItem" >
                         <Notifications onClick={clickShowNotifications} />
                         {(notifications?.length > 0) ? (
@@ -111,12 +111,10 @@ useEffect(() =>{
                     {/* <div className="topbarIconItem">
                     <Link to={`/settings/${user._id}`}>
                         <Settings className="settingsIcon"/> 
-                    </Link>
+                    </Link> 
                     </div> */}
                 </div>
-                <Link to={`/profile/${user.username}`} >
-                    <img src={ currentUser.profilePicture ? currentUser.profilePicture : PF+"person/noAvatar.jpeg"} alt="Jimmy" className="topbarImg" />
-                </Link>
+
                 <div className="logout">
                     <button id="logoutButton" onClick={handleLogout}>Logout</button>
                 </div>

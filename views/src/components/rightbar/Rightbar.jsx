@@ -273,12 +273,12 @@ if(user?._id === currentUser?._id){
 
                 {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
-                    <div className="photoAlbumHeaderContainer">
+                <div className="photoAlbumHeaderContainer">
                     <h4 className="rightbarTitle">{user.username}'s Photos</h4>
-                <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
-                    <h4 className="rightbarTitle rightbarTitleSeeAll">See All</h4>
-                </Link>
-                    </div>
+                    <Link to={`/photoAlbum/${user.username}`} style={{textDecoration:"none"}} >
+                        <h4 className="rightbarTitle rightbarTitleSeeAll">See All</h4>
+                    </Link>
+                </div>
                 <div className="allUserPhotosContainer">
                     {photos.map((p)=>(
                         <img key={p._id} src={p.img} className="sidebarAllUserPhotos" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
