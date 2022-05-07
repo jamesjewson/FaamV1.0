@@ -1,32 +1,30 @@
 const router = require("express").Router()
 const Post = require("../models/Post")
 const mPost = require("../models/mPost")
+const mImage = require("../models/mImage")
 const User = require("../models/User")
 const cloudinary = require("../middleware/cloudinary");
 require("dotenv").config()
+
+
+//////////////////Working Code///////////////////////////////////
 
 //Create a post with image
 router.post("/postImg", async (req,res)=>{
 
   try {
-
     // Upload image to cloudinary 
-    const result = await cloudinary.uploader.upload(req.body.data, {
-      upload_preset: 'i7qr7gwc'
-    })
-    await Post.create({
-      userId: req.body.userId,
-      desc: req.body.desc,
-      img: result.secure_url,
-      cloudinaryId: result.public_id
-   });
-   const newImgPost = {
-    userId: req.body.userId,
-    desc: req.body.desc,
-    img: result.secure_url,
-    cloudinaryId: result.public_id,
-    likes: []
-   }
+    const result = await cloudinary.uploader.upload(req.body.img, {
+        upload_preset: 'i7qr7gwc'
+      })
+      const newImgPost = await mImage.create({
+          userId: req.body.userId,
+          postId: req.body.postId,
+          img: result.secure_url,
+          cloudinaryId: result.public_id
+         });
+        
+    console.log(newImgPost)
     res.status(200).json();
   } catch (err) {
     res.status(500).json(err);
@@ -34,18 +32,73 @@ router.post("/postImg", async (req,res)=>{
   }
 })
 
-//Create a text only post
-router.post("/textPost", async (req,res)=>{
-const newPost = new Post(req.body)
+//Create a post
+router.post("/post", async (req,res)=>{
+const newPost = new mPost(req.body)
 try{
-  console.log(newPost)
-  const savedPost = await newPost.save()
+    const savedPost = await newPost.save()
+    console.log(savedPost)
   res.status(200).json(savedPost)
 }catch(err){
   console.log(err)
   res.status(501);
 }
 })
+
+
+
+
+
+
+
+
+
+
+//////////////Code that works////////////////////////
+//Create a post with image
+// router.post("/postImg", async (req,res)=>{
+
+//   try {
+
+//     // Upload image to cloudinary 
+//     const result = await cloudinary.uploader.upload(req.body.data, {
+//       upload_preset: 'i7qr7gwc'
+//     })
+//     await Post.create({
+//       userId: req.body.userId,
+//       desc: req.body.desc,
+//       img: result.secure_url,
+//       cloudinaryId: result.public_id
+//    });
+//    const newImgPost = {
+//     userId: req.body.userId,
+//     desc: req.body.desc,
+//     img: result.secure_url,
+//     cloudinaryId: result.public_id,
+//     likes: []
+//    }
+//     res.status(200).json();
+//   } catch (err) {
+//     res.status(500).json(err);
+//     console.log("Error: ", err);
+//   }
+// })
+
+// //Create a text only post
+// router.post("/textPost", async (req,res)=>{
+// const newPost = new Post(req.body)
+// try{
+//   console.log(newPost)
+//   const savedPost = await newPost.save()
+//   res.status(200).json(savedPost)
+// }catch(err){
+//   console.log(err)
+//   res.status(501);
+// }
+// })
+
+
+///////////////////////////////////
 
 //Create a comment
 router.put("/:id/comment", async (req,res)=>{

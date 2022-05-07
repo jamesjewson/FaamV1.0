@@ -14,6 +14,10 @@ const mPostSchema = new mongoose.Schema({
     likes:{
         type:Array,
         default:[]
+    },
+    hasImg:{
+        type:Boolean,
+        default: false
     }
 },
 {timestamps:true}

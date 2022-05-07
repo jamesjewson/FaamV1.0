@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 
 
 const ImageSchema = new mongoose.Schema({
+    img:{
+        type:String,
+        required: true
+    },
     cloudinaryId:{
         type:String,
         required: true
@@ -17,10 +21,6 @@ const ImageSchema = new mongoose.Schema({
     isProfilePic:{
         type:Boolean,
         default:false
-    },
-    img:{
-        type:String,
-        required: true
     }
 },
 {timestamps:true}

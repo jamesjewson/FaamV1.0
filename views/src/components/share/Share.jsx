@@ -23,56 +23,136 @@ export default function Share({renderNewPost}) {
         fetchCurrentUser();
     },[user?._id]); 
         
-    
-    
+ /////////////////////////////////////////////////
+/////////////Working Code///////////////////
 
-    const submitHandler = async (e)=>{ 
-        e.preventDefault()
-        if (!file){
-            textPost()
-        }else{
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                uploadImage(reader.result);
-            };
-            reader.onerror = (error) => {
-                console.error(error);
-            };
-        }
-    }
-    const uploadImage = async (base64EncodedImage) => {
+
+ const submitHandler = async (e)=>{ 
+    e.preventDefault()
+    textPost()
+}
+
+
+
+const uploadImage = async (base64EncodedImage, postId, userId) => {
+    try { 
         const newImgPost = {
-            data: base64EncodedImage,
-            userId: user._id,
-            desc: desc.current.value
+            img: base64EncodedImage,
+            userId: userId,
+            postId: postId
         }
-        try { 
-            const res = await axios.post("/posts/postImg", newImgPost) 
-            console.log(res.data)
-            setFile('')
-            desc.current.value = ""
-            renderNewPost(res.data)
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        const res = await axios.post("/posts/postImg", newImgPost) 
+        console.log(res.data)
+        setFile('')
+        desc.current.value = ""
+     //   renderNewPost(res.data)
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-    
-    const textPost = async (e) =>{
+
+const textPost = async (e) =>{
+    try {
+        let hasImg;
+        if(file){
+            hasImg = true;
+        }else{
+            hasImg = false;
+        }
         const newPost =  {
             userId: user._id,
             desc: desc.current.value,
-            likes: []
+            likes: [],
+            hasImg: hasImg
+            }           
+        const res = await axios.post("/posts/post", newPost) 
+            
+        //If hasImg = true, get the post id and upload image
+        if(hasImg = true && file){
+
+            fileReader(file, res.data._id, user._id)
+            //File Reader
+            // const reader = new FileReader();
+            // reader.readAsDataURL(file);
+            // reader.onloadend = () => {
+            //     //Upload Img
+            //         uploadImage(reader.result, res.data._id, user._id);
+            //     };
+            //     reader.onerror = (error) => {
+            //         console.error(error);
+            //     };
             }
-            try {
-                const res = await axios.post("/posts/textPost", newPost) 
-                renderNewPost(res.data) 
-                desc.current.value = ""
-            } catch (error) {
-                console.log(error);
-            }
+            desc.current.value = ""
+            renderNewPost(res.data) 
+        } catch (error) {
+            console.log(error);
         }
+    }
+
+
+    //File Reader
+    const fileReader = (file, postId, userId)=>{
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+                //Upload Img
+                uploadImage(reader.result, postId, userId);
+            };
+        reader.onerror = (error) => {
+            console.error(error);
+        };
+    }
+
+    
+//////////////////Code that works/////////////////////////////
+    // const submitHandler = async (e)=>{ 
+    //     e.preventDefault()
+    //     if (!file){
+    //         textPost()
+    //     }else{
+    //         const reader = new FileReader();
+    //         reader.readAsDataURL(file);
+    //         reader.onloadend = () => {
+    //             uploadImage(reader.result);
+    //         };
+    //         reader.onerror = (error) => {
+    //             console.error(error);
+    //         };
+    //     }
+    // }
+    // const uploadImage = async (base64EncodedImage) => {
+    //     const newImgPost = {
+    //         data: base64EncodedImage,
+    //         userId: user._id,
+    //         desc: desc.current.value
+    //     }
+    //     try { 
+    //         const res = await axios.post("/posts/postImg", newImgPost) 
+    //         console.log(res.data)
+    //         setFile('')
+    //         desc.current.value = ""
+    //         renderNewPost(res.data)
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
+
+    // const textPost = async (e) =>{
+    //     const newPost =  {
+    //         userId: user._id,
+    //         desc: desc.current.value,
+    //         likes: []
+    //         }
+    //         try {
+    //             const res = await axios.post("/posts/textPost", newPost) 
+    //             renderNewPost(res.data) 
+    //             desc.current.value = ""
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
 
 
     return (
