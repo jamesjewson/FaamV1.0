@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const Post = require("../models/Post")
+const mPost = require("../models/mPost")
 const User = require("../models/User")
 const cloudinary = require("../middleware/cloudinary");
 require("dotenv").config()
@@ -7,43 +8,43 @@ require("dotenv").config()
 //Create a post with image
 router.post("/postImg", async (req,res)=>{
 
-    try {
+  try {
 
-      // Upload image to cloudinary 
-      const result = await cloudinary.uploader.upload(req.body.data, {
-        upload_preset: 'i7qr7gwc'
-      })
-      await Post.create({
-        userId: req.body.userId,
-        desc: req.body.desc,
-        img: result.secure_url,
-        cloudinaryId: result.public_id
-     });
-     const newImgPost = {
+    // Upload image to cloudinary 
+    const result = await cloudinary.uploader.upload(req.body.data, {
+      upload_preset: 'i7qr7gwc'
+    })
+    await Post.create({
       userId: req.body.userId,
       desc: req.body.desc,
       img: result.secure_url,
-      cloudinaryId: result.public_id,
-      likes: []
-     }
-      res.status(200).json();
-    } catch (err) {
-      res.status(500).json(err);
-      console.log("Error: ", err);
-    }
+      cloudinaryId: result.public_id
+   });
+   const newImgPost = {
+    userId: req.body.userId,
+    desc: req.body.desc,
+    img: result.secure_url,
+    cloudinaryId: result.public_id,
+    likes: []
+   }
+    res.status(200).json();
+  } catch (err) {
+    res.status(500).json(err);
+    console.log("Error: ", err);
+  }
 })
 
 //Create a text only post
 router.post("/textPost", async (req,res)=>{
-  const newPost = new Post(req.body)
-  try{
-    console.log("works")
-    const savedPost = await newPost.save()
-    res.status(200).json(savedPost)
-  }catch(err){
-    console.log(err)
-    res.status(501);
-  }
+const newPost = new Post(req.body)
+try{
+  console.log(newPost)
+  const savedPost = await newPost.save()
+  res.status(200).json(savedPost)
+}catch(err){
+  console.log(err)
+  res.status(501);
+}
 })
 
 //Create a comment

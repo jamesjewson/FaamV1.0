@@ -91,7 +91,7 @@ export default function Sidebar() {
             <div className="sidebarlistItem sidebarAbout">
                 <span className="sidebarListItemText">
                 <Info className="sidebarIcon aboutIcon" />
-                    <Link to="/about" class="sidebarListItemText">
+                    <Link to="/about" className="sidebarListItemText">
                         <span className="sidebarListItemText">About This Site</span>
                     </Link>
                 </span>

@@ -11,7 +11,7 @@ import PostDropdown from "../postDropdown/PostDropdown"
 
 export default function Post({post, deletePost}) {
     
-    const [like, setLike] = useState(post.likes.length)
+    const [like, setLike] = useState(post.likes?.length)
     const [isLiked, setIsLiked] = useState(false)
     const [user, setUser] = useState({})
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -33,7 +33,7 @@ export default function Post({post, deletePost}) {
 
     //Set liked or not
     useEffect(() => {
-        setIsLiked(post.likes.includes(currentUser._id))
+        setIsLiked(post.likes?.includes(currentUser._id))
     },[currentUser._id,post.likes])
 
     //Fetch user    

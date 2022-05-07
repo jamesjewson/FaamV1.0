@@ -5,7 +5,7 @@ import { AuthContextProvider } from "./context/AuthContext"
 
 //Axios global prefix
 import axios from 'axios'
-axios.defaults.baseURL = 'https://faamserver.herokuapp.com/api'
+//axios.defaults.baseURL = 'https://faamserver.herokuapp.com/api'
 
 
 ReactDOM.render(

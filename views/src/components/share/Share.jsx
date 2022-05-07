@@ -14,14 +14,14 @@ export default function Share({renderNewPost}) {
     const [file,setFile] = useState(null)
     const [currentUser, setCurrentUser] = useState(user)
 
-        //Fetch user    
-        useEffect(() =>{
-            const fetchCurrentUser = async () => {
-                const res = await axios.get(`/users/currentUser/` + user._id)
-                setCurrentUser(res.data);
-            };  
-            fetchCurrentUser();
-        },[user?._id]); 
+    //Fetch user    
+    useEffect(() =>{
+        const fetchCurrentUser = async () => {
+            const res = await axios.get(`/users/currentUser/` + user._id)
+            setCurrentUser(res.data);
+        };  
+        fetchCurrentUser();
+    },[user?._id]); 
         
     
     
@@ -57,6 +57,8 @@ export default function Share({renderNewPost}) {
             console.log(error);
         }
     };
+
+    
     const textPost = async (e) =>{
         const newPost =  {
             userId: user._id,
@@ -71,6 +73,7 @@ export default function Share({renderNewPost}) {
                 console.log(error);
             }
         }
+
 
     return (
         <div className="share">

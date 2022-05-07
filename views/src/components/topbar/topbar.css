@@ -44,7 +44,7 @@
     }
 
     .topbarLink:hover{
-        font-weight: bold;
+        text-shadow: 1px 0px 0px black;
     }
 
 .topbarIcons{
@@ -100,7 +100,7 @@
 }
 
 #logoutButton:hover{
-    font-weight: bold;
+    text-shadow: 1px 0px 0px black;
 }
 
 .notificationContainer{
