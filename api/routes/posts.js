@@ -41,49 +41,120 @@ router.post("/postImg", async (req,res)=>{
     console.log("Error: ", err);
   }
 })
-////////////////////////////////////////
-//////////Working/////////////////
 
- //Get timeline posts
- router.get("/timeline/:userId", async (req, res) => {
+//Get timeline posts
+router.get("/timeline/:userId", async (req, res) => {
+ try {
+   const currentUser = await User.findById(req.params.userId);
+   const userPosts = await mPost.find({ userId: currentUser._id });
+   const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
+       return mPost.find({ userId: friendId });
+     })
+   );
+   const allTimelinePosts = userPosts.concat(...friendPosts);    
+   const imag = await mImage.find({userId: currentUser._id})
+   //Loop through all posts
+     for(let i=0; i<allTimelinePosts.length; i++){
+     //Get post ID
+     let postId = allTimelinePosts[i]._id.valueOf();
+     //Loop though images
+     for(const image of imag){
+       //Look for post ID that lines up with image post ID
+       if(postId == image.postId){
+         //Append
+         allTimelinePosts[i].img = image.img
+       }
+     }
+   }
+   res.status(200).json(allTimelinePosts)
+ }catch (err) {
+   res.status(500).json(err);
+   console.log(err)
+ }
+});
+
+//Get all user posts
+router.get("/profile/:username", async (req, res) => {
   try {
-    const currentUser = await User.findById(req.params.userId);
-    const userPosts = await mPost.find({ userId: currentUser._id });
-    const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
-        return mPost.find({ userId: friendId });
-      })
-    );
-    const allTimelinePosts = userPosts.concat(...friendPosts);
-    
-    const imag = await mImage.find({userId: currentUser._id})
-    
+    const user = await User.findOne({username:req.params.username})
+    const posts = await mPost.find({ userId: user._id })
+    const imag = await mImage.find({userId: user._id})
     //Loop through all posts
-      for(let i=0; i<allTimelinePosts.length; i++){
-      //Get post ID
-      let postId = allTimelinePosts[i]._id.valueOf();
-      //Loop though images
-      for(const image of imag){
-        //Look for post ID that lines up with image post ID
-        if(postId == image.postId){
+      for(let i=0; i<posts.length; i++){
+        //Get post ID
+        let postId = posts[i]._id.valueOf();
+        //Loop though images
+        for(const image of imag){
+          //Look for post ID that lines up with image post ID
+          if(postId == image.postId){
           //Append
-          console.log("Post ID: " + postId + ", ImagePostId: " + image.postId + " Image URL: " + image.img);
-          allTimelinePosts[i].img = image.img
+          posts[i].img = image.img
         }
       }
     }
-    res.status(200).json(allTimelinePosts)
-  }catch (err) {
+    res.status(200).json(posts);
+  } catch (err) {
     res.status(500).json(err);
     console.log(err)
   }
 });
 
+//Delete a post
+router.delete("/:id", async (req, res) => {
+  try {
+    const post = await mPost.findById(req.params.id);
+    if (post.userId === req.body.userId) {
+      if (post.userId) {
+      await post.deleteOne();
+      res.status(200).json("the post has been deleted");
+      }
+      if(post.cloudinaryId){
+        cloudinary.uploader.destroy(post.cloudinaryId)
+      }
+    } else {
+      res.status(403).json("you can delete only your post");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Get all user photos
+router.get("/photos/:username", async (req, res) => {
+ try {
+   const user = await User.findOne({username:req.params.username})
+   const images = await mImage.find({userId: user?._id})
+   res.status(200).json(images);
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err)
+  }
+});
+
+////////////////////////////////////////
+//////////Working/////////////////
 
 
 
 
 
 ////////Old Code that works///////////
+
+//  //Get all user photos
+//  router.get("/photos/:username", async (req, res) => {
+//   try {
+//     const user = await User.findOne({username:req.params.username})
+//     const posts = await Post.find({ userId: user?._id, img:{$ne:null} })
+//     res.status(200).json(posts);
+//    } catch (err) {
+//      res.status(500).json(err);
+//      console.log(err)
+//    }
+//  });
+
+
+
+
 
  //Get timeline post
 //  router.get("/timeline/:userId", async (req, res) => {
@@ -102,7 +173,18 @@ router.post("/postImg", async (req,res)=>{
 //   }
 // });
 
-
+// //Get all user posts
+// router.get("/profile/:username", async (req, res) => {
+//   try {
+//     const user = await User.findOne({username:req.params.username})
+//     const posts = await mPost.find({ userId: user._id })
+//     console.log(user._id);
+//     res.status(200).json(posts);
+//   } catch (err) {
+//     res.status(500).json(err);
+//     console.log(err)
+//   }
+// });
 
 
 ////////////////////////////
@@ -191,25 +273,7 @@ router.put("/:id", async (req, res) => {
  });
 
 
-//Delete a post
- router.delete("/:id", async (req, res) => {
-   try {
-     const post = await Post.findById(req.params.id);
-     if (post.userId === req.body.userId) {
-       if (post.userId) {
-       await post.deleteOne();
-       res.status(200).json("the post has been deleted");
-       }
-       if(post.cloudinaryId){
-         cloudinary.uploader.destroy(post.cloudinaryId)
-       }
-     } else {
-       res.status(403).json("you can delete only your post");
-     }
-   } catch (err) {
-     res.status(500).json(err);
-   }
- });
+
  
  //Like a post
  router.put("/:id/like", async (req,res)=>{
@@ -256,39 +320,7 @@ router.put("/:id", async (req, res) => {
          res.status(500).json(err)
      }
  })
- 
- 
- 
+  
 
- 
- 
-//Get all user posts
- router.get("/profile/:username", async (req, res) => {
-   try {
-     const user = await User.findOne({username:req.params.username})
-     const posts = await mPost.find({ userId: user._id })
-     console.log(user._id);
-     res.status(200).json(posts);
-   } catch (err) {
-     res.status(500).json(err);
-     console.log(err)
-   }
- });
-
-
-
- 
- 
- //Get all user photos
- router.get("/photos/:username", async (req, res) => {
-   try {
-     const user = await User.findOne({username:req.params.username})
-     const posts = await Post.find({ userId: user?._id, img:{$ne:null} })
-     res.status(200).json(posts);
-    } catch (err) {
-      res.status(500).json(err);
-      console.log(err)
-    }
-  });
 
 module.exports = router
