@@ -134,11 +134,84 @@ router.get("/photos/:username", async (req, res) => {
 ////////////////////////////////////////
 //////////Working/////////////////
 
+//Like a post
+ router.put("/:id/like", async (req,res)=>{
+  try{
+     const post = await mPost.findById(req.params.id)
+     const user = await User.findById(post.userId)
+     const currentUser = await User.findById(req.body.userId)
 
+      if(!post.likes.includes(req.body.userId)){
+          await post.updateOne({$push:{likes:req.body.userId}})
+
+          // //Send Notification
+          // const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
+          // const follower = {
+          //   username: currentUser.username,
+          //   profilePicture: currentUser.profilePicture,
+          //   id: currentUser._id
+          //  }
+          //  const message = currentUser.username + " liked your post."
+          //  const notification = {
+          //    follower: follower,
+          //    message: message,
+          //    id: notificationId
+          //  }
+          //  await user.updateOne({ $push: { notifications: notification }})
+           res.status(200).json("The post has been liked")
+           
+      }else {
+          await post.updateOne({ $pull:{likes:req.body.userId}})
+          res.status(200).json("The post has been unliked")
+      }
+  }catch(err){
+      res.status(500).json(err)
+  }
+})
 
 
 
 ////////Old Code that works///////////
+
+ //Like a post
+//  router.put("/:id/like", async (req,res)=>{
+//   try{
+//      const post = await mPost.findById(req.params.id)
+//      const user = await User.findById(post.userId)
+//      const currentUser = await User.findById(req.body.userId)
+
+//       if(!post.likes.includes(req.body.userId)){
+//           await post.updateOne({$push:{likes:req.body.userId}})
+
+//           //Send Notification
+//           const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
+//           const follower = {
+//             username: currentUser.username,
+//             profilePicture: currentUser.profilePicture,
+//             id: currentUser._id
+//            }
+//            const message = currentUser.username + " liked your post."
+//            const notification = {
+//              follower: follower,
+//              message: message,
+//              id: notificationId
+//            }
+//            await user.updateOne({ $push: { notifications: notification }})
+//            res.status(200).json("The post has been liked")
+           
+//       }else {
+//           await post.updateOne({ $pull:{likes:req.body.userId}})
+//           res.status(200).json("The post has been unliked")
+//       }
+//   }catch(err){
+//       res.status(500).json(err)
+//   }
+// })
+
+
+
+
+
 
 //  //Get all user photos
 //  router.get("/photos/:username", async (req, res) => {
@@ -275,41 +348,7 @@ router.put("/:id", async (req, res) => {
 
 
  
- //Like a post
- router.put("/:id/like", async (req,res)=>{
-     try{
-        const post = await Post.findById(req.params.id)
-        const user = await User.findById(post.userId)
-        const currentUser = await User.findById(req.body.userId)
 
-         if(!post.likes.includes(req.body.userId)){
-             await post.updateOne({$push:{likes:req.body.userId}})
-
-             //Send Notification
-             const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
-             const follower = {
-               username: currentUser.username,
-               profilePicture: currentUser.profilePicture,
-               id: currentUser._id
-              }
-              const message = currentUser.username + " liked your post."
-              const notification = {
-                follower: follower,
-                message: message,
-                id: notificationId
-              }
-              await user.updateOne({ $push: { notifications: notification }})
-              res.status(200).json("The post has been liked")
-              
-         }else {
-             await post.updateOne({ $pull:{likes:req.body.userId}})
-             res.status(200).json("The post has been unliked")
-         }
-     }catch(err){
-         res.status(500).json(err)
-     }
- })
- 
  
  //Get a post
  router.get("/:id", async(req,res)=>{
