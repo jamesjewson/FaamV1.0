@@ -6,10 +6,20 @@ const User = require("../models/User")
 const cloudinary = require("../middleware/cloudinary");
 require("dotenv").config()
 
-
-//////////////////Working Code///////////////////////////////////
-
-//Create a post with image
+//Create a post
+router.post("/post", async (req,res)=>{
+  const newPost = new mPost(req.body)
+  try{
+      const savedPost = await newPost.save()
+      // console.log(savedPost)
+    res.status(200).json(savedPost)
+  }catch(err){
+    console.log(err)
+    res.status(501);
+  }
+  })
+  
+//Create an image
 router.post("/postImg", async (req,res)=>{
 
   try {
@@ -24,81 +34,78 @@ router.post("/postImg", async (req,res)=>{
           cloudinaryId: result.public_id
          });
         
-    console.log(newImgPost)
+    // console.log(newImgPost)
     res.status(200).json();
   } catch (err) {
     res.status(500).json(err);
     console.log("Error: ", err);
   }
 })
+////////////////////////////////////////
+//////////Working/////////////////
 
-//Create a post
-router.post("/post", async (req,res)=>{
-const newPost = new mPost(req.body)
-try{
-    const savedPost = await newPost.save()
-    console.log(savedPost)
-  res.status(200).json(savedPost)
-}catch(err){
-  console.log(err)
-  res.status(501);
-}
-})
+ //Get timeline posts
+ router.get("/timeline/:userId", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    const userPosts = await mPost.find({ userId: currentUser._id });
+    const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
+        return mPost.find({ userId: friendId });
+      })
+    );
+    const allTimelinePosts = userPosts.concat(...friendPosts);
+    
+    const imag = await mImage.find({userId: currentUser._id})
+    
+    //Loop through all posts
+      for(let i=0; i<allTimelinePosts.length; i++){
+      //Get post ID
+      let postId = allTimelinePosts[i]._id.valueOf();
+      //Loop though images
+      for(const image of imag){
+        //Look for post ID that lines up with image post ID
+        if(postId == image.postId){
+          //Append
+          console.log("Post ID: " + postId + ", ImagePostId: " + image.postId + " Image URL: " + image.img);
+          allTimelinePosts[i].img = image.img
+        }
+      }
+    }
+    res.status(200).json(allTimelinePosts)
+  }catch (err) {
+    res.status(500).json(err);
+    console.log(err)
+  }
+});
 
 
 
 
 
 
+////////Old Code that works///////////
 
-
-
-
-//////////////Code that works////////////////////////
-//Create a post with image
-// router.post("/postImg", async (req,res)=>{
-
+ //Get timeline post
+//  router.get("/timeline/:userId", async (req, res) => {
 //   try {
-
-//     // Upload image to cloudinary 
-//     const result = await cloudinary.uploader.upload(req.body.data, {
-//       upload_preset: 'i7qr7gwc'
-//     })
-//     await Post.create({
-//       userId: req.body.userId,
-//       desc: req.body.desc,
-//       img: result.secure_url,
-//       cloudinaryId: result.public_id
-//    });
-//    const newImgPost = {
-//     userId: req.body.userId,
-//     desc: req.body.desc,
-//     img: result.secure_url,
-//     cloudinaryId: result.public_id,
-//     likes: []
-//    }
-//     res.status(200).json();
-//   } catch (err) {
+//     const currentUser = await User.findById(req.params.userId);
+//     const userPosts = await Post.find({ userId: currentUser._id });
+//     const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
+//         return mPost.find({ userId: friendId });
+//       })
+//     );
+//     res.status(200).json(userPosts.concat(...friendPosts))
+//     console.log(userPosts);
+//   }catch (err) {
 //     res.status(500).json(err);
-//     console.log("Error: ", err);
+//     console.log(err)
 //   }
-// })
-
-// //Create a text only post
-// router.post("/textPost", async (req,res)=>{
-// const newPost = new Post(req.body)
-// try{
-//   console.log(newPost)
-//   const savedPost = await newPost.save()
-//   res.status(200).json(savedPost)
-// }catch(err){
-//   console.log(err)
-//   res.status(501);
-// }
-// })
+// });
 
 
-///////////////////////////////////
+
+
+////////////////////////////
 
 //Create a comment
 router.put("/:id/comment", async (req,res)=>{
@@ -149,7 +156,7 @@ router.put("/:id/deleteComment", async (req, res) => {
 //Update a comment
 router.put("/:id/updateComment", async (req, res) => {
   try {
-    console.log(req.body.comment.comment);
+    // console.log(req.body.comment.comment);
    const updatedComment = await Post.findOneAndUpdate(
      {_id : req.body.comment.parentPostId,
       "comments.commentId" : req.body.comment.commentId
@@ -252,28 +259,15 @@ router.put("/:id", async (req, res) => {
  
  
  
- //Get timeline post
- router.get("/timeline/:userId", async (req, res) => {
-     try {
-       const currentUser = await User.findById(req.params.userId);
-       const userPosts = await Post.find({ userId: currentUser._id });
-       const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
-           return Post.find({ userId: friendId });
-         })
-       );
-       res.status(200).json(userPosts.concat(...friendPosts))
-     }catch (err) {
-       res.status(500).json(err);
-       console.log(err)
-     }
-   });
+
  
  
 //Get all user posts
  router.get("/profile/:username", async (req, res) => {
    try {
      const user = await User.findOne({username:req.params.username})
-     const posts = await Post.find({ userId: user._id })
+     const posts = await mPost.find({ userId: user._id })
+     console.log(user._id);
      res.status(200).json(posts);
    } catch (err) {
      res.status(500).json(err);

@@ -23,36 +23,12 @@ export default function Share({renderNewPost}) {
         fetchCurrentUser();
     },[user?._id]); 
         
- /////////////////////////////////////////////////
-/////////////Working Code///////////////////
-
-
  const submitHandler = async (e)=>{ 
     e.preventDefault()
-    textPost()
+    makePost()
 }
 
-
-
-const uploadImage = async (base64EncodedImage, postId, userId) => {
-    try { 
-        const newImgPost = {
-            img: base64EncodedImage,
-            userId: userId,
-            postId: postId
-        }
-        const res = await axios.post("/posts/postImg", newImgPost) 
-        console.log(res.data)
-        setFile('')
-        desc.current.value = ""
-     //   renderNewPost(res.data)
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-
-const textPost = async (e) =>{
+const makePost = async (e) =>{
     try {
         let hasImg;
         if(file){
@@ -67,22 +43,10 @@ const textPost = async (e) =>{
             hasImg: hasImg
             }           
         const res = await axios.post("/posts/post", newPost) 
-            
-        //If hasImg = true, get the post id and upload image
         if(hasImg = true && file){
-
             fileReader(file, res.data._id, user._id)
-            //File Reader
-            // const reader = new FileReader();
-            // reader.readAsDataURL(file);
-            // reader.onloadend = () => {
-            //     //Upload Img
-            //         uploadImage(reader.result, res.data._id, user._id);
-            //     };
-            //     reader.onerror = (error) => {
-            //         console.error(error);
-            //     };
             }
+            //These two lines may need to be moved
             desc.current.value = ""
             renderNewPost(res.data) 
         } catch (error) {
@@ -90,7 +54,23 @@ const textPost = async (e) =>{
         }
     }
 
-
+    const uploadImage = async (base64EncodedImage, postId, userId) => {
+        try { 
+            const newImgPost = {
+                img: base64EncodedImage,
+                userId: userId,
+                postId: postId
+            }
+            const res = await axios.post("/posts/postImg", newImgPost) 
+            console.log(res.data)
+            setFile('')
+            desc.current.value = ""
+         //   renderNewPost(res.data)
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    
     //File Reader
     const fileReader = (file, postId, userId)=>{
         const reader = new FileReader();
@@ -103,57 +83,6 @@ const textPost = async (e) =>{
             console.error(error);
         };
     }
-
-    
-//////////////////Code that works/////////////////////////////
-    // const submitHandler = async (e)=>{ 
-    //     e.preventDefault()
-    //     if (!file){
-    //         textPost()
-    //     }else{
-    //         const reader = new FileReader();
-    //         reader.readAsDataURL(file);
-    //         reader.onloadend = () => {
-    //             uploadImage(reader.result);
-    //         };
-    //         reader.onerror = (error) => {
-    //             console.error(error);
-    //         };
-    //     }
-    // }
-    // const uploadImage = async (base64EncodedImage) => {
-    //     const newImgPost = {
-    //         data: base64EncodedImage,
-    //         userId: user._id,
-    //         desc: desc.current.value
-    //     }
-    //     try { 
-    //         const res = await axios.post("/posts/postImg", newImgPost) 
-    //         console.log(res.data)
-    //         setFile('')
-    //         desc.current.value = ""
-    //         renderNewPost(res.data)
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-
-    // const textPost = async (e) =>{
-    //     const newPost =  {
-    //         userId: user._id,
-    //         desc: desc.current.value,
-    //         likes: []
-    //         }
-    //         try {
-    //             const res = await axios.post("/posts/textPost", newPost) 
-    //             renderNewPost(res.data) 
-    //             desc.current.value = ""
-    //         } catch (error) {
-    //             console.log(error);
-    //         }
-    //     }
-
 
     return (
         <div className="share">

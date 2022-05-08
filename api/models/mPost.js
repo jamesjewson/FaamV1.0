@@ -16,8 +16,11 @@ const mPostSchema = new mongoose.Schema({
         default:[]
     },
     hasImg:{
-        type:Boolean,
+        type:String,
         default: false
+    },
+    img:{
+        type:String
     }
 },
 {timestamps:true}
