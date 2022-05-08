@@ -145,19 +145,19 @@ router.get("/photos/:username", async (req, res) => {
           await post.updateOne({$push:{likes:req.body.userId}})
 
           // //Send Notification
-          // const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
-          // const follower = {
-          //   username: currentUser.username,
-          //   profilePicture: currentUser.profilePicture,
-          //   id: currentUser._id
-          //  }
-          //  const message = currentUser.username + " liked your post."
-          //  const notification = {
-          //    follower: follower,
-          //    message: message,
-          //    id: notificationId
-          //  }
-          //  await user.updateOne({ $push: { notifications: notification }})
+          const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
+          const follower = {
+            username: currentUser.username,
+            profilePicture: currentUser.profilePicture,
+            id: currentUser._id
+           }
+           const message = currentUser.username + " liked your post."
+           const notification = {
+             follower: follower,
+             message: message,
+             id: notificationId
+           }
+           await user.updateOne({ $push: { notifications: notification }})
            res.status(200).json("The post has been liked")
            
       }else {

@@ -16,7 +16,7 @@ router.get("/allUsers", async (req,res)=>{
 
 
 
-// Update a profile picture
+// Update a profile picture (Call posts/postImg, set isProfilePic to true, and set isProfilePic to false on old pic)
 router.put("/:id/profilePicture", async(req,res)=>{
   //Check to see if it's the user
   if(req.body.id === req.params.id || req.body.isAdmin){
@@ -57,7 +57,7 @@ router.put("/:id/profilePicture", async(req,res)=>{
 
 
 
-// Update a cover picture
+// Update a cover picture (Remove this)
 router.put("/:id/coverPicture", async(req,res)=>{
    //Check to see if it's the user
    if(req.body.id === req.params.id || req.body.isAdmin){
@@ -95,7 +95,7 @@ router.put("/:id/coverPicture", async(req,res)=>{
  })
 
 
-//Update User
+//Update User (This should still work, just switch user to mUser)
   //Having /:id allows any id to be the url
 router.put("/:id", async(req,res)=>{
     //Check to see if it's the user
@@ -122,7 +122,7 @@ router.put("/:id", async(req,res)=>{
 
 })
 
-//Delete User
+//Delete User (This should still work, just switch user to mUser)
     //Having /:id allows any id to be the url
     router.delete("/:id", async(req,res)=>{
         //Check to see if it's the user
@@ -139,7 +139,7 @@ router.put("/:id", async(req,res)=>{
     })
 
 
-//Get a user
+//Get a user (This should still work, just switch user to mUser)
 router.get("/", async (req,res)=>{
     const userId = req.query.userId;
     const username = req.query.username;
@@ -154,7 +154,7 @@ router.get("/", async (req,res)=>{
 })
 
 
-//Get current user
+//Get current user (This should still work, just switch user to mUser)
 router.get("/currentUser/:userId", async (req,res)=>{
   const userId = req.params.userId;
   try {
@@ -179,7 +179,7 @@ router.get("/notifications/:id", async (req,res)=>{
   }
 })
 
-//get friends
+//get friends (This should still work, just switch user to mUser)
 router.get("/friends/:userId", async (req,res)=>{
     try{
         const user = await User.findById(req.params.userId)
