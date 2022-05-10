@@ -3,16 +3,16 @@ const mongoose = require('mongoose')
 
 const NotificationSchema = new mongoose.Schema({
     //The user who will receive the notification
-    receiverUserID:{
-        type:String,
-        required:true
-    },
     //The user that did something
-    senderUserID:{
+    sender:{
         type:String,
         required:true
     },
-    desc:{
+    receiver:{
+        type:String,
+        required:true
+    },
+    message:{
         type:String,
         required:true
     }

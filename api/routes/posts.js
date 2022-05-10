@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const Post = require("../models/Post")
 const mPost = require("../models/mPost")
+const mNotification = require("../models/mNotification")
 const mImage = require("../models/mImage")
 const User = require("../models/User")
 const cloudinary = require("../middleware/cloudinary");
@@ -138,26 +139,16 @@ router.get("/photos/:username", async (req, res) => {
  router.put("/:id/like", async (req,res)=>{
   try{
      const post = await mPost.findById(req.params.id)
-     const user = await User.findById(post.userId)
-     const currentUser = await User.findById(req.body.userId)
-
+     const receiver = await User.findById(post.userId)
+     const sender = await User.findById(req.body.userId)
+     
       if(!post.likes.includes(req.body.userId)){
           await post.updateOne({$push:{likes:req.body.userId}})
+          const message = sender.username + " liked your post."
 
-          // //Send Notification
-          const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
-          const follower = {
-            username: currentUser.username,
-            profilePicture: currentUser.profilePicture,
-            id: currentUser._id
-           }
-           const message = currentUser.username + " liked your post."
-           const notification = {
-             follower: follower,
-             message: message,
-             id: notificationId
-           }
-           await user.updateOne({ $push: { notifications: notification }})
+          sendNotification(sender._id, receiver._id, message);
+         
+         //  await user.updateOne({ $push: { notifications: notification }}) //Update Notifications
            res.status(200).json("The post has been liked")
            
       }else {
@@ -168,6 +159,21 @@ router.get("/photos/:username", async (req, res) => {
       res.status(500).json(err)
   }
 })
+
+
+const sendNotification = async (sender, receiver, message)=>{
+ // //Send Notification (Make own method makeNotification(sender, receiver) )
+ //console.log("sender:" + sender, "receiver:" + receiver + "message: " + message);
+
+    const notification = await mNotification.create({
+    sender: sender,
+    receiver: receiver,
+    message: message
+  })
+
+  console.log(notification);
+
+}
 
 
 
