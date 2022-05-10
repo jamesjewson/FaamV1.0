@@ -15,6 +15,10 @@ const NotificationSchema = new mongoose.Schema({
     message:{
         type:String,
         required:true
+    },
+    senderPic:{
+        type:String,
+        default: ""
     }
    
 },

@@ -171,7 +171,7 @@ const sendNotification = async (sender, receiver, message)=>{
     message: message
   })
 
-  console.log(notification);
+  // console.log(notification);
 
 }
 

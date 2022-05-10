@@ -2,6 +2,7 @@ const router = require("express").Router()
 const User = require("../models/User")
 const bcrypt = require("bcrypt")
 const cloudinary = require("../middleware/cloudinary");
+const mNotification = require("../models/mNotification")
 
 
 router.get("/allUsers", async (req,res)=>{
@@ -110,7 +111,7 @@ router.put("/:id", async(req,res)=>{
             }
         }
         try{
-            console.log(req.body)
+            // console.log(req.body)
             const user = await User.findByIdAndUpdate(req.params.id, {$set: req.body,})
             res.status(200).json("Account has been updated")
         } catch (err){
@@ -170,14 +171,43 @@ router.get("/currentUser/:userId", async (req,res)=>{
 //Notifications
 router.get("/notifications/:id", async (req,res)=>{
   try {
-    const user = await User.findById(req.params.id)
-    const notifications = user.notifications
+    //find all notifications with userId 
+    const notifications = await mNotification.find({ receiver: req.params.id })
+    let i = 0;
+    for(const notification of notifications){
+      //Get sender ID
+      const senderStuff = await User.find({ _id: notification.sender})
+      notifications[i].senderPic = senderStuff[0].profilePicture
+      //Not having this next line breaks it...
+      notifications[i].senderName = senderStuff[0].username
+      // console.log(notifications[i]);
+      i++
+    }
+    // console.log("here" + notifications);
     res.status(200).json(notifications)
-
+    
   } catch (error) {
     console.log(error);
   }
 })
+
+
+
+
+
+
+
+// //Notifications
+// router.get("/notifications/:id", async (req,res)=>{
+//   try {
+//     const user = await User.findById(req.params.id)
+//     const notifications = user.notifications
+//     res.status(200).json(notifications)
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+// })
 
 //get friends (This should still work, just switch user to mUser)
 router.get("/friends/:userId", async (req,res)=>{
@@ -241,21 +271,35 @@ router.put("/:id/follow", async (req, res) => {
 
 
 //Delete a notification
-router.put("/:id/deleteNotification", async (req, res) => {
+router.delete("/:id/deleteNotification", async (deletedNotification, res) => {
   try {
-   const deletedNotification = await User.update( 
-     {"id": req.params.id},
-    {
-      $pull: {
-        notifications: { id: req.body.id } 
-      }
-   });
-   res.status(200).json()
+    let deletedNotificationID = deletedNotification.body.deletedNotification
+    // console.log(deletedNotificationID);
+    const user = await mNotification.findByIdAndDelete({ _id: deletedNotificationID})
+    res.status(200).json()
+
+  
       } catch (err) {
         res.status(500).json(err);
         console.log(err);
       }
 });
+// //Delete a notification
+// router.put("/:id/deleteNotification", async (req, res) => {
+//   try {
+//    const deletedNotification = await User.update( 
+//      {"id": req.params.id},
+//     {
+//       $pull: {
+//         notifications: { id: req.body.id } 
+//       }
+//    });
+//    res.status(200).json()
+//       } catch (err) {
+//         res.status(500).json(err);
+//         console.log(err);
+//       }
+// });
 
 
 

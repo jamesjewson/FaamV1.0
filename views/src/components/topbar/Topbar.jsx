@@ -31,8 +31,17 @@ useEffect(() =>{
 //Fetch user notifications
     useEffect(() => {
         const fetchUserNotifications = async()=>{
-            const res = await axios.get(`/users/notifications/` + user?._id)
-            setNotifications(res.data)
+            let resMessage = await axios.get(`/users/notifications/` + user?._id)
+            // const senderStuff = await axios.get(`/users/`)
+            resMessage = resMessage.data
+            //Loop through all messages
+            // console.log(resMessage);
+         
+            
+
+
+
+            setNotifications(resMessage)
         }
         fetchUserNotifications()
     }, [user?._id])
@@ -53,15 +62,17 @@ useEffect(() =>{
     }
 
     const clickShowNotifications = ()=>{
+        // console.log(notifications);
         showNotifications ? setShowNotifications(false) : setShowNotifications(true)
     }
 
     const deleteNotification = async (deletedNotification)=>{
          try {
-            const notification = deletedNotification.notification  
-            const notificationId = deletedNotification.notification.id 
-            await axios.put("/users/"+ notificationId + "/deleteNotification", notification)
-             setNotifications(notifications.filter((notification) => notification.id !== notificationId))
+            
+            const res = await axios.delete("/users/"+ deletedNotification + "/deleteNotification",    { data: {deletedNotification}}
+            )
+            // console.log(deletedNotification);
+             setNotifications(notifications.filter((notification) => notification._id !== deletedNotification))
          } catch (err) {
              console.log(err);
          }
