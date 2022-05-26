@@ -32,7 +32,7 @@ router.post("/postImg", async (req,res)=>{
           img: result.secure_url,
           cloudinaryId: result.public_id
          });
-    res.status(200).json();
+    res.status(200).json(newImgPost);
   } catch (err) {
     res.status(500).json(err);
     console.log("Error: ", err);
@@ -57,8 +57,8 @@ router.get("/timeline/:userId", async (req, res) => {
           // console.log(allTimelinePosts[i]._id.valueOf());
           const postId = allTimelinePosts[i]._id.valueOf();
           const postImg = await mImage.find({ postId: postId })
-          console.log("post image: " + postImg[0].img);
-          const imgUrl = postImg[0].img
+          // console.log("post image: " + postImg[0].img);
+          const imgUrl = postImg[0]?.img
           allTimelinePosts[i].img = imgUrl
         }        
       }

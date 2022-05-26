@@ -13,6 +13,7 @@ export default function Share({renderNewPost}) {
     const desc = useRef()
     const [file,setFile] = useState(null)
     const [currentUser, setCurrentUser] = useState(user)
+    let newPostImg
 
     //Fetch user    
     useEffect(() =>{
@@ -44,18 +45,33 @@ const makePost = async (e) =>{
             }           
         const res = await axios.post("/posts/post", newPost) 
         if(hasImg = true && file){
-            fileReader(file, res.data._id, user._id)
-            }
-            //These two lines may need to be moved
+            fileReader(file, res.data._id, user._id, newPost)
+        }
+        else{
+            renderNewPost(newPost) 
+        }
             desc.current.value = ""
-            console.log(res.data);
-            renderNewPost(res.data) 
+            // newPost.img = file
+            
         } catch (error) {
             console.log(error);
         }
     }
 
-    const uploadImage = async (base64EncodedImage, postId, userId) => {
+        //File Reader
+        const fileReader = (file, postId, userId, newPost)=>{
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                    //Upload Img
+                    uploadImage(reader.result, postId, userId, newPost);
+                };
+            reader.onerror = (error) => {
+                console.error(error);
+            };
+        }
+
+    const uploadImage = async (base64EncodedImage, postId, userId, newPost) => {
         try { 
             const newImgPost = {
                 img: base64EncodedImage,
@@ -64,26 +80,16 @@ const makePost = async (e) =>{
             }
             const res = await axios.post("/posts/postImg", newImgPost) 
             console.log(res.data)
+            newPost.img = res.data.img
+            renderNewPost(newPost)
             setFile('')
             desc.current.value = ""
-         //   renderNewPost(res.data)
         } catch (error) {
             console.log(error);
         }
     };
     
-    //File Reader
-    const fileReader = (file, postId, userId)=>{
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-                //Upload Img
-                uploadImage(reader.result, postId, userId);
-            };
-        reader.onerror = (error) => {
-            console.error(error);
-        };
-    }
+
 
     return (
         <div className="share">
