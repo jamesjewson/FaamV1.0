@@ -11,8 +11,7 @@ require("dotenv").config()
 router.post("/post", async (req,res)=>{
   const newPost = new mPost(req.body)
   try{
-      const savedPost = await newPost.save()
-      // console.log(savedPost)
+    const savedPost = await newPost.save()
     res.status(200).json(savedPost)
   }catch(err){
     console.log(err)
@@ -22,7 +21,6 @@ router.post("/post", async (req,res)=>{
   
 //Create an image
 router.post("/postImg", async (req,res)=>{
-
   try {
     // Upload image to cloudinary 
     const result = await cloudinary.uploader.upload(req.body.img, {
@@ -34,8 +32,6 @@ router.post("/postImg", async (req,res)=>{
           img: result.secure_url,
           cloudinaryId: result.public_id
          });
-        
-    // console.log(newImgPost)
     res.status(200).json();
   } catch (err) {
     res.status(500).json(err);
@@ -146,9 +142,6 @@ router.get("/photos/:username", async (req, res) => {
   }
 });
 
-////////////////////////////////////////
-//////////Working/////////////////
-
 //Like a post
  router.put("/:id/like", async (req,res)=>{
   try{
@@ -176,22 +169,57 @@ router.get("/photos/:username", async (req, res) => {
 
 
 const sendNotification = async (sender, receiver, message)=>{
- // //Send Notification (Make own method makeNotification(sender, receiver) )
- //console.log("sender:" + sender, "receiver:" + receiver + "message: " + message);
-
     const notification = await mNotification.create({
     sender: sender,
     receiver: receiver,
     message: message
   })
-
-  // console.log(notification);
-
 }
+
+
+//Update a post
+router.put("/:id", async (req, res) => {
+  try {
+    const post = await mPost.findById(req.params.id);
+    if (post.userId === req.body.userId) {
+      await post.updateOne({ $set: req.body });
+      const updatedPost = await mPost.findById(req.params.id)
+      res.status(200).json(updatedPost);
+    } else {
+      res.status(403).json("you can update only your post");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+////////////////////////////////////////
+//////////Working/////////////////
+
+
+
+
 
 
 
 ////////Old Code that works///////////
+// //Update a post
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const post = await Post.findById(req.params.id);
+//     if (post.userId === req.body.userId) {
+//       await post.updateOne({ $set: req.body });
+//       const updatedPost = await Post.findById(req.params.id)
+//       res.status(200).json(updatedPost);
+//     } else {
+//       res.status(403).json("you can update only your post");
+//     }
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+
 
 // //Get timeline posts
 // router.get("/timeline/:userId", async (req, res) => {
@@ -382,21 +410,7 @@ router.put("/:id/updateComment", async (req, res) => {
 });
 
 
-//Update a post
-router.put("/:id", async (req, res) => {
-   try {
-     const post = await Post.findById(req.params.id);
-     if (post.userId === req.body.userId) {
-       await post.updateOne({ $set: req.body });
-       const updatedPost = await Post.findById(req.params.id)
-       res.status(200).json(updatedPost);
-     } else {
-       res.status(403).json("you can update only your post");
-     }
-   } catch (err) {
-     res.status(500).json(err);
-   }
- });
+
 
 
 
