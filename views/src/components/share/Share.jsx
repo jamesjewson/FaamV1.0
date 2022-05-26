@@ -48,6 +48,7 @@ const makePost = async (e) =>{
             }
             //These two lines may need to be moved
             desc.current.value = ""
+            console.log(res.data);
             renderNewPost(res.data) 
         } catch (error) {
             console.log(error);

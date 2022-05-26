@@ -51,31 +51,49 @@ router.get("/timeline/:userId", async (req, res) => {
    const allTimelinePosts = userPosts.concat(...friendPosts);
       //should be postUserId not currentUser._id
       //make an array of each userId in allTimelinePosts, and then search for images with that userId
-    let imageUserIdArray = [];
-    for(let i=0; i<allTimelinePosts.length; i++){
-      if(imageUserIdArray.indexOf(allTimelinePosts[i].userId) === -1){
-        imageUserIdArray.push(allTimelinePosts[i].userId);
+      for(let i=0; i<allTimelinePosts.length; i++){
+        // console.log(allTimelinePosts[i]);
+        if(allTimelinePosts[i].hasImg === "true"){
+          // console.log(allTimelinePosts[i]._id.valueOf());
+          const postId = allTimelinePosts[i]._id.valueOf();
+          const postImg = await mImage.find({ postId: postId })
+          console.log("post image: " + postImg[0].img);
+          const imgUrl = postImg[0].img
+          allTimelinePosts[i].img = imgUrl
+        }        
       }
-    }  
-    let imageArray = []
-    for(let i=0; i<imageUserIdArray.length; i++){
-      const imageResult = await mImage.find({ userId: imageUserIdArray[i]})
-      imageArray.push(imageResult)
-    }
-   //Loop through all posts
-      for(let j=0; j<allTimelinePosts.length; j++){
-        //Get post ID
-        let thisPostId = allTimelinePosts[j]._id.valueOf();
+
+
+
+
+
+
+
+  //     let imageUserIdArray = [];
+  //   for(let i=0; i<allTimelinePosts.length; i++){
+  //     if(imageUserIdArray.indexOf(allTimelinePosts[i].userId) === -1){
+  //       imageUserIdArray.push(allTimelinePosts[i].userId);
+  //     }
+  //   }  
+  //   let imageArray = []
+  //   for(let i=0; i<imageUserIdArray.length; i++){
+  //     const imageResult = await mImage.find({ userId: imageUserIdArray[i]})
+  //     imageArray.push(imageResult)
+  //   }
+  //  //Loop through all posts
+  //     for(let j=0; j<allTimelinePosts.length; j++){
+  //       //Get post ID
+  //       let thisPostId = allTimelinePosts[j]._id.valueOf();
         
-        //Loop though images
-        for(let i=0; i<imageArray.length; i++){
-          //Look for post ID that lines up with image post ID
-          if(thisPostId === imageArray[i][0].postId){
-            //Append
-            allTimelinePosts[j].img = imageArray[i][0].img
-          }
-        }
-      }
+  //       //Loop though images
+  //       for(let i=0; i<imageArray.length; i++){
+  //         //Look for post ID that lines up with image post ID
+  //         if(thisPostId === imageArray[i][0].postId){
+  //           //Append
+  //           allTimelinePosts[j].img = imageArray[i][0].img
+  //         }
+  //       }
+  //     }
    res.status(200).json(allTimelinePosts)
  }catch (err) {
    res.status(500).json(err);
