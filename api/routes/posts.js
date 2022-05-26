@@ -52,27 +52,41 @@ router.get("/timeline/:userId", async (req, res) => {
        return mPost.find({ userId: friendId });
      })
    );
-   const allTimelinePosts = userPosts.concat(...friendPosts);    
-   const imag = await mImage.find({userId: currentUser._id})
+   const allTimelinePosts = userPosts.concat(...friendPosts);
+      //should be postUserId not currentUser._id
+      //make an array of each userId in allTimelinePosts, and then search for images with that userId
+    let imageUserIdArray = [];
+    for(let i=0; i<allTimelinePosts.length; i++){
+      if(imageUserIdArray.indexOf(allTimelinePosts[i].userId) === -1){
+        imageUserIdArray.push(allTimelinePosts[i].userId);
+      }
+    }  
+    let imageArray = []
+    for(let i=0; i<imageUserIdArray.length; i++){
+      const imageResult = await mImage.find({ userId: imageUserIdArray[i]})
+      imageArray.push(imageResult)
+    }
    //Loop through all posts
-     for(let i=0; i<allTimelinePosts.length; i++){
-     //Get post ID
-     let postId = allTimelinePosts[i]._id.valueOf();
-     //Loop though images
-     for(const image of imag){
-       //Look for post ID that lines up with image post ID
-       if(postId == image.postId){
-         //Append
-         allTimelinePosts[i].img = image.img
-       }
-     }
-   }
+      for(let j=0; j<allTimelinePosts.length; j++){
+        //Get post ID
+        let thisPostId = allTimelinePosts[j]._id.valueOf();
+        
+        //Loop though images
+        for(let i=0; i<imageArray.length; i++){
+          //Look for post ID that lines up with image post ID
+          if(thisPostId === imageArray[i][0].postId){
+            //Append
+            allTimelinePosts[j].img = imageArray[i][0].img
+          }
+        }
+      }
    res.status(200).json(allTimelinePosts)
  }catch (err) {
    res.status(500).json(err);
    console.log(err)
  }
 });
+
 
 //Get all user posts
 router.get("/profile/:username", async (req, res) => {
@@ -178,6 +192,39 @@ const sendNotification = async (sender, receiver, message)=>{
 
 
 ////////Old Code that works///////////
+
+// //Get timeline posts
+// router.get("/timeline/:userId", async (req, res) => {
+//  try {
+//    const currentUser = await User.findById(req.params.userId);
+//    const userPosts = await mPost.find({ userId: currentUser._id });
+//    const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
+//        return mPost.find({ userId: friendId });
+//      })
+//    );
+//    const allTimelinePosts = userPosts.concat(...friendPosts);
+//       //should be postUserId not currentUser._id
+//       //make an array of each userId in allTimelinePosts, and then search for images with that userId    
+//    const imag = await mImage.find({userId: currentUser._id})
+//    //Loop through all posts
+//      for(let i=0; i<allTimelinePosts.length; i++){
+//      //Get post ID
+//      let postId = allTimelinePosts[i]._id.valueOf();
+//      //Loop though images
+//      for(const image of imag){
+//        //Look for post ID that lines up with image post ID
+//        if(postId == image.postId){
+//          //Append
+//          allTimelinePosts[i].img = image.img
+//        }
+//      }
+//    }
+//    res.status(200).json(allTimelinePosts)
+//  }catch (err) {
+//    res.status(500).json(err);
+//    console.log(err)
+//  }
+// });
 
  //Like a post
 //  router.put("/:id/like", async (req,res)=>{
