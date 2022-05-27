@@ -134,11 +134,15 @@ router.delete("/:id", async (req, res) => {
     const post = await mPost.findById(req.params.id);
     if (post.userId === req.body.userId) {
       if (post.userId) {
+        if(post.hasImg === "true"){
+          const postCloud = await mImage.find({ postId: post._id.valueOf() })
+          if(postCloud[0].cloudinaryId){
+            cloudinary.uploader.destroy(postCloud[0].cloudinaryId)
+            await mImage.deleteOne({ postId: post._id.valueOf() })
+          }
+        }
       await post.deleteOne();
       res.status(200).json("the post has been deleted");
-      }
-      if(post.cloudinaryId){
-        cloudinary.uploader.destroy(post.cloudinaryId)
       }
     } else {
       res.status(403).json("you can delete only your post");

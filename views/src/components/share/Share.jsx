@@ -79,7 +79,7 @@ const makePost = async (e) =>{
                 postId: postId
             }
             const res = await axios.post("/posts/postImg", newImgPost) 
-            console.log(res.data)
+            // console.log(res.data)
             newPost.img = res.data.img
             renderNewPost(newPost)
             setFile('')
