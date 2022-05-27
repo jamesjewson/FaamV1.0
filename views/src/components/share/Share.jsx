@@ -43,16 +43,15 @@ const makePost = async (e) =>{
             likes: [],
             hasImg: hasImg
             }           
-        const res = await axios.post("/posts/post", newPost) 
+        const res = await axios.post("/posts/post", newPost)
+        newPost._id = res.data._id 
         if(hasImg = true && file){
             fileReader(file, res.data._id, user._id, newPost)
         }
         else{
-            renderNewPost(newPost) 
+            renderNewPost(newPost)
         }
-            desc.current.value = ""
-            // newPost.img = file
-            
+        desc.current.value = ""
         } catch (error) {
             console.log(error);
         }
