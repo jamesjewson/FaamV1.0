@@ -27,8 +27,6 @@ export default function Comments(post) {
     //Create a comment
     const submitHandler = async (e)=>{
         e.preventDefault()
-        // const createdAt = new Date()
-        // const commentId = user._id + post._id + Math.random()
         const newComment = {
             commenterID: user._id,
             postID: post._id,
@@ -36,12 +34,10 @@ export default function Comments(post) {
         }
         if(newComment.desc){
             try{
-              //  console.log(newComment)
-                await axios.post("/posts/" + post._id + "/comment", newComment)
+                const res = await axios.post("/posts/" + post._id + "/comment", newComment)
+                newComment._id = res.data._id
                 setGetComments([...getComments, newComment])   
                 commentText.current.value = ""
-                // console.log(newComment);
-
             }catch(err){
                 console.log(err, "axios error")
             }
@@ -56,8 +52,7 @@ export default function Comments(post) {
             const commentId = deletedComment.comment._id 
             console.log(commentId);
             const res = await axios.delete("/posts/" + commentId + "/deleteComment", { data: { _id: commentId } } )
-            console.log(res);
-        //    setGetComments(getComments.filter((comment) => comment.commentId !== commentId))
+            setGetComments(getComments.filter((comment) => comment._id !== commentId))
         } catch (err) {
             console.log(err);
         }
