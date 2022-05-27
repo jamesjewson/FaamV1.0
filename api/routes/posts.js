@@ -388,14 +388,13 @@ router.delete("/:id/deleteComment", async (req, res) => {
 //Update a comment
 router.put("/:id/updateComment", async (req, res) => {
   try {
+    console.log(req.body);
     // console.log(req.body.comment.comment);
-   const updatedComment = await Post.findOneAndUpdate(
-     {_id : req.body.comment.parentPostId,
-      "comments.commentId" : req.body.comment.commentId
-    },
+   const updatedComment = await mComment.findOneAndUpdate(
+     {_id : req.body._id },
      {
        $set: {
-         "comments.$.comment" : req.body.comment.comment
+         "desc" : req.body.desc
        }
      })
    res.status(200).json(updatedComment)

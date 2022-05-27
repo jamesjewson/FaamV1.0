@@ -68,7 +68,8 @@ export default function Comments(post) {
     //Edit Comment 
     const saveEditComment = async (updatedComment)=>{
         try {
-            const commentId = updatedComment.comment.commentId
+            const commentId = updatedComment._id
+            console.log(commentId);
             await axios.put("/posts/" + commentId + "/updateComment", updatedComment)               
         } catch (error) {
             console.log(error);

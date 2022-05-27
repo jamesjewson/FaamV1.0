@@ -75,12 +75,13 @@ export default function CommentArray(post) {
     //Save Comment
         const saveComment = ()=>{
             try {
-                post.post.comment = editCommentValue
-                const updatedComment = {
-                    comment: post.post,
-                    currentUser: user
-                    }
-                post.saveEditComment(updatedComment)
+                post.post.desc = editCommentValue
+                // const updatedComment = {
+                //     comment: post.post,
+                //     currentUser: user
+                //     }
+                // console.log(post.post);
+                post.saveEditComment(post.post)
                 setEditingComment(false)
                 
             } catch (error) {
