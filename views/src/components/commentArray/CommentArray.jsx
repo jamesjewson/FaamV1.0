@@ -33,7 +33,7 @@ export default function CommentArray(post) {
             setPostUser(res.data);
         };  
         fetchUser();
-    },[post?.commenterID]); 
+    },[post?.post.commenterID]); 
 
 
 

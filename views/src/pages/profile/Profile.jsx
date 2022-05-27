@@ -2,7 +2,6 @@ import "./profile.css"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Rightbar from "../../components/rightbar/Rightbar"
 import Feed from "../../components/feed/Feed"
-import BackgroundCarousel from "../../components/backgroundCarousel/BackgroundCarousel"
 import { useEffect, useState } from 'react'
 import axios from "axios"
 import { useParams } from "react-router"
@@ -31,13 +30,6 @@ export default function Profile() {
             <Sidebar className="profilePageSidebar" />
             <Feed username={username} />
             <Rightbar user={user} />
-            {/* <div className="profileRight">
-                <div className="profileRightTop">
-                    <BackgroundCarousel />                
-                </div>
-                <div className="profileRightBottom">
-                </div>
-            </div>       */}
         </div>
         </>
     )

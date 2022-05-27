@@ -213,7 +213,7 @@ export default function Post({post, deletePost}) {
                <div className="postBottom">
                    <div className="postBottomLeft">
                        <Favorite onClick={likeHandler} style={ isLiked ?  {color:"red"}: {color: "black"}}  />
-                       {(like == 1) ? ( <span className="postLikeCounter">{like} person likes this</span> ):  (<span className="postLikeCounter">{like} people like this</span>) }
+                       {(like === 1) ? ( <span className="postLikeCounter">{like} person likes this</span> ):  (<span className="postLikeCounter">{like} people like this</span>) }
                        
                    </div>
                    <div className="postBottomRight">

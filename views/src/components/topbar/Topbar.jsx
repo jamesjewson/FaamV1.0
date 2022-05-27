@@ -1,5 +1,5 @@
 import "./topbar.css"
-import { Person, Settings, Notifications } from "@material-ui/icons"
+import { Notifications } from "@material-ui/icons"
 import {Link} from "react-router-dom"
 import {useContext, useState, useEffect, useRef} from "react"
 import {AuthContext} from "../../context/AuthContext"
@@ -69,7 +69,7 @@ useEffect(() =>{
     const deleteNotification = async (deletedNotification)=>{
          try {
             
-            const res = await axios.delete("/users/"+ deletedNotification + "/deleteNotification",    { data: {deletedNotification}}
+            await axios.delete("/users/"+ deletedNotification + "/deleteNotification",    { data: {deletedNotification}}
             )
             // console.log(deletedNotification);
              setNotifications(notifications.filter((notification) => notification._id !== deletedNotification))
@@ -85,9 +85,6 @@ useEffect(() =>{
         logoutCall({user:null}, dispatch)      
     }
 
-    const alertComingSoon = ()=>{
-        alert("This feature has not yet been implemented.")
-    }
 
 ////////Return
     return (
@@ -119,11 +116,6 @@ useEffect(() =>{
                                 ))
                                 ) : null }
                     </div>
-                    {/* <div className="topbarIconItem">
-                    <Link to={`/settings/${user._id}`}>
-                        <Settings className="settingsIcon"/> 
-                    </Link> 
-                    </div> */}
                 </div>
 
                 <div className="logout">

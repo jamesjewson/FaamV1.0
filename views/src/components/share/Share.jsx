@@ -13,7 +13,6 @@ export default function Share({renderNewPost}) {
     const desc = useRef()
     const [file,setFile] = useState(null)
     const [currentUser, setCurrentUser] = useState(user)
-    let newPostImg
 
     //Fetch user    
     useEffect(() =>{
@@ -45,7 +44,7 @@ const makePost = async (e) =>{
             }           
         const res = await axios.post("/posts/post", newPost)
         newPost._id = res.data._id 
-        if(hasImg = true && file){
+        if(hasImg === true && file){
             fileReader(file, res.data._id, user._id, newPost)
         }
         else{

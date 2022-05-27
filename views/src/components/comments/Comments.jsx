@@ -51,7 +51,7 @@ export default function Comments(post) {
         try {  
             const commentId = deletedComment.comment._id 
             console.log(commentId);
-            const res = await axios.delete("/posts/" + commentId + "/deleteComment", { data: { _id: commentId } } )
+            await axios.delete("/posts/" + commentId + "/deleteComment", { data: { _id: commentId } } )
             setGetComments(getComments.filter((comment) => comment._id !== commentId))
         } catch (err) {
             console.log(err);
