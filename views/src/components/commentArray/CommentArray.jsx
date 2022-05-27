@@ -7,7 +7,6 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import axios from "axios"
 
 export default function CommentArray(post) {
-    // console.log(post);
     const {user} = useContext(AuthContext)
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const comment = post.post.desc
@@ -76,14 +75,8 @@ export default function CommentArray(post) {
         const saveComment = ()=>{
             try {
                 post.post.desc = editCommentValue
-                // const updatedComment = {
-                //     comment: post.post,
-                //     currentUser: user
-                //     }
-                // console.log(post.post);
                 post.saveEditComment(post.post)
                 setEditingComment(false)
-                
             } catch (error) {
                 console.log(error);
             }
