@@ -7,7 +7,7 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import axios from "axios"
 
 export default function CommentArray(post) {
-    console.log(post);
+    // console.log(post);
     const {user} = useContext(AuthContext)
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const comment = post.post.desc

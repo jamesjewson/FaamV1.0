@@ -18,7 +18,7 @@ export default function Comments(post) {
         const fetchComments = async () => {
             const res = await axios.get("/posts/comment/" + post._id, post._id)
             setGetComments(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         } 
         fetchComments();
     },[post._id])
@@ -27,22 +27,20 @@ export default function Comments(post) {
     //Create a comment
     const submitHandler = async (e)=>{
         e.preventDefault()
-        const createdAt = new Date()
-        const commentId = user._id + post._id + Math.random()
+        // const createdAt = new Date()
+        // const commentId = user._id + post._id + Math.random()
         const newComment = {
-            comment: commentText.current.value,
-            parentPostId: post._id,
-            createdAt: createdAt,
-            user: user,
-            commentId: commentId
+            commenterID: user._id,
+            postID: post._id,
+            desc: commentText.current.value
         }
-        if(newComment.comment){
+        if(newComment.desc){
             try{
               //  console.log(newComment)
-              await axios.put("/posts/" + post._id + "/comment", newComment)
-             setGetComments([...getComments, newComment])   
-             commentText.current.value = ""
-             console.log(newComment);
+                await axios.post("/posts/" + post._id + "/comment", newComment)
+                setGetComments([...getComments, newComment])   
+                commentText.current.value = ""
+                // console.log(newComment);
 
             }catch(err){
                 console.log(err, "axios error")
@@ -55,10 +53,11 @@ export default function Comments(post) {
     //Delete Comment
     const deleteComment = async (deletedComment) => {
         try {  
-           const commentId = deletedComment.comment.commentId 
-           const res = await axios.put("/posts/"+ commentId + "/deleteComment", deletedComment)
-              console.log(res);
-           setGetComments(getComments.filter((comment) => comment.commentId !== commentId))
+            const commentId = deletedComment.comment._id 
+            console.log(commentId);
+            const res = await axios.delete("/posts/" + commentId + "/deleteComment", { data: { _id: commentId } } )
+            console.log(res);
+        //    setGetComments(getComments.filter((comment) => comment.commentId !== commentId))
         } catch (err) {
             console.log(err);
         }
@@ -89,7 +88,7 @@ export default function Comments(post) {
                     <hr className="commentsHr" />
                      {/* Form */}
                     <form className="shareBottom" onSubmit={submitHandler} >
-                            <button className="commentsButton" type="submit">Leave Comment</button>
+                        <button className="commentsButton" type="submit">Leave Comment</button>
                     </form>
                 </div>
             </div>

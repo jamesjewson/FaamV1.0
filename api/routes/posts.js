@@ -184,6 +184,55 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+
+//Get comments
+
+router.get("/comment/:id", async (req,res)=>{
+  try {
+    const comment = await mComment.find({ postID: req.params.id })
+    // console.log(comment);
+    res.status(200).json(comment)
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error)
+  }
+})
+
+
+
+//Create a comment
+router.post("/:id/comment", async (req,res)=>{
+
+  try {
+    const newComment = new mComment(req.body)
+    await newComment.save();
+    res.status(200).json(newComment);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
+
+//Delete a comment
+router.delete("/:id/deleteComment", async (req, res) => {
+  try {
+    console.log(req.body._id);
+    await mComment.deleteOne({ _id: req.body._id })
+    res.status(200).json()
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////
 //////////Working/////////////////
 
@@ -334,66 +383,7 @@ router.put("/:id", async (req, res) => {
 
 ////////////////////////////
 
-//Get comments
 
-router.get("/comment/:id", async (req,res)=>{
-  try {
-    const comment = await mComment.find({ postID: req.params.id })
-    // console.log(comment);
-    res.status(200).json(comment)
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error)
-  }
-})
-
-
-
-//Create a comment
-router.put("/:id/comment", async (req,res)=>{
-
-  try {
-    const post = await Post.findById(req.body.parentPostId);
-    //OP user
-    const user = await User.findById(post.userId)
-    //Current user
-    const currentUser = await User.findById(req.body.user._id)
-    const notificationId = (Math.floor(10000000000 + Math.random() * 90000000000))
-    const follower = {
-      username: currentUser.username,
-      profilePicture: currentUser.profilePicture,
-      id: currentUser._id
-    }
-    const message = currentUser.username + " commented on your post."
-    const notification = {
-      follower: follower,
-      message: message,
-      id: notificationId
-    }
-    await user.updateOne({ $push: { notifications: notification }})
-    await post.updateOne({ $push: {comments: req.body} });
-    res.status(200).json(post);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-})
-
-
-//Delete a comment
-router.put("/:id/deleteComment", async (req, res) => {
-  try {
-   const deletedComment = await Post.update( 
-     {"_id": req.body.comment.parentPostId},
-    {
-      $pull: {
-        comments: { commentId: req.body.comment.commentId } 
-      }
-   });
-   res.status(200).json(deletedComment)
-      } catch (err) {
-        res.status(500).json(err);
-      }
-});
 
 //Update a comment
 router.put("/:id/updateComment", async (req, res) => {
