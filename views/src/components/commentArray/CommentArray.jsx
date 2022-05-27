@@ -7,11 +7,11 @@ import { useContext, useEffect, useState, useRef } from 'react'
 import axios from "axios"
 
 export default function CommentArray(post) {
-   
+    console.log(post);
     const {user} = useContext(AuthContext)
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    const comment = post.post.comment
-    const commentId = post.post.commentId
+    const comment = post.post.desc
+    const commentId = post.post._id
     const [showHideDropdown, setShowHideDropdown] = useState(false)
     let refClick = useRef()
     const [editingComment, setEditingComment] = useState(false)
@@ -30,11 +30,11 @@ export default function CommentArray(post) {
     //Fetch post user    
     useEffect(() =>{
         const fetchUser = async () => {
-            const res = await axios.get(`/users?userId=${post?.post.user._id}`)
+            const res = await axios.get(`/users?userId=${post?.post.commenterID}`)
             setPostUser(res.data);
         };  
         fetchUser();
-    },[post?.post.user._id]); 
+    },[post?.commenterID]); 
 
 
 

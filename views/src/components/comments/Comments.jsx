@@ -16,8 +16,9 @@ export default function Comments(post) {
       //Fetch comments
       useEffect(() =>{
         const fetchComments = async () => {
-            const res = await axios.get("/posts/" + post._id)
-            setGetComments(res.data.comments);
+            const res = await axios.get("/posts/comment/" + post._id, post._id)
+            setGetComments(res.data);
+            console.log(res.data);
         } 
         fetchComments();
     },[post._id])
@@ -98,7 +99,7 @@ export default function Comments(post) {
                     <hr className="commentSectionHr"/>
                    
                     {getComments.map((comments)=>(
-                        <CommentArray key={comments.commentId} post={comments} deleteComment={deleteComment} saveEditComment={saveEditComment} />
+                        <CommentArray post={comments} deleteComment={deleteComment} saveEditComment={saveEditComment} />
                     ))}
                  </div>
             </div>

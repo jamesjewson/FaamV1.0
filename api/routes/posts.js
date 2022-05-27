@@ -3,6 +3,7 @@ const Post = require("../models/Post")
 const mPost = require("../models/mPost")
 const mNotification = require("../models/mNotification")
 const mImage = require("../models/mImage")
+const mComment = require("../models/mComment")
 const User = require("../models/User")
 const cloudinary = require("../middleware/cloudinary");
 require("dotenv").config()
@@ -62,38 +63,6 @@ router.get("/timeline/:userId", async (req, res) => {
           allTimelinePosts[i].img = imgUrl
         }        
       }
-
-
-
-
-
-
-
-  //     let imageUserIdArray = [];
-  //   for(let i=0; i<allTimelinePosts.length; i++){
-  //     if(imageUserIdArray.indexOf(allTimelinePosts[i].userId) === -1){
-  //       imageUserIdArray.push(allTimelinePosts[i].userId);
-  //     }
-  //   }  
-  //   let imageArray = []
-  //   for(let i=0; i<imageUserIdArray.length; i++){
-  //     const imageResult = await mImage.find({ userId: imageUserIdArray[i]})
-  //     imageArray.push(imageResult)
-  //   }
-  //  //Loop through all posts
-  //     for(let j=0; j<allTimelinePosts.length; j++){
-  //       //Get post ID
-  //       let thisPostId = allTimelinePosts[j]._id.valueOf();
-        
-  //       //Loop though images
-  //       for(let i=0; i<imageArray.length; i++){
-  //         //Look for post ID that lines up with image post ID
-  //         if(thisPostId === imageArray[i][0].postId){
-  //           //Append
-  //           allTimelinePosts[j].img = imageArray[i][0].img
-  //         }
-  //       }
-  //     }
    res.status(200).json(allTimelinePosts)
  }catch (err) {
    res.status(500).json(err);
@@ -364,6 +333,21 @@ router.put("/:id", async (req, res) => {
 
 
 ////////////////////////////
+
+//Get comments
+
+router.get("/comment/:id", async (req,res)=>{
+  try {
+    const comment = await mComment.find({ postID: req.params.id })
+    // console.log(comment);
+    res.status(200).json(comment)
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error)
+  }
+})
+
+
 
 //Create a comment
 router.put("/:id/comment", async (req,res)=>{
