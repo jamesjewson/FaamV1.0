@@ -22,6 +22,7 @@ export default function Post({post, deletePost}) {
     const [showPostDropdown, setShowPostDropdown] = useState(false)
     const [editingPost, setEditingPost] = useState(false)
     const [inputValue, setInputValue] = useState("")
+    const [getCommentsLength, setGetCommentsLength] = useState([])
 
     //Event listeners for outside dropdown menu click
     useEffect(() => {
@@ -155,6 +156,18 @@ export default function Post({post, deletePost}) {
 
 
 
+//Fetch comments
+useEffect(() =>{
+    const fetchComments = async () => {
+        const res = await axios.get("/posts/comment/" + post._id, post._id)
+        setGetCommentsLength(res.data.length);
+        // console.log(getCommentsLength);
+    } 
+    fetchComments();
+},[post._id])
+
+
+
 
 //////////////////////
 //Return
@@ -221,8 +234,8 @@ export default function Post({post, deletePost}) {
                            <span className="postCommentSpan">Comments </span> 
                            <div className="postCommentLength">
 
-                           {(post.comments?.length > 0) ? (
-                               " (" + post.comments.length + ")"
+                           {(getCommentsLength > 0) ? (
+                               " (" + getCommentsLength + ")"
                                ) : null }
                             </div>
                         </span>

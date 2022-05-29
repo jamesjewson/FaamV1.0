@@ -88,16 +88,20 @@ export default function Comments(post) {
                     </form>
                 </div>
             </div>
-            <div className="allComments">
-               <span className="commentsTitle">- Comments -</span>
-                 <div className="commentsArray">
-                    <hr className="commentSectionHr"/>
-                   
-                    {getComments.map((comments)=>(
-                        <CommentArray post={comments} deleteComment={deleteComment} saveEditComment={saveEditComment} />
-                    ))}
-                 </div>
-            </div>
+                {getComments?.length > 0 ? (
+                    <>
+                    <div className="allComments">
+                        <span className="commentsTitle">- Comments -</span>
+                        <div className="commentsArray">
+                            <hr className="commentSectionHr"/>
+                        
+                            {getComments.map((comments)=>(
+                                <CommentArray post={comments} deleteComment={deleteComment} saveEditComment={saveEditComment} />
+                                ))}
+                        </div>
+                    </div>
+                </>
+                ) : null }
         </div>
     )
 }
