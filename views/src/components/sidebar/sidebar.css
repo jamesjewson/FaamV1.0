@@ -117,3 +117,26 @@
 
 }
 
+
+.sidebarListContainer{
+    overflow: hidden;
+    animation: showSidebarListContainer 0.6666s ease-in-out;
+}
+
+@keyframes showSidebarListContainer {
+    0% { height: 0px}
+    100% { height: 165px}
+}
+
+.sidebarListContainerHidden{
+    height: 0px;
+    overflow: hidden;
+    animation: hideSidebarListContainer 0.6666s ease-in-out;
+}
+
+
+
+@keyframes hideSidebarListContainer {
+    0% { height: 165px}
+    100% { height: 0px}
+}
