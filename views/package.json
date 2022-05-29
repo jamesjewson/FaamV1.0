@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://faamserver.herokuapp.com/api"
+  "proxy": "https://faamserver.herokuapp.com/"
 }
