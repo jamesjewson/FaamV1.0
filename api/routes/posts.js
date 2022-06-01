@@ -23,16 +23,24 @@ router.post("/post", async (req,res)=>{
 //Create an image
 router.post("/postImg", async (req,res)=>{
   try {
+
     // Upload image to cloudinary 
     const result = await cloudinary.uploader.upload(req.body.img, {
         upload_preset: 'i7qr7gwc'
       })
       const newImgPost = await mImage.create({
           userId: req.body.userId,
-          postId: req.body.postId,
+          postId: req.body?.postId,
           img: result.secure_url,
           cloudinaryId: result.public_id
          });
+      if(req.body.isProfilePic){
+        //change profile pic
+        // console.log(newImgPost._id.valueOf());
+          const oldProfilePic = await mImage.find({ userId: req.body.userId, isProfilePic: "true" })
+          await mImage.findOneAndUpdate({"_id": oldProfilePic[0]?._id}, {"isProfilePic": "false"})
+          await mImage.findByIdAndUpdate(newImgPost._id.valueOf(), { isProfilePic: "true"})
+      }
     res.status(200).json(newImgPost);
   } catch (err) {
     res.status(500).json(err);

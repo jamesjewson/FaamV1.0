@@ -124,11 +124,12 @@ if(user?._id === currentUser?._id){
       const uploadImage = async (base64EncodedImage) => {
         const id = user._id
           const newProfilePic = {
-              data: base64EncodedImage,
-              id: user._id
+              img: base64EncodedImage,
+              userId: user._id,
+              isProfilePic: true
           }
           try {
-              const res = await axios.put("/users/"+ id + "/profilePicture", newProfilePic) 
+              const res = await axios.post("/posts/postImg", newProfilePic) 
               if(res.status === 200){
                   setProfileImgFile('')
               }
