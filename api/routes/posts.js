@@ -165,6 +165,21 @@ const sendNotification = async (sender, receiver, message)=>{
   })
 }
 
+//Delete a Notification
+router.delete("/:id/deleteNotification", async (deletedNotification, res) => {
+    try {
+      await mNotification.findByIdAndDelete({ _id: deletedNotification.body.deletedNotification })
+      res.status(200).json()
+  
+    
+        } catch (err) {
+          res.status(500).json(err);
+          console.log(err);
+        }
+  });
+
+
+
 
 //Update a post
 router.put("/:id", async (req, res) => {

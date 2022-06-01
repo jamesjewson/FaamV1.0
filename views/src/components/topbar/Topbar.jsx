@@ -69,7 +69,7 @@ useEffect(() =>{
     const deleteNotification = async (deletedNotification)=>{
          try {
             
-            await axios.delete("/users/"+ deletedNotification + "/deleteNotification",    { data: {deletedNotification}}
+            await axios.delete("/posts/"+ deletedNotification + "/deleteNotification",    { data: {deletedNotification}}
             )
             // console.log(deletedNotification);
              setNotifications(notifications.filter((notification) => notification._id !== deletedNotification))
