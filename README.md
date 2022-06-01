@@ -26,7 +26,7 @@
 ---
 
 
-# Things I learned
+# Things I learned while building this
 
 - How to pass down props, including functions
 - React hooks
@@ -38,10 +38,6 @@
 ---
 
 # Future Updates
-- [ ] Make site mobile-friendly
-- [ ] User ID only for comments and posts
-- [ ] Securely Change Password
-- [ ] Chat Feature
-- [ ] Reorganize Database 
+
 
     

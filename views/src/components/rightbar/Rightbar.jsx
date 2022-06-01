@@ -122,8 +122,7 @@ if(user?._id === currentUser?._id){
           }
       }
       const uploadImage = async (base64EncodedImage) => {
-        const id = user._id
-          const newProfilePic = {
+                  const newProfilePic = {
               img: base64EncodedImage,
               userId: user._id,
               isProfilePic: true
