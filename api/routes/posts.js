@@ -4,7 +4,7 @@ const mPost = require("../models/mPost")
 const mNotification = require("../models/mNotification")
 const mImage = require("../models/mImage")
 const mComment = require("../models/mComment")
-const User = require("../models/User")
+const mUser = require("../models/mUser")
 const cloudinary = require("../middleware/cloudinary");
 require("dotenv").config()
 
@@ -44,7 +44,7 @@ router.post("/postImg", async (req,res)=>{
 router.get("/timeline/:userId", async (req, res) => {
  try {
     //Get all posts and concat them together
-    const currentUser = await User.findById(req.params.userId);
+    const currentUser = await mUser.findById(req.params.userId);
     const userPosts = await mPost.find({ userId: currentUser._id });
     const friendPosts = await Promise.all(currentUser.following.map((friendId) => {
     return mPost.find({ userId: friendId });
@@ -70,7 +70,7 @@ router.get("/timeline/:userId", async (req, res) => {
 //Get all user posts
 router.get("/profile/:username", async (req, res) => {
   try {
-    const user = await User.findOne({username:req.params.username})
+    const user = await mUser.findOne({username:req.params.username})
     const posts = await mPost.find({ userId: user._id })
     const imag = await mImage.find({userId: user._id})
     //Loop through all posts
@@ -122,7 +122,7 @@ router.delete("/:id", async (req, res) => {
 //Get all user photos
 router.get("/photos/:username", async (req, res) => {
  try {
-   const user = await User.findOne({username:req.params.username})
+   const user = await mUser.findOne({username:req.params.username})
    const images = await mImage.find({userId: user?._id})
    res.status(200).json(images);
   } catch (err) {
@@ -135,8 +135,8 @@ router.get("/photos/:username", async (req, res) => {
  router.put("/:id/like", async (req,res)=>{
   try{
      const post = await mPost.findById(req.params.id)
-     const receiver = await User.findById(post.userId)
-     const sender = await User.findById(req.body.userId)
+     const receiver = await mUser.findById(post.userId)
+     const sender = await mUser.findById(req.body.userId)
      
       if(!post.likes.includes(req.body.userId)){
           await post.updateOne({$push:{likes:req.body.userId}})

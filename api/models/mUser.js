@@ -39,10 +39,14 @@ const UserSchema = new mongoose.Schema({
     relationship:{
         type:String,
         max: 50
+    },
+    profilePicture:{
+        type:String,
+        max: 200
     }
     
 },
 {timestamps:true}
 )
 
-module.exports = mongoose.model("User", UserSchema)
+module.exports = mongoose.model("mUser", UserSchema)

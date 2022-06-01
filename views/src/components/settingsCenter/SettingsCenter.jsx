@@ -28,6 +28,9 @@ export default function SettingsCenter() {
     useEffect(() =>{
         const fetchUser = async () => {      
         const res = await axios.get(`/users?username=${username}`)
+
+        //Fetch profile pic
+
         setCurrentUser(res.data);
     }; 
        fetchUser();

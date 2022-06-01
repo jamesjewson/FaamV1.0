@@ -57,9 +57,7 @@
 }
 
 
-.rightbarInfo {
-    /* margin-bottom: 30px; */
-}
+
 
 .rightbarInfoItem {
     margin-bottom: 10px;
@@ -195,9 +193,6 @@
     margin-bottom: 10px;
 }
 
-.rightbarProfileHr{
-    /* margin-top: -30px; */
-}
 
 .rightbarAllUserPhotosArray{
     padding: 5px 5px;

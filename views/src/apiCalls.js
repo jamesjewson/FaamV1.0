@@ -4,7 +4,8 @@ import axios from 'axios'
 export const loginCall = async (userCredentials,dispatch)=>{
     dispatch({type:"LOGIN_START"})
     try{
-        const res = await axios.post("https://faamserver.herokuapp.com/api/auth/login", userCredentials)
+        // const res = await axios.post("https://faamserver.herokuapp.com/api/auth/login", userCredentials)
+        const res = await axios.post("http://localhost:8800/api/auth/login", userCredentials)
         .catch(error => {
             console.log(`Error: ${error.message}`);
             console.error('There was an error!', error);

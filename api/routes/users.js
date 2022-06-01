@@ -1,5 +1,7 @@
 const router = require("express").Router()
 const User = require("../models/User")
+const mUser = require("../models/mUser")
+const mImage = require("../models/mImage")
 const bcrypt = require("bcrypt")
 const cloudinary = require("../middleware/cloudinary");
 const mNotification = require("../models/mNotification")
@@ -7,7 +9,15 @@ const mNotification = require("../models/mNotification")
 
 router.get("/allUsers", async (req,res)=>{
   try {
-    const allUsers = await User.find()
+    const allUsers = await mUser.find()
+    // console.log(allUsers.length);
+    for(let i=0; i<allUsers.length; i++){
+      // console.log(allUsers[i]._id.valueOf());
+      const userProfilePic = await mImage.find({ userId: allUsers[i]._id.valueOf(), isProfilePic: "true" })
+
+      allUsers[i].profilePicture = userProfilePic[0].img
+    }
+    // console.log(allUsers);
     res.status(200).json(allUsers)  
   } catch (error) {
     res.status(501)
@@ -15,85 +25,92 @@ router.get("/allUsers", async (req,res)=>{
   }
 })
 
-
-
-// Update a profile picture (Call posts/postImg, set isProfilePic to true, and set isProfilePic to false on old pic)
-router.put("/:id/profilePicture", async(req,res)=>{
-  //Check to see if it's the user
-  if(req.body.id === req.params.id || req.body.isAdmin){
-    // Upload to cloudinary
-    try {       
-      const result = await cloudinary.uploader.upload(req.body.data, { upload_preset: 'i7qr7gwc'})
-      const currentPic = await User.findById(req.params.id)
-      const currentPicId = currentPic.cloudinaryProfilePicId
-      const cloudinaryProfilePicId = result.public_id
-
-      //Update Image
-      const newPic = await User.findByIdAndUpdate(req.params.id, {
-        profilePicture: result.secure_url,
-        cloudinaryProfilePicId: cloudinaryProfilePicId
-     });  
-      res.status(200).json();
-      if((res.status(200))){
-        
-        //Delete currentPic
-        try {
-          cloudinary.uploader.destroy(currentPicId)
-          console.log("old pic deleted")
-          res.status(200).json()
-        } catch (error) {
-          console.log(error)
-          res.status(500).json(err)
-          console.log(err);
-        }
-      }
-    } catch (err) {
-      res.status(500).json(err);
-      console.log(err);
-    }
-  }else {
-      return res.status(403).json("You can update only your account")
+//Get a user
+router.get("/", async (req,res)=>{
+  const userId = req.query.userId;
+  const username = req.query.username;
+  try{
+      const user = userId ? await mUser.findById(userId) : await mUser.findOne({username:username});
+      //This line removes password and updatedAt in the response, but sends everything else. Other can be called whatever you want   
+      const {password,updatedAt, ...other} = user._doc
+      const userProfilePic = await mImage.find({ userId: other._id, isProfilePic: "true" })
+      other.profilePicture = userProfilePic[0].img
+      res.status(200).json(other)
+  }catch (err){
+      res.status(500).json(err)
   }
 })
 
 
+router.get("/currentUser/:userId", async (req,res)=>{
+const userId = req.params.userId;
+try {
+  const user = await mUser.findById(userId)
+  const {password,updatedAt, ...other} = user?._doc
+  const userProfilePic = await mImage.find({ userId: other._id, isProfilePic: "true" })
+  other.profilePicture = userProfilePic[0].img
+  res.status(200).json(other)
+  
+} catch (error) {
+  console.log(error);
+}
+})
 
-// Update a cover picture (Remove this)
-router.put("/:id/coverPicture", async(req,res)=>{
-   //Check to see if it's the user
-   if(req.body.id === req.params.id || req.body.isAdmin){
-     // Upload to cloudinary
-     try {       
-       const result = await cloudinary.uploader.upload(req.body.data, { upload_preset: 'i7qr7gwc'})
-       const currentPic = await User.findById(req.params.id)
-       const currentPicId = currentPic.cloudinaryCoverPicId
-       const cloudinaryCoverPicId = result.public_id
-      //Update Image
-        const newPic = await User.findByIdAndUpdate(req.params.id, {
-            coverPicture: result.secure_url,
-            cloudinaryCoverPicId: cloudinaryCoverPicId
-      });  
-       res.status(200).json();
-       if((res.status(200))){
-         //Delete currentPic
-         try {
-           cloudinary.uploader.destroy(currentPicId)
-           console.log("old pic deleted")
-           res.status(200).json()
-         } catch (error) {
-           console.log(error)
-           res.status(500).json(error)
-         }
-       }
-     } catch (err) {
-       res.status(500).json(err);
-       console.log(err);
-     }
-   }else {
-       return res.status(403).json("You can update only your account")
-   }
- 
- })
+
+
+
+
+
+// router.get("/allUsers", async (req,res)=>{
+//   try {
+//     const allUsers = await User.find()
+//     res.status(200).json(allUsers)  
+//   } catch (error) {
+//     res.status(501)
+//     console.log(error);
+//   }
+// })
+
+
+
+// Update a profile picture (Call posts/postImg, set isProfilePic to true, and set isProfilePic to false on old pic)
+// router.put("/:id/profilePicture", async(req,res)=>{
+//   //Check to see if it's the user
+//   if(req.body.id === req.params.id || req.body.isAdmin){
+//     // Upload to cloudinary
+//     try {       
+//       const result = await cloudinary.uploader.upload(req.body.data, { upload_preset: 'i7qr7gwc'})
+//       const currentPic = await User.findById(req.params.id)
+//       const currentPicId = currentPic.cloudinaryProfilePicId
+//       const cloudinaryProfilePicId = result.public_id
+
+//       //Update Image
+//       const newPic = await User.findByIdAndUpdate(req.params.id, {
+//         profilePicture: result.secure_url,
+//         cloudinaryProfilePicId: cloudinaryProfilePicId
+//      });  
+//       res.status(200).json();
+//       if((res.status(200))){
+        
+//         //Delete currentPic
+//         try {
+//           cloudinary.uploader.destroy(currentPicId)
+//           console.log("old pic deleted")
+//           res.status(200).json()
+//         } catch (error) {
+//           console.log(error)
+//           res.status(500).json(err)
+//           console.log(err);
+//         }
+//       }
+//     } catch (err) {
+//       res.status(500).json(err);
+//       console.log(err);
+//     }
+//   }else {
+//       return res.status(403).json("You can update only your account")
+//   }
+// })
 
 
 //Update User (This should still work, just switch user to mUser)
@@ -112,7 +129,7 @@ router.put("/:id", async(req,res)=>{
         }
         try{
             // console.log(req.body)
-            const user = await User.findByIdAndUpdate(req.params.id, {$set: req.body,})
+            const user = await mUser.findByIdAndUpdate(req.params.id, {$set: req.body,})
             res.status(200).json("Account has been updated")
         } catch (err){
             return res.status(500).json(err)
@@ -129,7 +146,7 @@ router.put("/:id", async(req,res)=>{
         //Check to see if it's the user
         if(req.body.userId === req.params.id || req.body.isAdmin){
             try{
-                const user = await User.findByIdAndDelete({ _id: req.params.id})
+                const user = await mUser.findByIdAndDelete({ _id: req.params.id})
                 res.status(200).json("Account has been deleted")
             } catch (err){
                 return res.status(500).json(err)
@@ -140,33 +157,7 @@ router.put("/:id", async(req,res)=>{
     })
 
 
-//Get a user (This should still work, just switch user to mUser)
-router.get("/", async (req,res)=>{
-    const userId = req.query.userId;
-    const username = req.query.username;
-    try{
-        const user = userId ? await User.findById(userId) : await User.findOne({username:username});
-        //This line removes password and updatedAt in the response, but sends everything else. Other can be called whatever you want
-        const {password,updatedAt, ...other} = user._doc
-        res.status(200).json(other)
-    }catch (err){
-        res.status(500).json(err)
-    }
-})
 
-
-//Get current user (This should still work, just switch user to mUser)
-router.get("/currentUser/:userId", async (req,res)=>{
-  const userId = req.params.userId;
-  try {
-    const user = await User.findById(userId)
-    const {password,updatedAt, ...other} = user._doc
-    res.status(200).json(other)
-    
-  } catch (error) {
-    console.log(error);
-  }
-})
 
 //Notifications
 router.get("/notifications/:id", async (req,res)=>{
@@ -176,14 +167,16 @@ router.get("/notifications/:id", async (req,res)=>{
     let i = 0;
     for(const notification of notifications){
       //Get sender ID
-      const senderStuff = await User.find({ _id: notification.sender})
-      notifications[i].senderPic = senderStuff[0].profilePicture
+      const senderStuff = await mUser.find({ _id: notification.sender})
+      // console.log(senderStuff);
+      const userProfilePic = await mImage.find({ userId: senderStuff[0]._id, isProfilePic: "true" })
+      // other.profilePicture = userProfilePic[0].img
+      notifications[i].senderPic = userProfilePic[0].img
       //Not having this next line breaks it...
       notifications[i].senderName = senderStuff[0].username
       // console.log(notifications[i]);
       i++
     }
-    // console.log("here" + notifications);
     res.status(200).json(notifications)
     
   } catch (error) {
@@ -271,19 +264,19 @@ router.put("/:id/follow", async (req, res) => {
 
 
 //Delete a notification
-router.delete("/:id/deleteNotification", async (deletedNotification, res) => {
-  try {
-    let deletedNotificationID = deletedNotification.body.deletedNotification
-    // console.log(deletedNotificationID);
-    const user = await mNotification.findByIdAndDelete({ _id: deletedNotificationID})
-    res.status(200).json()
+// router.delete("/:id/deleteNotification", async (deletedNotification, res) => {
+//   try {
+//     let deletedNotificationID = deletedNotification.body.deletedNotification
+//     // console.log(deletedNotificationID);
+//     const user = await mNotification.findByIdAndDelete({ _id: deletedNotificationID})
+//     res.status(200).json()
 
   
-      } catch (err) {
-        res.status(500).json(err);
-        console.log(err);
-      }
-});
+//       } catch (err) {
+//         res.status(500).json(err);
+//         console.log(err);
+//       }
+// });
 // //Delete a notification
 // router.put("/:id/deleteNotification", async (req, res) => {
 //   try {
