@@ -60,6 +60,10 @@ export default function Sidebar() {
                                 <h2 className="sidebarHeader" >More Projects</h2>
                                 <li className="sidebarListItem">
                                     <Adjust className="sidebarIcon" />
+                                    <span className="sidebarListItemText"><a href="https://jewsonmusic.netlify.app/" rel="noreferrer" target="_blank" className="sidebarListItemText">My Music Portfolio</a></span>
+                                </li>
+                                <li className="sidebarListItem">
+                                    <Adjust className="sidebarIcon" />
                                     <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
                                 </li>
                                 <li className="sidebarListItem">
@@ -82,6 +86,10 @@ export default function Sidebar() {
                             <div className="sidebarListContainerHidden">
                                 
                             <h2 className="sidebarHeader" >More Projects</h2>
+                                <li className="sidebarListItem">
+                                    <Adjust className="sidebarIcon" />
+                                    <span className="sidebarListItemText"><a href="https://jewsonmusic.netlify.app/" rel="noreferrer" target="_blank" className="sidebarListItemText">My Music Portfolio</a></span>
+                                </li>
                                 <li className="sidebarListItem">
                                     <Adjust className="sidebarIcon" />
                                     <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>

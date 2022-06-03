@@ -127,6 +127,24 @@ router.delete("/:id", async (req, res) => {
 });
 
 
+//Delete a post from the image
+router.delete("/deleteImagePost/:id", async (req, res) => {
+  try {
+    if(req.body.image.postId){
+      const post = await mPost.findById(req.body.image.postId);
+      await post.deleteOne();
+    }
+
+    cloudinary.uploader.destroy(req.body.image.cloudinaryId)
+    await mImage.deleteOne({ _id: req.body.image._id })
+    res.status(200).json("the post has been deleted");
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 //Get all user photos
 router.get("/photos/:username", async (req, res) => {
  try {

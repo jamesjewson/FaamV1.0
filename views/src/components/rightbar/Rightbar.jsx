@@ -131,6 +131,7 @@ if(user?._id === currentUser?._id){
               const res = await axios.post("/posts/postImg", newProfilePic) 
               if(res.status === 200){
                   setProfileImgFile('')
+                  window.location.reload()
               }
           } catch (error) {
               console.log(error);
@@ -199,7 +200,9 @@ if(user?._id === currentUser?._id){
                                 <div className="profileUserImgDiv">
                                     <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
                                     <div className="saveNewImgContainer">
-                                        <span className="">Keep this as your profile picture? <button className="saveProfileImgButton" type="submit">yes</button>  <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>  </span>            
+                                        <span className="">Keep this as your profile picture?</span> 
+                                        <button className="saveProfileImgButton" type="submit">yes</button>  
+                                        <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>              
                                     </div>
                                 </div>  
                                 : 
@@ -301,6 +304,8 @@ if(user?._id === currentUser?._id){
                                     useKeyboardArrows="true" 
                                     showStatus="false"
                                     autoFocus="true"
+                                    autoPlay="false"
+                                    interval="9999999999999"
                                     >
                                     {photos.map((p)=>(
                                         <img key={p._id} src={p.img} className="rightbarAllUserPhotosArray" alt={p?.desc} onClick={()=>{setViewImg(p)}} />
