@@ -11,33 +11,46 @@
 
 # <a href="https://jamesjewson.netlify.app/#contact">Contact Me Here</a>
 
-# Main Technologies Used
+
+# A Little Bit About This Project
+
+This website started out as my first serious attempt at learning React, and began with [this tutorial.](https://www.youtube.com/watch?v=pFHyZvVxce0) While the tutorial was a good start, I have spent hundreds of hours modifying the layout, organization, and overall look and feel of the website. This site features completely custom CSS, a logo designed and created by me, and a normalized database. 
+I have learned an indcredible amount building this website. It has solidified my ability to use React hooks, components, props, states, and effects. It has given me the opportunity to learn how to write MongoDB queries. It also allowed me to work on a project initially designed by someone else, and build off of it into something I can call my own. 
+---
+## Main Technologies Used
 - MongoDB
 - Express
 - React
 - Node.js
 
+ ## Planned Future Updates
+- Chat Feature
+- OAuth Login and Account Creation
+- Password Reset
 
-# New Concepts and Tools
-- React
-- Context API
-- Axios API
- 
----
-
-
-# Things I learned while building this
-
+## Things I learned while building this
 - How to pass down props, including functions
 - React hooks
 - Cloudinary image upload, delete
 - MongoDB accessing/updating/deleting information inside of an array
 - MongoDB updating information
-- Database organization
-
+- Database organization and design
+- Context API
+- Axios API
+- Extensive Debugging, many "Gotchas," and how much I DON'T know!
 ---
 
-# Future Updates
+### Users Can...
+- Create an account
+- Create posts, with our without images
+- Like posts
+- Edit posts
+- Delete posts/pictures
+- Comment on posts
+- Follow other users
+- Browse users' photos
+- Update their profile picture
+- Receive notifications when users like or comment on their posts
 
-
+*This site is updated regularly, and is a constant work in progress*
     
