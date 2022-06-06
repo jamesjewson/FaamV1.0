@@ -3,20 +3,11 @@
 }
 
 .profileRight {
-    /* flex:7.5; */
     width: 80%;
 }
 
 .profileRightBottom{
     display: flex;
-}
-
-.profilePageSidebar{
-    /* flex: 1.75; */
-}
-
-.profileFeed{
-    /* min-width: 100%; */
 }
 
 

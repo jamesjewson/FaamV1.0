@@ -9,15 +9,6 @@
 
   /* Small Screens */
 @media only screen and (max-width: 1024px) {
-    /* .sidebar{
-       display: none;
-    }
-    .feed{
-        width:50%;
-    }
-    .rightbar{
-        width: 33%;
-    } */
 
     .homeMobleLogo{
         display: block;
@@ -30,14 +21,6 @@
 
 }
 
-/* @media only screen and (max-width: 640px) {
-        .topbarLinks{
-            margin-right: 0;
-        }      
-} */
-
-
-  /* 975 make vertical */
 
   @media only screen and (max-width: 480px) {
 

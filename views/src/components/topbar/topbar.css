@@ -1,10 +1,7 @@
 .topbarContainer {
-    /* flex: 2; */
-    /* height: 90px; */
     padding: 1em 0;
     max-height: fit-content;
     width: 100%;
-    /* min-width: 310px; */
     background-color: #fff;
     display:flex;
     align-items: center;
@@ -28,7 +25,6 @@
     height: 100%;
     justify-content: space-evenly;
     align-items:center;
-    /* margin-right: 10px; */
 }
 
 .topbarLink{
@@ -36,7 +32,6 @@
     cursor: pointer;
     color: black;
     box-sizing: border-box;
-    /* padding: 4px; */
 }
 
     .topbarLinkBottom{
@@ -50,7 +45,6 @@
 .topbarIcons{
     display:flex;
     flex-direction: column-reverse;
-    /* width: 100px; */
     position: relative;
     justify-content: space-evenly;
 }
@@ -89,8 +83,6 @@
 #logoutButton {
     width: 100%;
     align-self: center;
-    /* height: 30px; */
-    /* border-radius: 10px; */
     border: none;
     background-color: transparent;
     color: black;

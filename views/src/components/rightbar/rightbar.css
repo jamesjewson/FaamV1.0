@@ -1,6 +1,4 @@
 .rightbar{
-    /* flex: 2; */
-    /* flex: 2; */
     width: 20%;
     background-color: transparent;
     height: calc(100vh);
@@ -17,7 +15,6 @@
     position:sticky;
     right: 0;
     left:auto;
-    /* width: 425px; */
 }
 
 
@@ -267,15 +264,8 @@
 
 .rightbarprofileInfoName{
     box-sizing: border-box;
-    /* background-color: white; */
-    /* border: 6px solid black; */
-    /* padding: 5px; */
-    /* padding-top: 10px; */
-    /* z-index: 1; */
     position:relative;
-    /* top: -75px; */
     font-size: 3.6rem;
-    /* width: fit-content; */
     padding-top: 0.25em;
     margin-right: auto;
     margin-left: auto;
