@@ -43,7 +43,7 @@ export default function Login() {
                             ref={email} 
                         />
                         <input 
-                            placeholder="Use password 'demodemo'" 
+                            placeholder="Use password demodemo" 
                             type="password" 
                             required 
                             minLength="4" 
