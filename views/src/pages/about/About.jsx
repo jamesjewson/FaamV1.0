@@ -1,11 +1,13 @@
 import "./about.css"
 import {Link} from "react-router-dom"
-
+import friends from '../../styleAssets/images/friends.jpg'
+import dinner from '../../styleAssets/images/dinner.jpg'
+import family from '../../styleAssets/images/family.jpg'
+import momSon from '../../styleAssets/images/mom-son.jpg'
+import faamLarge from '../../styleAssets/images/faamLarge.png'
 import React from 'react'
 
 export default function About() {
-    // const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
 
 
@@ -14,13 +16,13 @@ export default function About() {
         <div className="aboutWrapper">
             <h1 className="aboutlogoWrapper">
                 <Link to="/">
-                    <img className="aboutLogo" src={PF+"default/faamLarge.jpg"} alt="logo"/>
+                    <img className="aboutLogo" src={faamLarge} alt="logo"/>
                 </Link>
             </h1>
             <div className="aboutlowerWrap">
                 <div className="aboutSidebar aboutSidebarLeft">
-                    <img src={PF + "default/friends.jpg"} alt="" className="aboutSideImg imgLeft" />
-                    <img src={PF + "default/dinner.jpg"} alt="" className="aboutSideImg imgLeft" />
+                    <img src={friends} alt="friends" className="aboutSideImg imgLeft" />
+                    <img src={dinner} alt="" className="aboutSideImg imgLeft" />
                 </div>
                 <div className="aboutTextWrapper">
                     <div className="headerWrap">
@@ -75,9 +77,9 @@ export default function About() {
                         </ul>
                     </section>
                 </div>
-                <div className="aboutSidebar">
-                    <img src={PF + "default/family.jpg"} alt="" className="aboutSideImg imgRight" />
-                    <img src={PF + "default/mom-son.jpg"} alt="" className="aboutSideImg imgRight" />
+                <div className="aboutSidebar aboutSidebarRight">
+                    <img src={family} alt="" className="aboutSideImg imgRight" />
+                    <img src={momSon} alt="" className="aboutSideImg imgRight" />
                 </div>
             </div>
             <div className="aboutBottom copyright">&copy; 2022 by James Jewson</div>

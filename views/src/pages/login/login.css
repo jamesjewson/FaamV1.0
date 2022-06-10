@@ -43,10 +43,10 @@
     padding-top: 40px;
    
 
-    -webkit-animation: fadeinform 1s ease-out, largedropdown 1.5s ease-out; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadeinform 1s ease-out, largedropdown 1.5s ease-out; /* Firefox < 16 */
-     -ms-animation: fadeinform 1s ease-out, largedropdown 1.5s ease-out; /* Internet Explorer */
-      -o-animation: fadeinform 1s ease-out, largedropdown 1.5s ease-out; /* Opera < 12.1 */
+    -webkit-animation: fadeinform 2s ease-out, largedropdown 2s ease-out; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeinform 2s ease-out, largedropdown 2s ease-out; /* Firefox < 16 */
+     -ms-animation: fadeinform 2s ease-out, largedropdown 2s ease-out; /* Internet Explorer */
+      -o-animation: fadeinform 2s ease-out, largedropdown 2s ease-out; /* Opera < 12.1 */
          animation: fadeinform 2s ease-out, largedropdown 2s ease-out;
 }
 
