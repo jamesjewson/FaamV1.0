@@ -5,6 +5,7 @@ import {Link} from "react-router-dom"
 import {AuthContext} from "../../context/AuthContext";
 import {Add, Remove, HighlightOff} from "@material-ui/icons"
 import {Settings} from "@material-ui/icons"
+import {CircularProgress} from "@material-ui/core"
 import MightKnow from "../mightKnow/MightKnow"
 import Topbar from "../topbar/Topbar"
 import { Carousel } from 'react-responsive-carousel';
@@ -25,6 +26,7 @@ export default function Rightbar({user}) {
     const [allUsers, setAllUsers] = useState([])
     const [profileImgFile,setProfileImgFile] = useState(null)
     const [isUser, setIsUser] = useState(false)
+    const [changePic, setChangePic] = useState(false)
 
 // Get current user followings
     useEffect(()=>{
@@ -103,6 +105,11 @@ if(user?._id === currentUser?._id){
 }, [user, currentUser])
 
 
+useEffect(()=>{
+    if(changePic){
+
+    }
+})
 
     //Change Profile Pic
     const changeProfileImage = async (e)=>{
@@ -111,6 +118,8 @@ if(user?._id === currentUser?._id){
           if (!profileImgFile){
               alert("No file attached!")
           }else{
+                //Yes is now a circle thing
+                setChangePic(true)
               const reader = new FileReader();
               reader.readAsDataURL(profileImgFile);
               reader.onloadend = () => {
@@ -131,6 +140,7 @@ if(user?._id === currentUser?._id){
               const res = await axios.post("/posts/postImg", newProfilePic) 
               if(res.status === 200){
                   setProfileImgFile('')
+                  setChangePic(false)
                   window.location.reload()
               }
           } catch (error) {
@@ -201,7 +211,9 @@ if(user?._id === currentUser?._id){
                                     <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
                                     <div className="saveNewImgContainer">
                                         <span className="">Keep this as your profile picture?</span> 
+                                        {changePic ? <CircularProgress/> : 
                                         <button className="saveProfileImgButton" type="submit">yes</button>  
+                                        }
                                         <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>              
                                     </div>
                                 </div>  
