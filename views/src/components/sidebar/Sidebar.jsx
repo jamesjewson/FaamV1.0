@@ -2,7 +2,7 @@ import "./sidebar.css"
 import { Adjust, Info, ReportProblem, Settings } from "@material-ui/icons"
 import SidebarFriend from "../sidebarFriend/SidebarFriend"
 import {AuthContext} from "../../context/AuthContext"
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useRef } from 'react'
 import axios from "axios";
 import {Link } from "react-router-dom"
 import Topbar from "../../components/topbar/Topbar"
@@ -14,6 +14,9 @@ export default function Sidebar() {
     const {user:currentUser} = useContext(AuthContext)
     const [friends, setFriends] = useState([])
     const [showMore, setShowMore] = useState(false)
+    let sidebarContainer = useRef()
+
+
 
     //Fetch user    
     useEffect(() =>{
@@ -26,6 +29,19 @@ export default function Sidebar() {
     
     const clickShowMore = ()=>{
         showMore ? setShowMore(false) : setShowMore(true)
+        
+        if(sidebarContainer.current.classList.contains("sidebarLoaded")){
+            sidebarContainer.current.classList.remove('sidebarLoaded')
+            sidebarContainer.current.classList.toggle('sidebarShowListContainer')
+
+        }else{
+            
+            sidebarContainer.current.classList.toggle('sidebarListContainerHidden')
+            sidebarContainer.current.classList.toggle('sidebarShowListContainer')
+        }
+        
+        
+
     }
 
 
@@ -53,11 +69,10 @@ export default function Sidebar() {
                 {/* Sidebar Clickables */}
                 <ul className="sidebarList">
                         
-                        {showMore ? ( 
-                            <>
                             <div className="sidebarListContainer">
-
                                 <h2 className="sidebarHeader" >More Projects</h2>
+                                <div ref={sidebarContainer} className="sidebarLoaded">
+
                                 <li className="sidebarListItem">
                                     <Adjust className="sidebarIcon" />
                                     <span className="sidebarListItemText"><a href="https://jewsonmusic.netlify.app/" rel="noreferrer" target="_blank" className="sidebarListItemText">My Music Portfolio</a></span>
@@ -74,7 +89,10 @@ export default function Sidebar() {
                                     <Info className="sidebarIcon" />
                                     <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
                                 </li>
+                                </div>
                             </div>
+                        {showMore ? ( 
+                            <>
                             <div className="sidebarButtonContainer">
 
                                 {/* <hr className="sidebarHr"/> */}
@@ -83,27 +101,8 @@ export default function Sidebar() {
                             </>
                         ) : (
                             <>
-                            <div className="sidebarListContainerHidden">
-                                
-                            <h2 className="sidebarHeader" >More Projects</h2>
-                                <li className="sidebarListItem">
-                                    <Adjust className="sidebarIcon" />
-                                    <span className="sidebarListItemText"><a href="https://jewsonmusic.netlify.app/" rel="noreferrer" target="_blank" className="sidebarListItemText">My Music Portfolio</a></span>
-                                </li>
-                                <li className="sidebarListItem">
-                                    <Adjust className="sidebarIcon" />
-                                    <span className="sidebarListItemText"><a href="https://todolistjewson.herokuapp.com/" rel="noreferrer" target="_blank" className="sidebarListItemText">To Do List App</a></span>
-                                </li>
-                                <li className="sidebarListItem">
-                                    <ReportProblem className="sidebarIcon" />
-                                    <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#contact" rel="noreferrer" target="_blank" className="sidebarListItemText">Report a bug</a></span>
-                                </li>
-                                <li className="sidebarListItem">
-                                    <Info className="sidebarIcon" />
-                                    <span className="sidebarListItemText"><a href="https://jamesjewson.netlify.app/#" rel="noreferrer" target="_blank" className="sidebarListItemText">About This Developer</a></span>
-                                </li>
-                            </div>
-                            <button className="sidebarButton" onClick={clickShowMore}>Show More</button>
+                            
+                            <button className="sidebarButton sidebarShowMore" onClick={clickShowMore}>Show More</button>
                             </>
                             )}
                 </ul>
