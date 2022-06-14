@@ -13,9 +13,9 @@ router.get("/allUsers", async (req,res)=>{
     // console.log(allUsers.length);
     for(let i=0; i<allUsers.length; i++){
       // console.log(allUsers[i]._id.valueOf());
-      const userProfilePic = await mImage.find({ userId: allUsers[i]._id.valueOf(), isProfilePic: "true" })
+      const userProfilePic = await mImage?.find({ userId: allUsers[i]._id.valueOf(), isProfilePic: "true" })
 
-      allUsers[i].profilePicture = userProfilePic[0].img
+      allUsers[i].profilePicture = userProfilePic[0]?.img
     }
     // console.log(allUsers);
     res.status(200).json(allUsers)  
@@ -47,8 +47,8 @@ const userId = req.params.userId;
 try {
   const user = await mUser.findById(userId)
   const {password,updatedAt, ...other} = user?._doc
-  const userProfilePic = await mImage.find({ userId: other._id, isProfilePic: "true" })
-  other.profilePicture = userProfilePic[0].img
+  const userProfilePic = await mImage?.find({ userId: other._id, isProfilePic: "true" })
+  other.profilePicture = userProfilePic[0]?.img
   res.status(200).json(other)
   
 } catch (error) {

@@ -36,11 +36,9 @@ router.post("/login", async (req,res, next)=>{
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     !validPassword && res.status(400).json("wrong password")
 
-    const userProfilePic = await mImage.find({ userId: user._id, isProfilePic: "true" })
-    user.profilePicture = userProfilePic[0].img
-    console.log(user);
+    const userProfilePic = await mImage?.find({ userId: user._id, isProfilePic: "true" })
+    user.profilePicture = userProfilePic[0]?.img
     res.status(200).json(user)
-    console.log(user)
    }catch(err) {
         res.status(500).json(err)
    }    
