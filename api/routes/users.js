@@ -27,14 +27,16 @@ router.get("/allUsers", async (req,res)=>{
 
 //Get a user
 router.get("/", async (req,res)=>{
-  const userId = req.query.userId;
-  const username = req.query.username;
+  // console.log(req.query);
+  const userId = req.query?.userId;
+  const username = req.query?.username;
+  console.log(username);
   try{
       const user = userId ? await mUser.findById(userId) : await mUser.findOne({username:username});
       //This line removes password and updatedAt in the response, but sends everything else. Other can be called whatever you want   
       const {password,updatedAt, ...other} = user._doc
-      const userProfilePic = await mImage.find({ userId: other._id, isProfilePic: "true" })
-      other.profilePicture = userProfilePic[0].img
+      const userProfilePic = await mImage?.find({ userId: other._id, isProfilePic: "true" })
+      other.profilePicture = userProfilePic[0]?.img
       res.status(200).json(other)
   }catch (err){
       res.status(500).json(err)

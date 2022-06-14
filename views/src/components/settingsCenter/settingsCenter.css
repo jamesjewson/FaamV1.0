@@ -81,3 +81,39 @@
     margin-left: auto;
 
 }
+
+.settingsButton{
+    margin-right: 0.5em;
+}
+
+.settingsUserInfoContainer.danger{
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    bottom: 0;
+}
+
+.dangerZone{
+
+    background-color: red;
+    width: 50%;
+    /* justify-items: center; */
+}
+
+button.deleteProfile{
+    background-color: black;
+    color: white;
+    padding: 0.75em;
+}
+
+.formDanger{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90vh;
+    /* background-color: aqua; */
+}

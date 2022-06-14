@@ -188,16 +188,19 @@ useEffect(() => {
                 <span className="settingsGoBack" >Go Back</span>
             </Link>
             <hr className="settingsHr"/>
+            <div className="formDanger">
+
             <form onSubmit={submitChanges} className="updateProfileSettingsForm">
                <div className="settingsUserInfoContainer">
                     <span className="settingsLabel">Username: </span>
                     {showHideSettings ? (
                         <>
-                            <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState}/>
+                            <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} />
+                            {/* <input type="text" placeholder="Update username here" className="settingsInput" value={usernameInputState} onChange={(e)=> setUsernameInputState(e.target.value)} /> */}
                         </>
                         ) : (
                             <span className="settingsCurrentValue">{currentUser.username}</span>    
-                    ) }
+                            ) }
 
                </div>
                <div className="settingsUserInfoContainer">
@@ -229,7 +232,7 @@ useEffect(() => {
                        </>
                        ) : (
                            <span className="settingsCurrentValue">{currentUser.email} </span>
-                    ) }
+                           ) }
                </div>
 
                <div className="settingsUserInfoContainer">
@@ -242,11 +245,18 @@ useEffect(() => {
                </div>
                 {showHideSettings ? (
                     <>
-                    <button type="submit" >Save</button>
-                    <button type="button" onClick={showHideClick}>Cancel</button>
+                    <button type="submit" className="settingsButton">Save</button>
+                    <button type="button" onClick={showHideClick} className="settingsButton">Cancel</button>
                     </>
                 ) : null}
-           </form>
+                </form>
+                <div className="dangerZone">
+                    <div className="settingsUserInfoContainer danger">
+                        <span className="settingsLabel deleteProfile">!DANGER ZONE!</span>
+                        <button className="settingsLabel deleteProfile">DELETE PROFILE</button>
+                    </div>
+                </div>
+                </div>
             </div>
             <div className="settingsRightbar">
                 {/* Profile Pic Stuff */}

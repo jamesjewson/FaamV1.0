@@ -17,7 +17,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Rightbar({user}) {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
+    console.log(user);
     const {user:currentUser, dispatch} =  useContext(AuthContext)
     const [followed,setFollowed] = useState(false)
     const [photos, setPhotos] = useState([])
@@ -30,7 +30,7 @@ export default function Rightbar({user}) {
 
 // Get current user followings
     useEffect(()=>{
-        setFollowed(currentUser.following.includes(user?._id))
+        setFollowed(currentUser.following.includes(currentUser?._id))
       
     },[currentUser, user])
 
@@ -99,6 +99,7 @@ export default function Rightbar({user}) {
 
 //Show/hide Change pictures
 useEffect(() => {
+    console.log(user);
 if(user?._id === currentUser?._id){
     setIsUser(true)
 }                   
