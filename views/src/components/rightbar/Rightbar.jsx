@@ -246,12 +246,15 @@ useEffect(()=>{
                         </form>  
                     ) : 
                     
-                    (<img 
-                        className="profileUserImg" 
-                        src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
-                        alt=""
-                        /> )
-                    
+                    (
+                    <div className="profileUserImgDiv">
+                        <img 
+                            className="profileUserImg" 
+                            src={user.profilePicture ? user.profilePicture : PF + "person/noAvatar.jpeg"}  
+                            alt=""
+                            /> 
+                    </div>
+                    )
                     }
 
                 {/* Profile Name */}

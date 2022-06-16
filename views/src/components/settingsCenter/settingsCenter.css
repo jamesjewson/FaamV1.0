@@ -1,13 +1,15 @@
 .settingsCenter{
-    flex: 4;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    /* margin-top: 10px; */
     display: flex;
+    width: 60%;
+
+    min-height: calc(100vh);
+    top: 0;
+    position: sticky;
 }
 
 .middleSettings{
-    width: 60%;
+    width: 100%;
 }
 
 .updateProfileSettingsForm{
@@ -20,12 +22,11 @@
 }
 
 .settingsPageH1 {
-    margin: 10px 0px 15px;
+    padding: 10px 0px 15px;
 }
 
 .settingsHr{
     width: 100%;
-    margin-bottom: 15px;
 }
 
 .settingsUserInfoContainer{
@@ -48,13 +49,18 @@
 }
 
 .settingsRightbar{
-    width: 40%;
+    width: 20%;
+    height: calc(100vh);
+    max-height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 20px;
 }
 
-.settingsProfileUserImg{
-    width: 600px;
-    height: 600px;
-}
 
 .editSettingsIcon:hover{
     cursor: pointer;
@@ -66,20 +72,20 @@
     padding-bottom: 5px;
 }
 
+.settingsGoBack:hover{
+    cursor: pointer;
+    text-shadow: 1px 0px 0px black;
+}
+
 .settingsProfileInfoName{
     box-sizing: border-box;
-    background-color: white;
-    border: 8px solid black;
-    padding: 5px;
-    padding-top: 10px;
-    z-index: 1;
     position:relative;
-    top: -75px;
-    font-size: 48px;
-    width: fit-content;
+    font-size: 3.6rem;
+    padding-top: 0.25em;
     margin-right: auto;
     margin-left: auto;
-
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .settingsButton{
@@ -95,25 +101,52 @@
     align-items: center;
     width: 100%;
     bottom: 0;
+    margin: 0;
 }
 
-.dangerZone{
-
-    background-color: red;
-    width: 50%;
-    /* justify-items: center; */
+.deleteProfile{
+    font-size: 1.8rem;
+    margin: 0 .5em;
+    text-align: center;
 }
+
 
 button.deleteProfile{
     background-color: black;
     color: white;
     padding: 0.75em;
+    transition: .25s;
+}
+
+button.deleteProfile:hover{
+    color: red;
 }
 
 .formDanger{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90vh;
-    /* background-color: aqua; */
+    height: calc(100vh - 90px);
+    align-content:flex-end;
+    width: 100%;
+}
+
+.dangerZone{
+    
+    margin: 0;
+    padding: 0px;
+    background-color: red;
+    width: 50%;
+        max-width: 500px;
+        min-width: fit-content;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.settingsTopbar{
+    padding-left: 10px;
+}
+
+.settingsMobileTopbar{
+    display: none;
 }

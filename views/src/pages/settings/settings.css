@@ -1,5 +1,51 @@
 .settingsWrapper {
     display: flex;
-    justify-content: center;    
+    /* justify-content: space-between;     */
 }
+
+
+
+/* Small Screens */
+@media only screen and (max-width: 1024px) {
+    div.settingsRightbar{
+        width: 40%;
+    }    
+
+    .settingsMobileTopbar{
+        display: block;
+    }
+
+  }
+
+
+
+
+  /* 800 adjust rightbar scale */
+  /* Tablets */
+@media only screen and (max-width: 768px) {
+    div.settingsUserInfoContainer{
+        width: 100%;
+    }
+    
+
+}
+
+
+
+  /* 975 make vertical */
+/* Phone */
+  @media only screen and (max-width: 480px) {
+        .settingsWrapper{
+            flex-direction: column-reverse;
+        }
+
+        .settingsCenter, div.settingsRightbar{
+            width: 100%;
+        }
+        .settingsRightbar{
+            position: relative;
+            height: fit-content;
+        }
+
+  }
 

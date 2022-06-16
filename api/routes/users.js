@@ -1,10 +1,12 @@
 const router = require("express").Router()
 const User = require("../models/User")
 const mUser = require("../models/mUser")
+const mPost = require("../models/mPost")
 const mImage = require("../models/mImage")
 const bcrypt = require("bcrypt")
 const cloudinary = require("../middleware/cloudinary");
 const mNotification = require("../models/mNotification")
+MongoClient = require('mongodb').MongoClient
 
 
 router.get("/allUsers", async (req,res)=>{
@@ -194,16 +196,29 @@ router.get("/friends/:userId", async (req,res)=>{
 })
 
 
-//Delete User (This should still work, just switch user to mUser)
-    //Having /:id allows any id to be the url
-    router.delete("/:id", async(req,res)=>{
-      //Check to see if it's the user
-      if(req.body.userId === req.params.id || req.body.isAdmin){
+//Delete User
+    router.delete("/:id", async(req,res)=>{      
+      if(req.body.user._id === req.params.id || req.body.isAdmin){
+        const client = new MongoClient(process.env.DB_STRING)
+        await client.connect()
+        const session = client.startSession()
           try{
-              const user = await mUser.findByIdAndDelete({ _id: req.params.id})
+              session.withTransaction( async ()=>{
+                const images = await mImage?.find({ userId: req.params.id})
+                images?.forEach(image => {
+                  cloudinary.uploader.destroy(image.cloudinaryId)
+                });
+                await mUser.findByIdAndDelete({ _id: req.params.id})
+                await mImage?.deleteMany({ userId: req.params.id })
+                await mPost?.deleteMany({ userId: req.body.user._id})
+            })
               res.status(200).json("Account has been deleted")
           } catch (err){
               return res.status(500).json(err)
+          }
+          finally{
+            await session.endSession();
+            await client.close()
           }
       }else {
           return res.status(403).json("You can delete only your account")

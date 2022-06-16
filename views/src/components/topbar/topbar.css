@@ -74,7 +74,7 @@
 .topbarImg{
     width: 3.5em;
     height: 3.5em;
-    border-radius: 20%;
+    /* border-radius: 20%; */
     object-fit: cover;
     cursor: pointer;
     margin-right: 1em;

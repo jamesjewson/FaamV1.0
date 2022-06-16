@@ -2,13 +2,15 @@
     display: flex;
 }
 
-.profileRight {
+/* .profileRight {
     width: 80%;
-}
-
+} */
+/* 
 .profileRightBottom{
     display: flex;
-}
+} */
+
+
 
 
 
@@ -79,11 +81,6 @@
         flex-direction: column-reverse;
     }
     
-
-    .profileUserImg{
-        height: 300px;
-        width: 300px;
-    }
 
     .allUserPhotosContainer{
         min-height: 200px;

@@ -7,6 +7,7 @@ export const loginCall = async (userCredentials,dispatch)=>{
         const res = await axios.post("https://faamserver.herokuapp.com/api/auth/login", userCredentials)
         // const res = await axios.post("http://localhost:8800/api/auth/login", userCredentials)
         .catch(error => {
+            alert("Incorrect Username or Password")
             console.log(`Error: ${error.message}`);
             console.error('There was an error!', error);
         });
