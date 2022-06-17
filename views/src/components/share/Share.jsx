@@ -100,7 +100,7 @@ const makePost = async (e) =>{
                             alt="" 
                        />
                     </Link>
-                   <input placeholder={"Hey "+user.username+"! What's important?"} className="shareInput" ref={desc} />
+                   <textarea placeholder={"Hey "+user.username+"! What's important?"} className="shareInput" ref={desc} />
                </div>
                <hr className="shareHr" />
                 {/* File upload */}
