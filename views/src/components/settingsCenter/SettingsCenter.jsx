@@ -179,11 +179,14 @@ useEffect(() => {
   const deletePopup = ()=> {
     
     try {
-        if (isUser) {
+        if(user.username === "demo"){
+            alert("You cannot delete the demo! Make your own profile if you wish to test this!")
         }
-        if(window.confirm("Delete your profile? (This cannot be undone.)") === true){
-            deleteProfile()
-        }   
+        else if (isUser) {
+            if(window.confirm("Delete your profile? (This cannot be undone.)") === true){
+                deleteProfile()
+            }   
+        }
     }
         catch(err){
             console.log(err);
