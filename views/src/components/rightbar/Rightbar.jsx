@@ -17,7 +17,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Rightbar({user}) {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    console.log(user);
+    // console.log(user);
     const {user:currentUser, dispatch} =  useContext(AuthContext)
     const [followed,setFollowed] = useState(false)
     const [photos, setPhotos] = useState([])
@@ -99,7 +99,7 @@ export default function Rightbar({user}) {
 
 //Show/hide Change pictures
 useEffect(() => {
-    console.log(user);
+    // console.log(user);
 if(user?._id === currentUser?._id){
     setIsUser(true)
 }                   
@@ -208,16 +208,18 @@ useEffect(()=>{
                         <form onSubmit={changeProfileImage} className="newProfileImageForm">
                             <label htmlFor="profileImgFile" className="" >
                                 {profileImgFile ? 
-                                <div className="profileUserImgDiv">
-                                    <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
+                                <>
+                                    <div className="profileUserImgDiv">
+                                        <img src={URL.createObjectURL(profileImgFile)} alt="" className="profileUserImg" />
+                                    </div>  
                                     <div className="saveNewImgContainer">
                                         <span className="">Keep this as your profile picture?</span> 
                                         {changePic ? <CircularProgress/> : 
                                         <button className="saveProfileImgButton" type="submit">yes</button>  
-                                        }
+                                    }
                                         <button className="saveProfileImgButton" onClick={()=> setProfileImgFile(null)}>no</button>              
                                     </div>
-                                </div>  
+                                </>
                                 : 
                                 <div className="profileUserImgDiv" > 
                                     <img 

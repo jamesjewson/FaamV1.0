@@ -19,6 +19,7 @@ export default function Register() {
         //PreventDefault stops the page from reloading
         e.preventDefault();
         if(passwordAgain.current.value !== password.current.value){
+            console.log(passwordAgain.current.value + " : " + password.current.value);
             password.current.setCustomValidity("Passwords don't match")
         }else{
             const user = {
