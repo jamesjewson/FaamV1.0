@@ -34,6 +34,7 @@ export default function Login() {
         <div className="login">
             <div className="loginWrapper">
                 <div className="loginFormContainer">
+                    {/* <span className="loginWelcome">Welcome to Faam!</span> */}
                     <form className="loginBox" onSubmit={handleClick}>
                         <input 
                             placeholder="Use demo@demo.com" 

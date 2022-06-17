@@ -253,7 +253,7 @@ router.post("/:id/comment", async (req,res)=>{
 //Delete a comment
 router.delete("/:id/deleteComment", async (req, res) => {
   try {
-    console.log(req.body._id);
+    // console.log(req.body._id);
     await mComment.deleteOne({ _id: req.body._id })
     res.status(200).json()
   } catch (err) {
@@ -265,7 +265,7 @@ router.delete("/:id/deleteComment", async (req, res) => {
 //Update a comment
 router.put("/:id/updateComment", async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     // console.log(req.body.comment.comment);
    const updatedComment = await mComment.findOneAndUpdate(
      {_id : req.body._id },

@@ -12,11 +12,21 @@
     width: 100vw;
     height: 100vh;
     max-height: 100vh;
+
+}
+
+.login::before{
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    z-index: -1;
     background-image: url('../../styleAssets/images/faamLarge.png');
+
     background-repeat: no-repeat;
     background-position: 5% 50%;
     background-size: 100%;
-
 
     -webkit-animation: fadein 1s ease-out, dropdown 1.5s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 1s ease-out, dropdown 1.5s; /* Firefox < 16 */
@@ -147,14 +157,20 @@
     height: 5vh;
 }
 
+.loginWelcome{
+    font-size: 3rem;
+    margin-left: -.5em;
+}
 
 /* Queries */
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
     
-    .login {
-    background-position: center top;
-    background-repeat: space;
+    .login::before{
+        /* background-repeat:repeat; */
+        background-position: top;
+        background-size: fill;
+        transition: .25s;
     }
 
 

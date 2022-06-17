@@ -32,7 +32,7 @@ router.get("/", async (req,res)=>{
   // console.log(req.query);
   const userId = req.query?.userId;
   const username = req.query?.username;
-  console.log(username);
+  // console.log(username);
   try{
       const user = userId ? await mUser.findById(userId) : await mUser.findOne({username:username});
       //This line removes password and updatedAt in the response, but sends everything else. Other can be called whatever you want   

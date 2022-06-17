@@ -194,7 +194,7 @@ useEffect(() => {
     try {
         const res = await axios.delete("/users/" + user._id, { data: {user}})
         if(res.status === 200){
-            alert("Account Deleted! Come back soon! There'll be a page saying goodbye somday :(")
+            alert("Account Deleted! Come back soon! There'll be a page saying goodbye someday :(")
             logoutCall({user:null}, dispatch)
         }
     } catch (error) {
