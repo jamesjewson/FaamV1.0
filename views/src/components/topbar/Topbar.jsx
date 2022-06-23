@@ -32,15 +32,7 @@ useEffect(() =>{
     useEffect(() => {
         const fetchUserNotifications = async()=>{
             let resMessage = await axios.get(`/users/notifications/` + user?._id)
-            // const senderStuff = await axios.get(`/users/`)
             resMessage = resMessage.data
-            //Loop through all messages
-            // console.log(resMessage);
-         
-            
-
-
-
             setNotifications(resMessage)
         }
         fetchUserNotifications()
@@ -62,16 +54,13 @@ useEffect(() =>{
     }
 
     const clickShowNotifications = ()=>{
-        // console.log(notifications);
         showNotifications ? setShowNotifications(false) : setShowNotifications(true)
     }
 
     const deleteNotification = async (deletedNotification)=>{
-         try {
-            
+         try {     
             await axios.delete("/posts/"+ deletedNotification + "/deleteNotification",    { data: {deletedNotification}}
             )
-            // console.log(deletedNotification);
              setNotifications(notifications.filter((notification) => notification._id !== deletedNotification))
          } catch (err) {
              console.log(err);

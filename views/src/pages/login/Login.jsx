@@ -15,7 +15,6 @@ export default function Login() {
     const handleClick = (e) =>{
         //PreventDefault stops the page from reloading
         e.preventDefault();      
-       
         if(email.current.value === "demo@demo.com"){
             if (window.confirm("By entering this website you agree to the terms and conditions.\nYou are posting on a public site that is a part of my portfolio.\n\nRules: Be nice. Be professional.") === true) {            
                 loginCall({email:email.current.value,password:password.current.value}, dispatch)
@@ -25,7 +24,6 @@ export default function Login() {
             loginCall({email:email.current.value,password:password.current.value}, dispatch)
         }  
     }
-
     const handleForgotPassword = ()=>{
             alert("This feature has not yet been implemented. Please contact me on the following page to reset your password.")
     }

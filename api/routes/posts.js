@@ -1,5 +1,4 @@
 const router = require("express").Router()
-// const Post = require("../models/Post")
 const mPost = require("../models/mPost")
 const mNotification = require("../models/mNotification")
 const mImage = require("../models/mImage")
@@ -24,7 +23,7 @@ router.post("/post", async (req,res)=>{
 router.post("/postImg", async (req,res)=>{
   try {
 
-    // Upload image to cloudinary 
+    // Upload image to Cloudinary 
     const result = await cloudinary.uploader.upload(req.body.img, {
         upload_preset: 'i7qr7gwc'
       })
@@ -35,8 +34,8 @@ router.post("/postImg", async (req,res)=>{
           cloudinaryId: result.public_id
          });
       if(req.body.isProfilePic){
-        //change profile pic
-        // console.log(newImgPost._id.valueOf());
+        //Change profile pic
+          //Make this a transaction !!!!!!!!!!!!!!!!!!!
           const oldProfilePic = await mImage.find({ userId: req.body.userId, isProfilePic: "true" })
           await mImage.findOneAndUpdate({"_id": oldProfilePic[0]?._id}, {"isProfilePic": "false"})
           await mImage.findByIdAndUpdate(newImgPost._id.valueOf(), { isProfilePic: "true"})
@@ -134,11 +133,9 @@ router.delete("/deleteImagePost/:id", async (req, res) => {
       const post = await mPost.findById(req.body.image.postId);
       await post.deleteOne();
     }
-
     cloudinary.uploader.destroy(req.body.image.cloudinaryId)
     await mImage.deleteOne({ _id: req.body.image._id })
     res.status(200).json("the post has been deleted");
-
   } catch (err) {
     res.status(500).json(err);
   }
@@ -162,15 +159,11 @@ router.get("/photos/:username", async (req, res) => {
   try{
      const post = await mPost.findById(req.params.id)
      const receiver = await mUser.findById(post.userId)
-     const sender = await mUser.findById(req.body.userId)
-     
+     const sender = await mUser.findById(req.body.userId) 
       if(!post.likes.includes(req.body.userId)){
           await post.updateOne({$push:{likes:req.body.userId}})
           const message = sender.username + " liked your post."
-
-          sendNotification(sender._id, receiver._id, message);
-         
-         //  await user.updateOne({ $push: { notifications: notification }}) //Update Notifications
+          sendNotification(sender._id, receiver._id, message);         
            res.status(200).json("The post has been liked")
            
       }else {
@@ -181,7 +174,6 @@ router.get("/photos/:username", async (req, res) => {
       res.status(500).json(err)
   }
 })
-
 
 const sendNotification = async (sender, receiver, message)=>{
     const notification = await mNotification.create({
@@ -195,16 +187,12 @@ const sendNotification = async (sender, receiver, message)=>{
 router.delete("/:id/deleteNotification", async (deletedNotification, res) => {
     try {
       await mNotification.findByIdAndDelete({ _id: deletedNotification.body.deletedNotification })
-      res.status(200).json()
-  
-    
+      res.status(200).json()  
         } catch (err) {
           res.status(500).json(err);
           console.log(err);
         }
   });
-
-
 
 
 //Update a post
@@ -228,7 +216,6 @@ router.put("/:id", async (req, res) => {
 router.get("/comment/:id", async (req,res)=>{
   try {
     const comment = await mComment.find({ postID: req.params.id })
-    // console.log(comment);
     res.status(200).json(comment)
   } catch (error) {
     console.log(error);
@@ -239,7 +226,6 @@ router.get("/comment/:id", async (req,res)=>{
 
 //Create a comment
 router.post("/:id/comment", async (req,res)=>{
-
   try {
     const newComment = new mComment(req.body)
     await newComment.save();
@@ -253,7 +239,6 @@ router.post("/:id/comment", async (req,res)=>{
 //Delete a comment
 router.delete("/:id/deleteComment", async (req, res) => {
   try {
-    // console.log(req.body._id);
     await mComment.deleteOne({ _id: req.body._id })
     res.status(200).json()
   } catch (err) {
@@ -265,8 +250,6 @@ router.delete("/:id/deleteComment", async (req, res) => {
 //Update a comment
 router.put("/:id/updateComment", async (req, res) => {
   try {
-    // console.log(req.body);
-    // console.log(req.body.comment.comment);
    const updatedComment = await mComment.findOneAndUpdate(
      {_id : req.body._id },
      {

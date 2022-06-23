@@ -19,20 +19,14 @@ export default function SettingsCenter() {
     const [emailInputState, setEmailInputState] = useState(false)
     const [relationshipInputState, setRelationshipInputState] = useState(false)
     const [showHideSettings, setShowHideSettings] = useState(false)
-
-
     const [profileImgFile,setProfileImgFile] = useState(null)
     const [isUser, setIsUser] = useState(false)
-
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 
     useEffect(() =>{
         const fetchUser = async () => {      
         const res = await axios.get(`/users?username=${username}`)
-
-        //Fetch profile pic
-
         setCurrentUser(res.data);
     }; 
        fetchUser();
@@ -51,38 +45,23 @@ export default function SettingsCenter() {
 
             //Check if email actually changed
             if( (updatedEmail !== false) && (updatedEmail !== user.email) && (updatedEmail !== "")){
-                // console.log("email updated")
             }else{
-                // console.log("email not updated");
                 updatedEmail = user.email
             }
-            //Check if from actually changed
             if( (updatedFrom !== false) && (updatedFrom !== user.from) && (updatedFrom !== "")){
-                // console.log("from updated")
             }else{
-                // console.log("from not updated");
                 updatedFrom = user.from
             }
-            //Check if username actually changed
             if( (updatedUsername !== false) && (updatedUsername !== user.username) && (updatedUsername !== "")){
-                // console.log("username updated")
             }else{
-                // console.log("username not updated");
                 updatedUsername = user.username
             }
-            //Check if current city actually changed
             if( (updatedCurrentCity !== false) && (updatedCurrentCity !== user.currentCity)  && (updatedCurrentCity !== "")){
-                // console.log("current city updated")
             }else{
-                // console.log("current city not updated");
                 updatedCurrentCity = user.currentCity
             }
-
-            //Check if relationship actually changed
             if( (updatedRelationship !== false) && (updatedRelationship !== user.relationship)  && (updatedRelationship !== "")){
-                // console.log("relationship updated")
             }else{
-                // console.log("relationship not updated");
                 updatedRelationship = user.relationship
             }
 
@@ -111,11 +90,9 @@ export default function SettingsCenter() {
         }
     }
 
-//ShowHide Change Settings
+    //ShowHide Change Settings
     const showHideClick = ()=>{
-        if(currentUser.username !== 'Demo'){
-
-            
+        if(currentUser.username !== 'Demo'){            
             setShowHideSettings(!showHideSettings)
             setFromInputState(currentUser.from)
             setUsernameInputState(currentUser.username)
@@ -127,11 +104,6 @@ export default function SettingsCenter() {
             alert("Setting modifications have been disabled for the demo. Create your own profile if you wish to use this feature.")
         }
     }
-
-    
-/////////////////
-
-
 
 //Show/hide Change pictures
 useEffect(() => {
@@ -145,7 +117,6 @@ useEffect(() => {
   //Change Profile Pic
   const changeProfileImage = async (e)=>{
     e.preventDefault()
-      //if user update profilepicimg
       if (!profileImgFile){
           alert("No file attached!")
       }else{
@@ -176,8 +147,7 @@ useEffect(() => {
   };
 
 //Delete Profile
-  const deletePopup = ()=> {
-    
+  const deletePopup = ()=> { 
     try {
         if(user.username === "demo"){
             alert("You cannot delete the demo! Make your own profile if you wish to test this!")
@@ -188,9 +158,9 @@ useEffect(() => {
             }   
         }
     }
-        catch(err){
-            console.log(err);
-        }
+    catch(err){
+        console.log(err);
+    }
   }
 
   const deleteProfile = async ()=>{
@@ -365,15 +335,8 @@ useEffect(() => {
                         <span className="rightbarInfoValue">{user.relationship }</span>
                     </div>
                 </div>
-
-                {/* User Photos */}
                 <hr className="allUserPhotosHrTop" />
-
-
-
-
-                </div>
-            
+            </div>
         </div>   
         </>
     )

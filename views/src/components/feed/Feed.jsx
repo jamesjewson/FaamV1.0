@@ -12,9 +12,7 @@ export default function Feed({ username }) {
    
 // Fetch posts
     useEffect(() =>{
-        const fetchPosts = async () => {
-
-            
+        const fetchPosts = async () => {         
         const res = username ? await axios.get("/posts/profile/" + username) : await axios.get("posts/timeline/" + user._id)
             setPosts(res.data.sort((p1,p2)=>{
                 return new Date(p2.createdAt) - new Date(p1.createdAt);
@@ -46,8 +44,8 @@ const renderNewPost = (newPost)=>{
 }
 
 
-    //Check Location
-    const currentLocation = window.location.pathname;
+//Check Location
+const currentLocation = window.location.pathname;
 
 const scrollTop= ()=>{
     document.body.scrollTop = 0; // For Safari
@@ -58,8 +56,7 @@ const scrollTop= ()=>{
 /////////
     return (
         <div className="feed">
-            <div className="feedWrapper">
-                
+            <div className="feedWrapper">              
                 {((!username || username === user.username) && !currentLocation.includes(`profile/` + user.username) ) ? <Share renderNewPost={renderNewPost} /> : null}
                     {posts.length < 1 ? <span className="feednothingToSee">Nothing to see here</span> :
                     posts.map((p)=>(

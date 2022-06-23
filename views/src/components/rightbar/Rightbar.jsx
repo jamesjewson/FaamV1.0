@@ -17,7 +17,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 export default function Rightbar({user}) {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    // console.log(user);
     const {user:currentUser, dispatch} =  useContext(AuthContext)
     const [followed,setFollowed] = useState(false)
     const [photos, setPhotos] = useState([])
@@ -30,8 +29,7 @@ export default function Rightbar({user}) {
 
 // Get current user followings
     useEffect(()=>{
-        setFollowed(currentUser.following.includes(currentUser?._id))
-      
+        setFollowed(currentUser.following.includes(currentUser?._id)) 
     },[currentUser, user])
 
 // Get all users
@@ -90,27 +88,15 @@ export default function Rightbar({user}) {
        setViewImg(false)
     }
     
-    
- 
-    
-
-///////////////////////////
-
 
 //Show/hide Change pictures
 useEffect(() => {
-    // console.log(user);
 if(user?._id === currentUser?._id){
     setIsUser(true)
 }                   
 }, [user, currentUser])
 
 
-useEffect(()=>{
-    if(changePic){
-
-    }
-})
 
     //Change Profile Pic
     const changeProfileImage = async (e)=>{
@@ -119,45 +105,35 @@ useEffect(()=>{
           if (!profileImgFile){
               alert("No file attached!")
           }else{
-                //Yes is now a circle thing
                 setChangePic(true)
-              const reader = new FileReader();
-              reader.readAsDataURL(profileImgFile);
-              reader.onloadend = () => {
-                  uploadImage(reader.result);
-              };
-              reader.onerror = (error) => {
-                  console.error(error);
-              };
-          }
-      }
-      const uploadImage = async (base64EncodedImage) => {
-                  const newProfilePic = {
-              img: base64EncodedImage,
-              userId: user._id,
-              isProfilePic: true
-          }
-          try {
-              const res = await axios.post("/posts/postImg", newProfilePic) 
-              if(res.status === 200){
-                  setProfileImgFile('')
-                  setChangePic(false)
-                  window.location.reload()
-              }
-          } catch (error) {
-              console.log(error);
-          }
-      };
-
-
-    
-
-
-
-
-
-
-
+                const reader = new FileReader();
+                reader.readAsDataURL(profileImgFile);
+                reader.onloadend = () => {
+                    uploadImage(reader.result);
+                };
+                reader.onerror = (error) => {
+                    console.error(error);
+                };
+            }
+        }
+        //Upload Image
+        const uploadImage = async (base64EncodedImage) => {
+                    const newProfilePic = {
+                img: base64EncodedImage,
+                userId: user._id,
+                isProfilePic: true
+            }
+            try {
+                const res = await axios.post("/posts/postImg", newProfilePic) 
+                if(res.status === 200){
+                    setProfileImgFile('')
+                    setChangePic(false)
+                    window.location.reload()
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -315,7 +291,6 @@ useEffect(()=>{
                         })}
                         <div className="largeImgContainer">
                             <HighlightOff onClick={hideLargeImage} className="hideLargeImg" />
-                            {/* <img src={viewImg.img} className="viewLargeImage" alt={viewImg?.desc} /> */}
                             <div className="rightbarCarouselContainer">
                                 <Carousel 
                                     infiniteLoop="true" 

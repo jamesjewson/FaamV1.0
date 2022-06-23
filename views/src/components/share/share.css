@@ -15,16 +15,12 @@
 .shareWrapper{
     padding: 10px;  
     width: 100%;
-
 }
-
-
 
 .shareTop{
     display: flex;
     align-items: center;
 }
-
 
 .shareProfileImg{
     width: 50px;

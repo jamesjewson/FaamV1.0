@@ -18,7 +18,6 @@ export default function Comments(post) {
         const fetchComments = async () => {
             const res = await axios.get("/posts/comment/" + post._id, post._id)
             setGetComments(res.data);
-            // console.log(res.data);
         } 
         fetchComments();
     },[post._id])

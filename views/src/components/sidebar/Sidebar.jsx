@@ -28,22 +28,15 @@ export default function Sidebar() {
     },[currentUser?._id]); 
     
     const clickShowMore = ()=>{
-        showMore ? setShowMore(false) : setShowMore(true)
-        
+        showMore ? setShowMore(false) : setShowMore(true) 
         if(sidebarContainer.current.classList.contains("sidebarLoaded")){
             sidebarContainer.current.classList.remove('sidebarLoaded')
             sidebarContainer.current.classList.toggle('sidebarShowListContainer')
-
-        }else{
-            
+        }else{   
             sidebarContainer.current.classList.toggle('sidebarListContainerHidden')
             sidebarContainer.current.classList.toggle('sidebarShowListContainer')
         }
-        
-        
-
     }
-
 
     //Check Location
     const currentLocation = window.location.pathname;

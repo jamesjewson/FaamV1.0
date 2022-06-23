@@ -112,7 +112,6 @@
 
 .settingsIcon{
     color: black;
-    /* font-size: 1.2rem; */
 }
 .settingsIcon:hover{
     color: blue;
@@ -281,15 +280,6 @@
         max-width: 100%;
     height:100%;
     object-fit:cover;
-    /* width: 100%; */
-    /* height: 100%; */
-    /* border-radius: 20%; */
-    /* overflow: hidden; */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-    /* border: 6px solid black; */
-    /* display: block; */
-    /* position: relative; */
     z-index: 1;
     transition: 0.25s;
 }

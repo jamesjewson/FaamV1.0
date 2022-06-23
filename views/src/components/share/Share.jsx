@@ -15,15 +15,15 @@ export default function Share({renderNewPost}) {
     const [currentUser, setCurrentUser] = useState(user)
 
     //Fetch user    
-    useEffect(() =>{
-        const fetchCurrentUser = async () => {
-            const res = await axios.get(`/users/currentUser/` + user._id)
-            setCurrentUser(res.data);
-        };  
-        fetchCurrentUser();
-    },[user?._id]); 
+useEffect(() =>{
+    const fetchCurrentUser = async () => {
+        const res = await axios.get(`/users/currentUser/` + user._id)
+        setCurrentUser(res.data);
+    };  
+    fetchCurrentUser();
+},[user?._id]); 
         
- const submitHandler = async (e)=>{ 
+const submitHandler = async (e)=>{ 
     e.preventDefault()
     makePost()
 }
@@ -56,79 +56,79 @@ const makePost = async (e) =>{
         }
     }
 
-        //File Reader
-        const fileReader = (file, postId, userId, newPost)=>{
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                    //Upload Img
-                    uploadImage(reader.result, postId, userId, newPost);
-                };
-            reader.onerror = (error) => {
-                console.error(error);
-            };
-        }
-
-    const uploadImage = async (base64EncodedImage, postId, userId, newPost) => {
-        try { 
-            const newImgPost = {
-                img: base64EncodedImage,
-                userId: userId,
-                postId: postId
-            }
-            const res = await axios.post("/posts/postImg", newImgPost) 
-            // console.log(res.data)
-            newPost.img = res.data.img
-            renderNewPost(newPost)
-            setFile('')
-            desc.current.value = ""
-        } catch (error) {
-            console.log(error);
-        }
+//File Reader
+const fileReader = (file, postId, userId, newPost)=>{
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+            //Upload Img
+            uploadImage(reader.result, postId, userId, newPost);
+        };
+    reader.onerror = (error) => {
+        console.error(error);
     };
+}
+
+const uploadImage = async (base64EncodedImage, postId, userId, newPost) => {
+    try { 
+        const newImgPost = {
+            img: base64EncodedImage,
+            userId: userId,
+            postId: postId
+        }
+        const res = await axios.post("/posts/postImg", newImgPost) 
+        // console.log(res.data)
+        newPost.img = res.data.img
+        renderNewPost(newPost)
+        setFile('')
+        desc.current.value = ""
+    } catch (error) {
+        console.log(error);
+    }
+};
     
 
 
-    return (
-        <div className="share">
-           <div className="shareWrapper">
-               <div className="shareTop">  
-                    <Link to={`profile/${user.username}`}>
-                       <img 
-                            className="shareProfileImg" 
-                            src={currentUser.profilePicture ? currentUser.profilePicture : PF+"person/noAvatar.jpeg"} 
-                            alt="" 
-                       />
-                    </Link>
-                   <textarea placeholder={"Hey "+user.username+"! What's important?"} className="shareInput" ref={desc} />
-               </div>
-               <hr className="shareHr" />
-                {/* File upload */}
-                {file && (
-                    <div className="shareImgContainer">
-                        <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
-                        <Cancel className="shareCancelImg" onClick={()=> setFile(null)} />
-                    </div>
-                )}
+return (
+    <div className="share">
+        <div className="shareWrapper">
+            <div className="shareTop">  
+                <Link to={`profile/${user.username}`}>
+                    <img 
+                        className="shareProfileImg" 
+                        src={currentUser.profilePicture ? currentUser.profilePicture : PF+"person/noAvatar.jpeg"} 
+                        alt="" 
+                    />
+                </Link>
+                <textarea placeholder={"Hey "+user.username+"! What's important?"} className="shareInput" ref={desc} />
+            </div>
+            <hr className="shareHr" />
+            {/* File upload */}
+            {file && (
+                <div className="shareImgContainer">
+                    <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
+                    <Cancel className="shareCancelImg" onClick={()=> setFile(null)} />
+                </div>
+            )}
 
-               {/* Form */}
-                <form className="shareBottom" onSubmit={submitHandler} >
-                   <div className="shareOptions">
-                       <label htmlFor="file" className="shareOption">
-                           <PermMedia htmlColor="tomato" className="shareIcon"/>
-                           <span className="shareOptionText">Photo/Video</span>
-                           <input 
-                                style={{display:"none"}} 
-                                name="image"
-                                type="file" 
-                                id="file" 
-                                accept=".png,.jpeg,.jpg" 
-                                onChange={(e)=>setFile(e.target.files[0])} />
-                        </label>
-                   </div>
-                   <button className="shareButton" type="submit">Share</button>
-               </form>
-           </div>
+            {/* Form */}
+            <form className="shareBottom" onSubmit={submitHandler} >
+                <div className="shareOptions">
+                    <label htmlFor="file" className="shareOption">
+                        <PermMedia htmlColor="tomato" className="shareIcon"/>
+                        <span className="shareOptionText">Photo/Video</span>
+                        <input 
+                            style={{display:"none"}} 
+                            name="image"
+                            type="file" 
+                            id="file" 
+                            accept=".png,.jpeg,.jpg" 
+                            onChange={(e)=>setFile(e.target.files[0])} />
+                    </label>
+                </div>
+                <button className="shareButton" type="submit">Share</button>
+            </form>
         </div>
-    )
+    </div>
+)
 }

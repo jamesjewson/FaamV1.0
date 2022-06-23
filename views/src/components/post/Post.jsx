@@ -161,7 +161,6 @@ useEffect(() =>{
     const fetchComments = async () => {
         const res = await axios.get("/posts/comment/" + post._id, post._id)
         setGetCommentsLength(res.data.length);
-        // console.log(getCommentsLength);
     } 
     fetchComments();
 },[post._id])
@@ -245,9 +244,4 @@ useEffect(() =>{
            </div>
         </div>
     )
-
-
-
-
-
 }

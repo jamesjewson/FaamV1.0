@@ -1,6 +1,5 @@
 .settingsWrapper {
     display: flex;
-    /* justify-content: space-between;     */
 }
 
 
@@ -14,25 +13,17 @@
     .settingsMobileTopbar{
         display: block;
     }
-
   }
 
 
-
-
-  /* 800 adjust rightbar scale */
   /* Tablets */
 @media only screen and (max-width: 768px) {
     div.settingsUserInfoContainer{
         width: 100%;
     }
-    
-
 }
 
 
-
-  /* 975 make vertical */
 /* Phone */
   @media only screen and (max-width: 480px) {
         .settingsWrapper{
