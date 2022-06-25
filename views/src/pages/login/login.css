@@ -72,7 +72,6 @@
       -o-animation: fadeinform 4s ease-out, largedropdown 4s ease-out; /* Opera < 12.1 */
          animation: fadeinform 4s ease-out, largedropdown 4s ease-out;
     
-    /* display: none; */
 }
 .loginContainer{
     display: flex;
