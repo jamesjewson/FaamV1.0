@@ -33,6 +33,9 @@ export default function Login() {
         <div className="login">
             <div className="loginTriangle">
                 <div class="arrow-up-black"></div>
+            </div>
+            <div className="loginTriangle greenTriangle">
+
                 <div class="arrow-up-green"></div>
             </div>
             <div className="loginWrapper">

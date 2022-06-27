@@ -17,20 +17,25 @@
 
 /* Login Triangle */
 .loginTriangle{
-    height: 100vh;
+    height: 0vh;
     position: absolute;
     z-index: -1;
     width: 100%;
     overflow: hidden;
     bottom: 0;
     
-    animation: triangle-rise 1.75s ease-out;
-    -webkit-animation: triangle-rise 1.75s ease-out; /* Safari, Chrome and Opera > 12.1 */
+    animation: triangle-rise 1.75s ease-out normal;
+    -webkit-animation: triangle-rise 1.75s ease-out forwards; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: triangle-rise 1.75s ease-out; /* Firefox < 16 */
      -ms-animation: triangle-rise 1.75s ease-out; /* Internet Explorer */
       -o-animation: triangle-rise 1.75s ease-out; /* Opera < 12.1 */
-}
+      animation-timing-function: cubic-bezier(0.42, 0, 0.25, 1);
 
+}
+    .greenTriangle{
+    animation-delay: .33333s;
+    /* animation-timing-function: cubic-bezier(0.28, 0.37, 0.58, 1); */
+    }
     .arrow-up-black {
         width: 0; 
         height: 100vh; 
@@ -66,11 +71,12 @@
     align-items: center;
     justify-content: center;
 
-    -webkit-animation: fadeinform 4s ease-out, largedropdown 4s ease-out; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadeinform 4s ease-out, largedropdown 4s ease-out; /* Firefox < 16 */
-     -ms-animation: fadeinform 4s ease-out, largedropdown 4s ease-out; /* Internet Explorer */
-      -o-animation: fadeinform 4s ease-out, largedropdown 4s ease-out; /* Opera < 12.1 */
-         animation: fadeinform 4s ease-out, largedropdown 4s ease-out;
+    -webkit-animation: fadeinform 4.5s ease-out forwards, largedropdown 4.5s ease-out forwards; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeinform 4.5s ease-out forwards, largedropdown 4.5s ease-out forwards; /* Firefox < 16 */
+     -ms-animation: fadeinform 4.5s ease-out forwards, largedropdown 4.5s ease-out forwards; /* Internet Explorer */
+      -o-animation: fadeinform 4.5s ease-out forwards, largedropdown 4.5s ease-out forwards; /* Opera < 12.1 */
+         animation: fadeinform 4.5s ease-out forwards, largedropdown 4.5s ease-out forwards;
+
     
 }
 .loginContainer{
@@ -83,6 +89,9 @@
         max-height: 735px;
     border: 8px solid black;
     width: fit-content;
+
+    -webkit-box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.54); 
+box-shadow: 5px 5px 15px 2px rgba(0,0,0,0.54);
 }
 
 .loginLeft, .loginRight{
